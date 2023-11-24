@@ -21,7 +21,6 @@ const NavBar = () => {
   // handler
 
   const handleResize = useCallback(() => {
-    console.log("called", deviceInnerWidth);
     setDeviceInnerWidth(window.innerWidth);
     setMobileNavCall(false);
     if (deviceInnerWidth >= 1280) {

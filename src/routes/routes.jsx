@@ -4,7 +4,7 @@ import Home from "../page/Home";
 import AuthPage from "../layout/AuthPage";
 import Login from "../page/Login";
 import SignUp from "../page/SignUp";
-import SectionTitle from "../components/utilitiesComponets/SectionTitle/SectionTitle";
+import SectionTitle from "../components/utilitiesComponents/SectionTitle/SectionTitle";
 
 const router = createBrowserRouter([
   {
