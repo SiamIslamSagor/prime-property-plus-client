@@ -5,8 +5,8 @@ const Root = () => {
   return (
     <div>
       <NavBar></NavBar>
-      <div className="mb-[200vh]"></div>
-      <div className="bg-base-200 pb-6">
+      <div className="mb-[30vh]"></div>
+      <div>
         <Outlet></Outlet>
       </div>
       {/* <GooTop></GooTop> */}

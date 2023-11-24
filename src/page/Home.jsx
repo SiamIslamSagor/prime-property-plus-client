@@ -1,9 +1,13 @@
+import SectionTitle from "../components/utilitiesComponets/SectionTitle/SectionTitle";
+
 const Home = () => {
   return (
-    <div>
-      <h2 className="text-5xl font-bold text-p-color text-center">
-        this is home
-      </h2>
+    <div className="bg-green-200">
+      <div className="">
+        <SectionTitle heading={"hero section"}></SectionTitle>
+      </div>
+      <button className="btn btn-primary">btn</button>
+      <div className="min-h-screen "></div>
     </div>
   );
 };

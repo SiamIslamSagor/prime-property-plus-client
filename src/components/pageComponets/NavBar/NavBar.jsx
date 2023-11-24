@@ -2,7 +2,7 @@ import { NavLink, useLocation } from "react-router-dom";
 import logo from "../../../assets/logo.png";
 
 import "./NavBar.css";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Toaster } from "react-hot-toast";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 
@@ -11,16 +11,26 @@ const NavBar = () => {
   const [mobileNavCall, setMobileNavCall] = useState(false);
   const [navClass, setNavClass] = useState("");
   const user = null;
+  const [deviceInnerWidth, setDeviceInnerWidth] = useState(window.innerWidth);
 
   // context data
 
   const location = useLocation();
 
   // handler
+
+  const handleResize = useCallback(() => {
+    console.log("called", deviceInnerWidth);
+    setDeviceInnerWidth(window.innerWidth);
+    setMobileNavCall(false);
+    if (deviceInnerWidth >= 1280) {
+      setMobileNavCall(false);
+    }
+  }, [deviceInnerWidth]);
+
   const handleMobileStateChange = () => {
     const viewportWidth = window.innerWidth;
     if (viewportWidth <= 1280) {
-      // Your code to be executed when the viewport width is 1280px
       setMobileNavCall(!mobileNavCall);
     }
   };
@@ -32,6 +42,14 @@ const NavBar = () => {
       setNavClass("");
     }
   });
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [handleResize]);
 
   const links = (
     <>
@@ -185,6 +203,12 @@ const NavBar = () => {
           {links}
         </div>
       </div>
+      {mobileNavCall && (
+        <div
+          onClick={() => setMobileNavCall(!mobileNavCall)}
+          className={`h-screen bg-[#173d4523] w-full absolute left-[375px] duration-700`}
+        ></div>
+      )}
     </div>
   );
 };
