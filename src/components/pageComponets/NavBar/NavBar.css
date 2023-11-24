@@ -1,0 +1,25 @@
+div > a.active {
+  /* border-bottom: 3px solid #f86f03; */
+  color: #03045e;
+  font-weight: bold;
+}
+
+.nav-div > a {
+  position: relative;
+  text-decoration: none;
+}
+
+.nav-div > a::after {
+  content: "";
+  position: absolute;
+  background-color: #03045e;
+  height: 3px;
+  width: 0;
+  left: 0;
+  bottom: -3px;
+  transition: 0.5s;
+}
+
+a:hover::after {
+  width: 100%;
+}
