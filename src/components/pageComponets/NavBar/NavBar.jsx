@@ -2,7 +2,7 @@ import { NavLink, useLocation } from "react-router-dom";
 import logo from "../../../assets/logo.png";
 
 import "./NavBar.css";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Toaster } from "react-hot-toast";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 
@@ -12,6 +12,7 @@ const NavBar = () => {
   const [navClass, setNavClass] = useState("");
   const user = null;
   const [deviceInnerWidth, setDeviceInnerWidth] = useState(window.innerWidth);
+  const sideBtnRef = useRef(null);
 
   // context data
 
@@ -50,6 +51,23 @@ const NavBar = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, [handleResize]);
+
+  useEffect(() => {
+    const handleClickOutside = event => {
+      if (
+        sideBtnRef.current &&
+        !sideBtnRef.current.contains(event.target) &&
+        event.clientX > 375
+      ) {
+        setMobileNavCall(false);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
   const links = (
     <>
@@ -120,9 +138,9 @@ const NavBar = () => {
   );
 
   return (
-    <div className=" sticky top-0 z-10 duration-700">
+    <div className=" sticky mb-3 top-0 z-[9999] duration-700">
       <Toaster></Toaster>
-      <div className={`shadow-lg duration-700 ${navClass}`}>
+      <div className={`shadow-lg z-[999] bg-white duration-700 ${navClass}`}>
         <div className="py-3 max-sm:py-3 container mx-auto flex justify-between items-center">
           <div className="flex items-center">
             <div className="">
@@ -194,21 +212,24 @@ const NavBar = () => {
           </div>
         </div>
       </div>
-      <div
-        className={`fixed xl:hidden duration-500 min-h-screen overflow-x-hidden bg-f-color w-[375px] max-sm:top-[72px] -z-10 ${
-          mobileNavCall ? "left-0" : "-left-[375px]"
-        }`}
-      >
-        <div className="mt-[140px] text-center flex flex-col items-center gap-4 text-s-color">
-          {links}
-        </div>
-      </div>
-      {mobileNavCall && (
+      <div className="flex">
         <div
-          onClick={() => setMobileNavCall(!mobileNavCall)}
-          className={`h-screen bg-[#173d4523] w-full absolute left-[375px] duration-700`}
-        ></div>
-      )}
+          className={`fixed xl:hidden duration-500 min-h-screen overflow-x-hidden bg-f-color w-[375px] max-sm:top-[72px] -z-10 ${
+            mobileNavCall ? "left-0" : "-left-[375px]"
+          }`}
+        >
+          <div className="mt-[140px] text-center flex flex-col items-center gap-4 text-s-color">
+            {links}
+          </div>
+        </div>
+        {mobileNavCall && (
+          <div
+            ref={sideBtnRef}
+            onClick={() => setMobileNavCall(!mobileNavCall)}
+            className={`h-[40vh] bg-[#173d4523]     absolute left-[375px]  overflow-x-hidden duration-700`}
+          ></div>
+        )}
+      </div>
     </div>
   );
 };
