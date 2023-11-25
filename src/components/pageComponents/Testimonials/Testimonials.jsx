@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useReviews from "../../../hooks/useReviews";
+import SectionTitle from "../../utilitiesComponents/SectionTitle/SectionTitle";
+import ReviewSlider from "../ReviewSlider/ReviewSlider";
 
 const Testimonials = () => {
   // state
@@ -20,7 +21,12 @@ const Testimonials = () => {
 
   return (
     <div>
-      <h1 className="text-4xl text-center font-bold">Testimonials</h1>
+      <div>
+        <SectionTitle heading={"Testimonials"}></SectionTitle>
+      </div>
+      <div>
+        <ReviewSlider latestReviews={latestReviews}></ReviewSlider>
+      </div>
     </div>
   );
 };
