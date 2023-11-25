@@ -7,17 +7,22 @@ const Testimonials = () => {
   // state
   const [latestReviews, setLatestReviews] = useState([]);
 
+  //   hooks
   const { reviewsData } = useReviews();
 
+  //   side effect
   useEffect(() => {
-    const latestReviewsData = reviewsData.sort(
-      (a, b) => new Date(b.reviewTime) - new Date(a.reviewTime)
-    );
+    console.log("effect");
+    if (reviewsData.length > 0) {
+      const latestReviewsData = reviewsData.sort(
+        (a, b) => new Date(b.reviewTime) - new Date(a.reviewTime)
+      );
 
-    setLatestReviews(latestReviewsData);
+      setLatestReviews(latestReviewsData);
+    }
   }, [reviewsData]);
 
-  console.log(latestReviews);
+  //   console.log(latestReviews);
 
   return (
     <div>

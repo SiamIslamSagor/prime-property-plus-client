@@ -26,7 +26,7 @@ const Home = () => {
       {/* btn here */}
 
       {/* </div> */}
-      <div className="min-h-screen"></div>
+      {/* <div className="min-h-screen"></div> */}
     </div>
   );
 };

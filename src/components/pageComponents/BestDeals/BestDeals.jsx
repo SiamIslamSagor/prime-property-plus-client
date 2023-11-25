@@ -17,10 +17,12 @@ const BestDeals = () => {
     useState(propertiesData);
 
   useEffect(() => {
-    const bestDeals = propertiesData.sort(
-      (a, b) => a.propertyPriceRange[0] - b.propertyPriceRange[0]
-    );
-    setBestDealsProperties(bestDeals?.slice(0, 6));
+    if (propertiesData.length > 0) {
+      const bestDeals = propertiesData.sort(
+        (a, b) => a.propertyPriceRange[0] - b.propertyPriceRange[0]
+      );
+      setBestDealsProperties(bestDeals?.slice(0, 6));
+    }
   }, [propertiesData]);
 
   return (
