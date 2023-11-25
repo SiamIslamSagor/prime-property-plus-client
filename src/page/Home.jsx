@@ -4,6 +4,7 @@ import SectionTitle from "../components/utilitiesComponents/SectionTitle/Section
 import SecondaryBtn from "../components/utilitiesComponents/SecondaryBtn";
 import UpdateBtn from "../components/utilitiesComponents/UpdateBtn";
 import DeleteBtn from "../components/utilitiesComponents/DeleteBtn";
+import HeroBanner from "../components/pageComponents/HeroBanner/HeroBanner";
 
 const Home = () => {
   const [isLoadingPrimary, setIsLoadingPrimary] = useState(false);
@@ -12,7 +13,8 @@ const Home = () => {
   const [isDeleting, setIsDeleting] = useState(false);
 
   return (
-    <div>
+    <div className="">
+      <HeroBanner></HeroBanner>
       <div className="">
         <SectionTitle heading={"hero section"}></SectionTitle>
       </div>

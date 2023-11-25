@@ -1,5 +1,8 @@
+/* eslint-disable react/no-unescaped-entities */
 import { Link } from "react-router-dom";
 import heroBg from "../../../assets/images/heroImg.jpg";
+import PrimaryBtn from "../../utilitiesComponents/PrimaryBtn";
+import SectionTitle from "../../utilitiesComponents/SectionTitle/SectionTitle";
 
 const HeroBanner = () => {
   const heroBgStyle = {
@@ -12,23 +15,24 @@ const HeroBanner = () => {
   return (
     <div
       style={heroBgStyle}
-      className="-mt-[96px] relative h-[60vh] sm:h-[70vh] md:h-[911px]  bg-red-200 "
+      className="-mt-[96px] relative h-[60vh] sm:h-[75vh] md:h-[850px] lg:h-[920px]  bg-red-200 "
     >
       <div className="w-full h-full absolute bg-[#000000a1]">
         <div className="container mx-auto max-sm:mt-28 sm:mt-36 md:mt-72 lg:mt-96 text-white">
-          <div className=" md:max-w-[60%] max-sm:px-2 sm:mx-4 lg:mx-6">
+          <div className=" md:max-w-[60%] max-sm:px-2 sm:mx-4 lg:mx-6 max-md:text-center max-md:mt-60 max-sm:mt-40">
+            <div className="my-6">
+              <SectionTitle
+                heading={"Welcome to Your Future Home"}
+              ></SectionTitle>
+            </div>
             <p className="mb-6 leading-4 font-normal md:text-xl md:font-medium">
-              Welcome to FoodHub, where we turn surplus into smiles. We are on a
-              mission to create a world where no one goes to bed hungry. Our
-              platform connects the generous hearts of Bangladesh, making it
-              easy to share excess food with those who need it most. Join our
-              growing community, and let is serve up kindness, one meal at a
-              time.
+              At Prime Property Pulse, we understand that your dream home is
+              more than a place; it's an emotion. Let us be the rhythm that
+              leads you to a property where your heart truly belongs. Explore
+              the heartbeat of exceptional living with Prime Property Pulse.
             </p>
             <Link to="/login">
-              <button className="btn border-[#f86f03] hover:bg-orange-500 outline-none  hover:border-[#f86f03] text-white bg-transparent dark:bg-red-500 dark:text-green-700">
-                Get Started
-              </button>
+              <PrimaryBtn btnText="get started"></PrimaryBtn>
             </Link>
           </div>
         </div>

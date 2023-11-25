@@ -1,4 +1,10 @@
-import { NavLink, Navigate, useLocation, useNavigate } from "react-router-dom";
+import {
+  Link,
+  NavLink,
+  Navigate,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 import logo from "../../../assets/logo.png";
 
 import "./NavBar.css";
@@ -103,29 +109,28 @@ const NavBar = () => {
       </div>
 
       {user === null && (
-        <PrimaryBtn
-          onClick={handleMobileStateChange}
-          handler={() => {
-            console.log("LogIn");
-            navigate("auth/login");
-            return (
-              <Navigate state={location.pathname} to="auth/login"></Navigate>
-            );
-          }}
-          btnText="Log In"
-          className="uppercase nav-div max-md:w-full md:text-lg font-semibold"
-        ></PrimaryBtn>
+        <Link state={{ from: location }} to="/auth/login">
+          <PrimaryBtn
+            onClick={handleMobileStateChange}
+            handler={() => {
+              console.log("LogIn");
+            }}
+            btnText="Log In"
+            className="uppercase nav-div max-md:w-full md:text-lg font-semibold"
+          ></PrimaryBtn>{" "}
+        </Link>
       )}
       {user === null && (
-        <SecondaryBtn
-          onClick={handleMobileStateChange}
-          handler={() => {
-            console.log("signUp");
-            navigate("auth/signUp");
-          }}
-          btnText="Sign Up"
-          className="uppercase nav-div max-md:w-full md:text-lg font-semibold"
-        ></SecondaryBtn>
+        <Link state={{ from: location }} to="/auth/signUp">
+          <SecondaryBtn
+            onClick={handleMobileStateChange}
+            handler={() => {
+              console.log("signUp");
+            }}
+            btnText="Sign Up"
+            className="uppercase nav-div max-md:w-full md:text-lg font-semibold"
+          ></SecondaryBtn>
+        </Link>
       )}
     </>
   );

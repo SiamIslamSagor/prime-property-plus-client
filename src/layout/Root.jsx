@@ -5,7 +5,6 @@ const Root = () => {
   return (
     <div>
       <NavBar></NavBar>
-      <div className="mb-[30vh]"></div>
       <div>
         <Outlet></Outlet>
       </div>
