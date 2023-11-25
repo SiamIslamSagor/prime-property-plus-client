@@ -9,7 +9,12 @@
     "propertyBeauty": "Stunning city skyline views",
     "agentImg": "https://i.ibb.co/Yb95dr4/1.png",
     "agentName": "John Smith",
-    "agentEmail": "john.smith@example.com"
+    "agentEmail": "john.smith@example.com",
+    "locationDetails": {
+      "latitude": 40.7128,
+      "longitude": -74.006
+    },
+    "locationDescription": "Experience the vibrant city life in the heart of downtown Metropolis. This modern apartment offers stunning views of the city skyline, complete with top-notch amenities and easy access to entertainment and cultural hotshots."
   },
   {
     "propertyImg": "https://i.ibb.co/CsBZXdr/home2.jpg",
@@ -21,7 +26,12 @@
     "propertyBeauty": "Charming garden and peaceful surroundings",
     "agentImg": "https://i.ibb.co/rcvg6px/2.png",
     "agentName": "Emily Johnson",
-    "agentEmail": "emily.johnson@example.com"
+    "agentEmail": "emily.johnson@example.com",
+    "locationDetails": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    },
+    "locationDescription": "Escape to the tranquility of suburban living in this cozy cottage. Surrounded by a spacious garden, this property offers a peaceful retreat with a warm fireplace and high ceilings, creating the perfect home for relaxation and comfort."
   },
   {
     "propertyImg": "https://i.ibb.co/X8YbmGR/home3.jpg",
@@ -37,7 +47,12 @@
     "propertyBeauty": "Breathtaking ocean views and private beachfront",
     "agentImg": "https://i.ibb.co/MPF9N0G/15.png",
     "agentName": "Michael Rodriguez",
-    "agentEmail": "michael.rodriguez@example.com"
+    "agentEmail": "michael.rodriguez@example.com",
+    "locationDetails": {
+      "latitude": 34.0522,
+      "longitude": -118.2437
+    },
+    "locationDescription": "Indulge in luxury living at Sunset Bay with this beachfront villa. Enjoy breathtaking ocean views, private beach access, and premium amenities, creating a perfect blend of opulence and natural beauty."
   },
   {
     "propertyImg": "https://i.ibb.co/KDJTnCJ/home4.jpg",
@@ -53,7 +68,12 @@
     "propertyBeauty": "Idyllic mountain scenery and tranquility",
     "agentImg": "https://i.ibb.co/BLyHCDY/4.png",
     "agentName": "Jessica Carter",
-    "agentEmail": "jessica.carter@example.com"
+    "agentEmail": "jessica.carter@example.com",
+    "locationDetails": {
+      "latitude": 39.5501,
+      "longitude": -105.7821
+    },
+    "locationDescription": "Embrace the serenity of mountain living with this rustic retreat. Surrounded by picturesque landscapes, hiking trails, and a cozy wood-burning stove, this property is an escape into tranquility."
   },
   {
     "propertyImg": "https://i.ibb.co/tzbPD5N/home5.jpg",
@@ -62,10 +82,15 @@
     "propertyPriceRange": [4000, 6000],
     "propertyVerificationStatus": "verified",
     "propertyFeatures": ["Exposed Brick Walls", "Large Windows", "Roof Deck"],
-    "propertyBeauty": "Artistic vibes and panoramic cityscapes",
+    "propertyBeauty": "Artistic vibes and panoramic cityscape",
     "agentImg": "https://i.ibb.co/QfxN5Kz/5.png",
     "agentName": "Daniel Lee",
-    "agentEmail": "daniel.lee@example.com"
+    "agentEmail": "daniel.lee@example.com",
+    "locationDetails": {
+      "latitude": 34.0522,
+      "longitude": -118.2437
+    },
+    "locationDescription": "Immerse yourself in the artistic energy of the Artsy District. This urban loft features exposed brick walls, large windows, and a roof deck with panoramic cityscape, creating a unique and vibrant living space."
   },
   {
     "propertyImg": "https://i.ibb.co/bFS9bP0/home6.jpg",
@@ -77,7 +102,12 @@
     "propertyBeauty": "Enchanting forest surroundings and luxurious amenities",
     "agentImg": "https://i.ibb.co/jhnkRH0/6.png",
     "agentName": "Sophia Brown",
-    "agentEmail": "sophia.brown@example.com"
+    "agentEmail": "sophia.brown@example.com",
+    "locationDetails": {
+      "latitude": 45.4215,
+      "longitude": -122.6731
+    },
+    "locationDescription": "Discover luxury in nature with this mansion in the Secluded Forest. Enjoy a private forest trail, indoor pool, and home theater in an enchanting setting surrounded by nature's beauty."
   },
   {
     "propertyImg": "https://i.ibb.co/L1g875c/home7.jpg",
@@ -93,7 +123,12 @@
     "propertyBeauty": "Preserved historical charm and elegant design",
     "agentImg": "https://i.ibb.co/XWMFnfH/7.png",
     "agentName": "Ryan Miller",
-    "agentEmail": "ryan.miller@example.com"
+    "agentEmail": "ryan.miller@example.com",
+    "locationDetails": {
+      "latitude": 40.7128,
+      "longitude": -74.006
+    },
+    "locationDescription": "Step into the past with this Historic Townhouse in Old Town Charm. Preserving original architecture, a courtyard garden, and antique details, this property embodies the elegance of a bygone era."
   },
   {
     "propertyImg": "https://i.ibb.co/1swQtcv/home8.jpg",
@@ -109,7 +144,12 @@
     "propertyBeauty": "Exclusive penthouse living with unparalleled city views",
     "agentImg": "https://i.ibb.co/Xb1cHtn/8.png",
     "agentName": "Olivia White",
-    "agentEmail": "olivia.white@example.com"
+    "agentEmail": "olivia.white@example.com",
+    "locationDetails": {
+      "latitude": 34.0522,
+      "longitude": -118.2437
+    },
+    "locationDescription": "Experience luxury at its peak in this Penthouse Paradise at Skyline Heights. Enjoy exclusive penthouse living with a private terrace, skyline views, and high-end finishes that define opulence."
   },
   {
     "propertyImg": "https://i.ibb.co/cc0ybL4/home9.jpg",
@@ -125,7 +165,12 @@
     "propertyBeauty": "Panoramic lake views and modern design",
     "agentImg": "https://i.ibb.co/QfXGxQG/9.png",
     "agentName": "David Anderson",
-    "agentEmail": "david.anderson@example.com"
+    "agentEmail": "david.anderson@example.com",
+    "locationDetails": {
+      "latitude": 42.3601,
+      "longitude": -71.0589
+    },
+    "locationDescription": "Escape to the serenity of Tranquil Lakeside in this contemporary lake house. Enjoy panoramic lake views, dock access, and modern design that harmonizes with the natural beauty of the surroundings."
   },
   {
     "propertyImg": "https://i.ibb.co/sVnSwzR/home10.jpg",
@@ -137,7 +182,12 @@
     "propertyBeauty": "Smart and stylish city living",
     "agentImg": "https://i.ibb.co/VWwv8jh/10.png",
     "agentName": "Emma Wilson",
-    "agentEmail": "emma.wilson@example.com"
+    "agentEmail": "emma.wilson@example.com",
+    "locationDetails": {
+      "latitude": 40.7128,
+      "longitude": -74.006
+    },
+    "locationDescription": "Embrace the energy of City Center with this sleek urban studio. Offering an efficient layout, modern appliances, and city views, this property is the epitome of smart and stylish city living."
   },
   {
     "propertyImg": "https://i.ibb.co/nn1br5k/home11.jpg",
@@ -149,11 +199,16 @@
     "propertyBeauty": "Quaint farmhouse charm and vast open spaces",
     "agentImg": "https://i.ibb.co/JtZ2jXH/11.png",
     "agentName": "Christopher Davis",
-    "agentEmail": "christopher.davis@example.com"
+    "agentEmail": "christopher.davis@example.com",
+    "locationDetails": {
+      "latitude": 39.0997,
+      "longitude": -94.5786
+    },
+    "locationDescription": "Experience the charm of Rural Retreat in this Country Farmhouse. With a wrap-around porch, barn, and expansive fields, this property captures the essence of quaint farmhouse living amidst vast open spaces."
   },
   {
     "propertyImg": "https://i.ibb.co/TYT1m3d/home12.jpg",
-    "propertyTitle": "Elegant Townhome",
+    "propertyTitle": "Elegant Townhouse",
     "propertyLocation": "Sophisticated Suburb",
     "propertyPriceRange": [5000, 8000],
     "propertyVerificationStatus": "verified",
@@ -165,6 +220,11 @@
     "propertyBeauty": "Classic elegance and modern amenities",
     "agentImg": "https://i.ibb.co/sRZchZr/12.png",
     "agentName": "Ava Robinson",
-    "agentEmail": "ava.robinson@example.com"
+    "agentEmail": "ava.robinson@example.com",
+    "locationDetails": {
+      "latitude": 34.0522,
+      "longitude": -118.2437
+    },
+    "locationDescription": "Indulge in classic elegance in the heart of Sophisticated Suburb with this Elegant Townhouse. Featuring a gourmet kitchen, private patio, and luxurious finishes, this property seamlessly blends classic charm with modern amenities."
   }
 ]

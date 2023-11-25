@@ -8,9 +8,9 @@ const SecondaryBtn = ({
   isLoadingBtn = false,
 }) => {
   return (
-    <div>
+    <div className="inline-block">
       <button
-        className="btn rounded-none bg-f-color border-f-color text-white hover:border-f-color hover:text-f-color hover:bg-white duration-[350ms] ease-in-out sm:px-10 max-md:px-6 btn-outline uppercase group max-sm:-py-16 max-sm:btn-sm"
+        className="btn rounded-none bg-f-color border-f-color text-white hover:border-f-color hover:text-f-color hover:bg-white duration-[350ms] ease-in-out sm:px-8 max-md:px-4 btn-outline uppercase group max-sm:-py-16 max-sm:btn-sm  "
         onClick={handler}
         disabled={isDisable}
       >

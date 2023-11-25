@@ -36,14 +36,14 @@ const HeroBanner = () => {
               </p>
             </Fade>
             <div className="flex gap-6 max-sm:flex-col-reverse max-sm:gap-4">
-              <div className=" inline-block overflow-hidden">
+              <div className=" inline overflow-hidden  ">
                 <Fade direction="down">
                   <Link to="auth/login">
                     <SecondaryBtn btnText="get started"></SecondaryBtn>
                   </Link>
                 </Fade>
               </div>
-              <div className=" inline-block overflow-hidden">
+              <div className=" inline overflow-hidden  ">
                 <Fade direction="up">
                   <Link to="auth/signUp">
                     <PrimaryBtn btnText="get started"></PrimaryBtn>

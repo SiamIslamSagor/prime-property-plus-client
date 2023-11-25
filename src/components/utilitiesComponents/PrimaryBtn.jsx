@@ -8,7 +8,7 @@ const PrimaryBtn = ({
   isLoadingBtn = false,
 }) => {
   return (
-    <div>
+    <div className="inline-block">
       <button
         className="btn rounded-none border-f-color text-t-color hover:bg-f-color hover:border-f-color duration-[350ms] ease-in-out sm:px-8 max-md:px-4 btn-outline uppercase group max-sm:-py-16 max-sm:btn-sm"
         onClick={handler}
