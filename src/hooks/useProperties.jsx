@@ -4,7 +4,7 @@ import useAxiosPublic from "./useAxiosPublic";
 const useProperties = () => {
   const axiosPublic = useAxiosPublic();
 
-  const { data: PropertiesData } = useQuery({
+  const { data: PropertiesData = [] } = useQuery({
     queryKey: ["properties"],
     queryFn: () =>
       axiosPublic.get("/properties.json").then(res => {
