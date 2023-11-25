@@ -3,6 +3,7 @@ import SectionTitle from "../../utilitiesComponents/SectionTitle/SectionTitle";
 import PropertyCard from "../PropertyCard/PropertyCard";
 import useProperties from "../../../hooks/useProperties";
 import useContextData from "../../../hooks/useContextData";
+import CardHolder from "../CardHolder/CardHolder";
 
 const BestDeals = () => {
   // hooks
@@ -10,7 +11,7 @@ const BestDeals = () => {
   //   context data
   const { propertyCardDelay } = useContextData();
 
-  const { propertiesData } = useProperties();
+  const { propertiesData, isLoading } = useProperties();
   // state
 
   const [bestDealsProperties, setBestDealsProperties] =
@@ -30,16 +31,27 @@ const BestDeals = () => {
       <div className="my-10">
         <SectionTitle heading={"best deals"}></SectionTitle>
       </div>
-      <div className=" grid gap-8 justify-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        {bestDealsProperties &&
-          bestDealsProperties?.map((property, idx) => (
-            <PropertyCard
-              key={property?.agentEmail}
-              property={property}
-              animDelay={propertyCardDelay[idx]}
-            ></PropertyCard>
-          ))}
-      </div>
+      {isLoading ? (
+        <div className=" grid gap-8 justify-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          <CardHolder></CardHolder>
+          <CardHolder></CardHolder>
+          <CardHolder></CardHolder>
+          <CardHolder></CardHolder>
+          <CardHolder></CardHolder>
+          <CardHolder></CardHolder>
+        </div>
+      ) : (
+        <div className=" grid gap-8 justify-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          {bestDealsProperties &&
+            bestDealsProperties?.map((property, idx) => (
+              <PropertyCard
+                key={property?.agentEmail}
+                property={property}
+                animDelay={propertyCardDelay[idx]}
+              ></PropertyCard>
+            ))}
+        </div>
+      )}
     </div>
   );
 };

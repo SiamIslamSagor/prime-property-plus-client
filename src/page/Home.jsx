@@ -8,6 +8,7 @@ import HeroBanner from "../components/pageComponents/HeroBanner/HeroBanner";
 import PropertyCard from "../components/pageComponents/PropertyCard/PropertyCard";
 import BestDeals from "../components/pageComponents/BestDeals/BestDeals";
 import Testimonials from "../components/pageComponents/Testimonials/Testimonials";
+import CardHolder from "../components/pageComponents/CardHolder/CardHolder";
 
 const Home = () => {
   const [isLoadingPrimary, setIsLoadingPrimary] = useState(false);
@@ -20,6 +21,7 @@ const Home = () => {
       <HeroBanner></HeroBanner>
       <div className="my-20">
         <BestDeals></BestDeals>
+        {/* <CardHolder></CardHolder> */}
       </div>
       <Testimonials></Testimonials>
       {/* <div className="flex gap-4 justify-center"> */}

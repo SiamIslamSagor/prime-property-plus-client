@@ -4,7 +4,11 @@ import useAxiosPublic from "./useAxiosPublic";
 const useProperties = () => {
   const axiosPublic = useAxiosPublic();
 
-  const { data: propertiesData = [] } = useQuery({
+  const {
+    data: propertiesData = [],
+    isLoading,
+    isError,
+  } = useQuery({
     queryKey: ["properties"],
     queryFn: () =>
       axiosPublic.get("/properties").then(res => {
@@ -12,7 +16,7 @@ const useProperties = () => {
       }),
     staleTime: 1000 * 10,
   });
-  return { propertiesData };
+  return { propertiesData, isLoading, isError };
 };
 
 export default useProperties;
