@@ -12,7 +12,7 @@ const AboutUs = () => {
 
       <div className="flex max-lg:flex-col justify-between items-center">
         <div className="overflow-hidden">
-          <Fade direction="left" delay={1000}>
+          <Fade direction="left" delay={800}>
             <div>
               <img
                 className="max-w-2xl max-sm:w-full"
@@ -52,7 +52,7 @@ const AboutUs = () => {
       </div>
       <div className="flex max-lg:flex-col flex-row-reverse justify-between items-center">
         <div className="overflow-hidden">
-          <Fade direction="right" delay={1000}>
+          <Fade direction="right" delay={800}>
             <div>
               <img
                 className="max-w-2xl max-sm:w-full"
