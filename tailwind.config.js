@@ -10,6 +10,17 @@ export default {
         "f-color": "#48cae4",
         "indigo-color": "#818cf8",
       },
+      keyframes: {
+        "move-x": {
+          "0%, 100%": { transform: "rotate(-8deg)" },
+          "50%": { transform: "rotate(8deg)" },
+        },
+      },
+      animation: {
+        "spin-slow": "spin 2s linear infinite",
+        "move-x": "move-x 1s ease-in-out infinite",
+        anim: "tra",
+      },
     },
   },
   plugins: [require("daisyui")],

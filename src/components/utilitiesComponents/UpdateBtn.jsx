@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { PiNotePencilBold } from "react-icons/pi";
+import { RxUpdate } from "react-icons/rx";
 
 const UpdateBtn = ({
   btnText = "Button",
@@ -16,9 +17,9 @@ const UpdateBtn = ({
       >
         <span className="text-[16px] max-sm:text-sm">{btnText}</span>{" "}
         {isLoadingBtn ? (
-          <span className="loading loading-xs loading-spinner text-t-color ml-1 hover:text-white max-sm:text-sm"></span>
+          <RxUpdate className="animate-spin-slow text-t-color ml-1 hover:text-white text-lg"></RxUpdate>
         ) : (
-          <PiNotePencilBold className="duration-150 scale-x-110 group-hover:translate-x-1 ml-1 max-sm:text-sm" />
+          <PiNotePencilBold className="duration-150 scale-x-110 group-hover:translate-x-1 ml-1 text-lg" />
         )}
       </button>
     </div>
