@@ -1,10 +1,4 @@
-import {
-  Link,
-  NavLink,
-  Navigate,
-  useLocation,
-  useNavigate,
-} from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import logo from "../../../assets/logo.png";
 
 import "./NavBar.css";
@@ -25,8 +19,6 @@ const NavBar = () => {
   // context data
 
   const location = useLocation();
-  const navigate = useNavigate();
-  console.log(location);
 
   // handler
 

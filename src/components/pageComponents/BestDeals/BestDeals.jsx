@@ -9,7 +9,6 @@ const BestDeals = () => {
   //   const axiosPublic = useAxiosPublic();
 
   const { PropertiesData } = useProperties();
-  console.log(PropertiesData);
   // state
 
   const [bestDealsProperties, setBestDealsProperties] =
