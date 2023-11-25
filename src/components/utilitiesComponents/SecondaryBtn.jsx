@@ -18,7 +18,7 @@ const SecondaryBtn = ({
         {isLoadingBtn ? (
           <span className="loading loading-xs loading-spinner text-t-color ml-1 hover:text-white max-sm:text-sm"></span>
         ) : (
-          <FaArrowRightLong className="duration-150 scale-x-110 group-hover:translate-x-1 ml-1 max-sm:text-sm" />
+          <FaArrowRightLong className="duration-150 scale-x-110 group-hover:animate-bounce-x ml-2 max-sm:text-sm" />
         )}
       </button>
     </div>

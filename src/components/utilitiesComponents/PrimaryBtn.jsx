@@ -10,7 +10,7 @@ const PrimaryBtn = ({
   return (
     <div>
       <button
-        className="btn rounded-none border-f-color text-t-color hover:bg-f-color hover:border-f-color duration-[350ms] ease-in-out sm:px-10 max-md:px-6 btn-outline uppercase group max-sm:-py-16 max-sm:btn-sm"
+        className="btn rounded-none border-f-color text-t-color hover:bg-f-color hover:border-f-color duration-[350ms] ease-in-out sm:px-8 max-md:px-4 btn-outline uppercase group max-sm:-py-16 max-sm:btn-sm"
         onClick={handler}
         disabled={isDisable}
       >
@@ -18,7 +18,7 @@ const PrimaryBtn = ({
         {isLoadingBtn ? (
           <span className="loading loading-xs loading-spinner text-t-color ml-1 hover:text-white max-sm:text-sm"></span>
         ) : (
-          <FaArrowRightLong className="duration-150 scale-x-110 group-hover:translate-x-1 ml-1 max-sm:text-sm" />
+          <FaArrowRightLong className="duration-150 scale-x-110 group-hover:animate-bounce-x ml-2 max-sm:text-sm" />
         )}
       </button>
     </div>

@@ -5,6 +5,7 @@ import SecondaryBtn from "../components/utilitiesComponents/SecondaryBtn";
 import UpdateBtn from "../components/utilitiesComponents/UpdateBtn";
 import DeleteBtn from "../components/utilitiesComponents/DeleteBtn";
 import HeroBanner from "../components/pageComponents/HeroBanner/HeroBanner";
+import PropertyCard from "../components/pageComponents/PropertyCard/PropertyCard";
 
 const Home = () => {
   const [isLoadingPrimary, setIsLoadingPrimary] = useState(false);
@@ -16,7 +17,7 @@ const Home = () => {
     <div className="">
       <HeroBanner></HeroBanner>
       <div className="">
-        <SectionTitle heading={"hero section"}></SectionTitle>
+        <PropertyCard></PropertyCard>
       </div>
       {/* <div className="flex gap-4 justify-center"> */}
       {/* btn here */}

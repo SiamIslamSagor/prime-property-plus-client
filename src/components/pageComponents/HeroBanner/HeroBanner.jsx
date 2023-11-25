@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import heroBg from "../../../assets/images/heroImg.jpg";
 import PrimaryBtn from "../../utilitiesComponents/PrimaryBtn";
 import SectionTitle from "../../utilitiesComponents/SectionTitle/SectionTitle";
+import { Fade } from "react-awesome-reveal";
+import SecondaryBtn from "../../utilitiesComponents/SecondaryBtn";
 
 const HeroBanner = () => {
   const heroBgStyle = {
@@ -25,15 +27,30 @@ const HeroBanner = () => {
                 heading={"Welcome to Your Future Home"}
               ></SectionTitle>
             </div>
-            <p className="mb-6 leading-4 font-normal md:text-xl md:font-medium">
-              At Prime Property Pulse, we understand that your dream home is
-              more than a place; it's an emotion. Let us be the rhythm that
-              leads you to a property where your heart truly belongs. Explore
-              the heartbeat of exceptional living with Prime Property Pulse.
-            </p>
-            <Link to="/login">
-              <PrimaryBtn btnText="get started"></PrimaryBtn>
-            </Link>
+            <Fade delay={800}>
+              <p className="mb-6 leading-4 font-normal md:text-xl lg:font-medium">
+                At Prime Property Pulse, we understand that your dream home is
+                more than a place; it's an emotion. Let us be the rhythm that
+                leads you to a property where your heart truly belongs. Explore
+                the heartbeat of exceptional living with Prime Property Pulse.
+              </p>
+            </Fade>
+            <div className="flex gap-6 max-sm:flex-col-reverse max-sm:gap-4">
+              <div className=" inline-block overflow-hidden">
+                <Fade direction="down">
+                  <Link to="auth/login">
+                    <SecondaryBtn btnText="get started"></SecondaryBtn>
+                  </Link>
+                </Fade>
+              </div>
+              <div className=" inline-block overflow-hidden">
+                <Fade direction="up">
+                  <Link to="auth/signUp">
+                    <PrimaryBtn btnText="get started"></PrimaryBtn>
+                  </Link>
+                </Fade>
+              </div>
+            </div>
           </div>
         </div>
       </div>
