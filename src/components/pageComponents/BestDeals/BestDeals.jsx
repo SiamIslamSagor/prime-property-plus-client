@@ -2,34 +2,24 @@ import { useEffect, useState } from "react";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import SectionTitle from "../../utilitiesComponents/SectionTitle/SectionTitle";
 import PropertyCard from "../PropertyCard/PropertyCard";
+import useProperties from "../../../hooks/useProperties";
 
 const BestDeals = () => {
   // hooks
-  const axiosPublic = useAxiosPublic();
-  // state
-  const [properties, setProperties] = useState([]);
-  // effect
-  useEffect(() => {
-    axiosPublic
-      .get("/properties.json")
-      .then(res => {
-        const response = res?.data;
-        setProperties(response);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }, [axiosPublic]);
+  //   const axiosPublic = useAxiosPublic();
 
-  console.log(properties);
+  const { PropertiesData } = useProperties();
+  console.log(PropertiesData);
+  // state
+
   return (
-    <div>
+    <div className="container mx-auto">
       <div>
         <SectionTitle heading={"best deals"}></SectionTitle>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        {properties &&
-          properties.map(property => (
+      <div className=" grid gap-4 justify-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        {PropertiesData &&
+          PropertiesData?.map(property => (
             <PropertyCard
               key={property?.agentEmail}
               property={property}

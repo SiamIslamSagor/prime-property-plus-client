@@ -27,21 +27,26 @@ const PropertyCard = ({ property }) => {
   }, [location.pathname]);
 
   return (
-    <div className="flex flex-col items-center justify-center my-40">
+    <div className="flex flex-col items-center justify-center">
       <div>
-        <div className="card rounded-none rounded-tr-3xl rounded-bl-3xl w-96 bg-base-100 shadow-xl group hover:border hover:border-f-color ease-in-out hover:-translate-y-2 duration-[350ms]">
+        <div className="card rounded-none rounded-tr-3xl rounded-bl-3xl w-96 bg-base-100 shadow-xl group hover:border hover:border-f-color ease-in-out hover:-translate-y-2 duration-[350ms] h-[520px]">
           <figure>
             <img
-              className="group-hover:scale-110 duration-1000  rounded-tr-3xl rounded-bl-3xl h-64"
+              className="group-hover:scale-110 duration-1000  rounded-tr-3xl rounded-bl-3xl h-64 w-96"
               src={propertyImg}
               alt="Shoes"
             />
           </figure>
-          <div className="flex flex-1 flex-col p-8 gap-2 leading-4">
-            <h2 className="card-title">
-              {propertyTitle}
+          <div className="flex flex-1 flex-col p-6 gap-2 leading-4">
+            <h2
+              className="flex items-center gap-2
+            font-medium text-xl "
+            >
+              <p className="flex-1">{propertyTitle}</p>
               {isHomePath && (
-                <div className="badge text-white bg-f-color">Best Deals</div>
+                <div className="">
+                  <div className="badge text-white bg-f-color">Best Deals</div>
+                </div>
               )}
             </h2>
             <p>location: {propertyLocation}</p>
@@ -59,9 +64,12 @@ const PropertyCard = ({ property }) => {
                 </p>{" "}
               </div>
             </div>
-            <div className=" text-right">
-              <PrimaryBtn btnText="details"></PrimaryBtn>
-            </div>
+          </div>
+          <div
+            className=" mb-8 mr-8
+             text-right"
+          >
+            <PrimaryBtn btnText="details"></PrimaryBtn>
           </div>
         </div>
       </div>
