@@ -15,9 +15,9 @@
 }
 
 .swiper-slide img {
-  display: block;
+  /* display: block;
   width: 100%;
-  height: 100%;
+  height: 100%; */
   object-fit: cover;
 }
 
@@ -52,23 +52,24 @@
 }
 
 .swiper-button-next {
+  border: 4px solid #48cae4;
   padding: 20px;
   padding-block: 28px;
   right: 10px;
   background-color: white;
   background-color: rgba(255, 255, 255, 0.189);
   fill: black !important;
-  color: #ffffff !important;
   stroke: black !important;
 }
 
 .swiper-button-prev {
+  border: 4px solid #48cae4;
+
   padding: 20px;
   padding-block: 28px;
   left: 10px;
   background-color: white;
   background-color: rgba(255, 255, 255, 0.189);
   stroke: black !important;
-  color: #ffffff !important;
   fill: black !important;
 }
