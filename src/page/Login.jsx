@@ -1,7 +1,9 @@
+import SectionTitle from "../components/utilitiesComponents/SectionTitle/SectionTitle";
+
 const Login = () => {
   return (
     <div>
-      <h1 className="text-4xl font-bold"> Login</h1>
+      <SectionTitle heading={"log in"}></SectionTitle>
     </div>
   );
 };

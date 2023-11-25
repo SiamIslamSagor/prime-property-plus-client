@@ -1,10 +1,12 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, Navigate, useLocation, useNavigate } from "react-router-dom";
 import logo from "../../../assets/logo.png";
 
 import "./NavBar.css";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Toaster } from "react-hot-toast";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import PrimaryBtn from "../../utilitiesComponents/PrimaryBtn";
+import SecondaryBtn from "../../utilitiesComponents/SecondaryBtn";
 
 const NavBar = () => {
   // state
@@ -17,6 +19,8 @@ const NavBar = () => {
   // context data
 
   const location = useLocation();
+  const navigate = useNavigate();
+  console.log(location);
 
   // handler
 
@@ -99,39 +103,29 @@ const NavBar = () => {
       </div>
 
       {user === null && (
-        <div
+        <PrimaryBtn
           onClick={handleMobileStateChange}
+          handler={() => {
+            console.log("LogIn");
+            navigate("auth/login");
+            return (
+              <Navigate state={location.pathname} to="auth/login"></Navigate>
+            );
+          }}
+          btnText="Log In"
           className="uppercase nav-div max-md:w-full md:text-lg font-semibold"
-        >
-          <NavLink
-            to="/login"
-            className={`btn border-[#f86f03] hover:bg-orange-500 outline-none  hover:border-[#f86f03] hover:text-black bg-transparent hover:tw ${
-              location.pathname === "/" && window.scrollY <= 420
-                ? "text-black"
-                : window.scrollY >= 420 && "text-black"
-            } hover:border`}
-          >
-            {" "}
-            login
-          </NavLink>
-        </div>
+        ></PrimaryBtn>
       )}
       {user === null && (
-        <div
+        <SecondaryBtn
           onClick={handleMobileStateChange}
+          handler={() => {
+            console.log("signUp");
+            navigate("auth/signUp");
+          }}
+          btnText="Sign Up"
           className="uppercase nav-div max-md:w-full md:text-lg font-semibold"
-        >
-          <NavLink
-            to="/register"
-            className={`btn border-[#f86f03] bg-orange-500 outline-none  hover:border-[#f86f03] text-black  hover:bg-transparent hover:tw ${
-              location.pathname === "/" && window.scrollY <= 420
-                ? "text-black"
-                : "hover:text-black"
-            } hover:border`}
-          >
-            Sign Up
-          </NavLink>
-        </div>
+        ></SecondaryBtn>
       )}
     </>
   );

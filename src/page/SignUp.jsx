@@ -1,7 +1,9 @@
+import SectionTitle from "../components/utilitiesComponents/SectionTitle/SectionTitle";
+
 const SignUp = () => {
   return (
     <div>
-      <h1 className="text-4xl font-bold">SignUp</h1>
+      <SectionTitle heading={"Sign Up"}></SectionTitle>
     </div>
   );
 };
