@@ -9,6 +9,7 @@ import PropertyCard from "../components/pageComponents/PropertyCard/PropertyCard
 import BestDeals from "../components/pageComponents/BestDeals/BestDeals";
 import Testimonials from "../components/pageComponents/Testimonials/Testimonials";
 import CardHolder from "../components/pageComponents/CardHolder/CardHolder";
+import AboutUs from "../components/pageComponents/AboutUs/AboutUs";
 
 const Home = () => {
   const [isLoadingPrimary, setIsLoadingPrimary] = useState(false);
@@ -24,6 +25,7 @@ const Home = () => {
         {/* <CardHolder></CardHolder> */}
       </div>
       <Testimonials></Testimonials>
+      <AboutUs></AboutUs>
       {/* <div className="flex gap-4 justify-center"> */}
       {/* btn here */}
 

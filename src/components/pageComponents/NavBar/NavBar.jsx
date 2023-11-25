@@ -93,13 +93,6 @@ const NavBar = () => {
         <NavLink to="/dashboard">Dashboard</NavLink>
       </div>
 
-      <div
-        onClick={handleMobileStateChange}
-        className="uppercase nav-div max-md:w-full md:text-lg font-semibold"
-      >
-        <NavLink to="/dashboard">Dashboard</NavLink>
-      </div>
-
       {user === null && (
         <Link state={{ from: location }} to="/auth/login">
           <PrimaryBtn
