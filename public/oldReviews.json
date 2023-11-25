@@ -1,0 +1,42 @@
+[
+  {
+    "reviewerName": "Alice Johnson",
+    "reviewerImg": "https://i.ibb.co/xSPVc5N/reviewr-Img1.jpg",
+    "reviewerEmail": "alice.johnson@gmail.com",
+    "reviewerDescription": "Wonderful experience! The property exceeded our expectations. The breathtaking views and luxurious amenities made our stay unforgettable.",
+    "reviewedPropertyTitle": "Modern City Apartment",
+    "reviewTime": "Sat Feb 18 2023 16:45:27 GMT+0600 (Bangladesh Standard Time)"
+  },
+  {
+    "reviewerName": "Bob Smith",
+    "reviewerImg": "https://i.ibb.co/j6kKXQr/reviewr-Img2.jpg",
+    "reviewerEmail": "bob.smith@gmail.com",
+    "reviewerDescription": "A hidden gem! This property provided the perfect blend of comfort and tranquility. The attention to detail and friendly staff made our vacation truly special.",
+    "reviewedPropertyTitle": "Luxury Beachfront Villa",
+    "reviewTime": "Thu Apr 06 2023 09:28:14 GMT+0600 (Bangladesh Standard Time)"
+  },
+  {
+    "reviewerName": "Eva Martinez",
+    "reviewerImg": "https://i.ibb.co/rdQH94N/reviewr-Img3.jpg",
+    "reviewerEmail": "eva.martinez@gmail.com",
+    "reviewerDescription": "Charming and cozy! We loved the rustic feel of the mountain retreat. The wood-burning stove and panoramic views made it a perfect winter getaway.",
+    "reviewedPropertyTitle": "Rustic Mountain Retreat",
+    "reviewTime": "Sat Jun 24 2023 21:07:51 GMT+0600 (Bangladesh Standard Time)"
+  },
+  {
+    "reviewerName": "Daniel White",
+    "reviewerImg": "https://i.ibb.co/0FmvBRj/reviewr-Img5.jpg",
+    "reviewerEmail": "daniel.white@gmail.com",
+    "reviewerDescription": "City living at its best! The urban loft with exposed brick walls and large windows offered a unique and stylish living experience. We can't wait to come back!",
+    "reviewedPropertyTitle": "Urban Loft with a View",
+    "reviewTime": "Tue Feb 07 2023 04:32:29 GMT+0600 (Bangladesh Standard Time)"
+  },
+  {
+    "reviewerName": "Sophie Turner",
+    "reviewerImg": "https://i.ibb.co/VqrWvz0/reviewr-Img6.webp",
+    "reviewerEmail": "sophie.turner@gmail.com",
+    "reviewerDescription": "A dream come true! The penthouse paradise at Skyline Heights provided an unparalleled experience. The private terrace and skyline views were absolutely breathtaking.",
+    "reviewedPropertyTitle": "Penthouse Paradise",
+    "reviewTime": "Sun Apr 30 2023 14:54:36 GMT+0600 (Bangladesh Standard Time)"
+  }
+]

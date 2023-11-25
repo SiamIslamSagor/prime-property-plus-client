@@ -7,6 +7,7 @@ import DeleteBtn from "../components/utilitiesComponents/DeleteBtn";
 import HeroBanner from "../components/pageComponents/HeroBanner/HeroBanner";
 import PropertyCard from "../components/pageComponents/PropertyCard/PropertyCard";
 import BestDeals from "../components/pageComponents/BestDeals/BestDeals";
+import Testimonials from "../components/pageComponents/Testimonials/Testimonials";
 
 const Home = () => {
   const [isLoadingPrimary, setIsLoadingPrimary] = useState(false);
@@ -20,6 +21,7 @@ const Home = () => {
       <div className="my-20">
         <BestDeals></BestDeals>
       </div>
+      <Testimonials></Testimonials>
       {/* <div className="flex gap-4 justify-center"> */}
       {/* btn here */}
 

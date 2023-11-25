@@ -89,7 +89,7 @@ const PropertyCard = ({ property, animDelay }) => {
 
 PropertyCard.propTypes = {
   property: PropTypes.object.isRequired,
-  animDelay: PropTypes.array,
+  animDelay: PropTypes.number,
 };
 
 export default PropertyCard;

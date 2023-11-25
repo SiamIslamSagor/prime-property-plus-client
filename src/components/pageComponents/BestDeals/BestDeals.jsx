@@ -10,18 +10,18 @@ const BestDeals = () => {
   //   context data
   const { propertyCardDelay } = useContextData();
 
-  const { PropertiesData } = useProperties();
+  const { propertiesData } = useProperties();
   // state
 
   const [bestDealsProperties, setBestDealsProperties] =
-    useState(PropertiesData);
+    useState(propertiesData);
 
   useEffect(() => {
-    const bestDeals = PropertiesData.sort(
+    const bestDeals = propertiesData.sort(
       (a, b) => a.propertyPriceRange[0] - b.propertyPriceRange[0]
     );
     setBestDealsProperties(bestDeals?.slice(0, 6));
-  }, [PropertiesData]);
+  }, [propertiesData]);
 
   return (
     <div className="container mx-auto">
