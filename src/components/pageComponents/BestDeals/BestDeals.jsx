@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
-import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import SectionTitle from "../../utilitiesComponents/SectionTitle/SectionTitle";
 import PropertyCard from "../PropertyCard/PropertyCard";
 import useProperties from "../../../hooks/useProperties";
+import useContextData from "../../../hooks/useContextData";
 
 const BestDeals = () => {
   // hooks
-  //   const axiosPublic = useAxiosPublic();
+
+  //   context data
+  const { propertyCardDelay } = useContextData();
 
   const { PropertiesData } = useProperties();
   // state
@@ -28,10 +30,11 @@ const BestDeals = () => {
       </div>
       <div className=" grid gap-8 justify-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {bestDealsProperties &&
-          bestDealsProperties?.map(property => (
+          bestDealsProperties?.map((property, idx) => (
             <PropertyCard
               key={property?.agentEmail}
               property={property}
+              animDelay={propertyCardDelay[idx]}
             ></PropertyCard>
           ))}
       </div>

@@ -1,11 +1,11 @@
 import {
-  GoogleAuthProvider,
-  createUserWithEmailAndPassword,
   onAuthStateChanged,
-  signInWithEmailAndPassword,
+  GoogleAuthProvider,
   signInWithPopup,
-  signOut,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
   updateProfile,
+  signOut,
 } from "firebase/auth";
 import PropTypes from "prop-types";
 import { createContext, useEffect, useState } from "react";
@@ -19,10 +19,10 @@ const AuthProvider = ({ children }) => {
   const [profileUpdate, setProfileUpdate] = useState(false);
   const [Loading, setLoading] = useState(true);
 
-  /// google Provider
+  // google Provider
   const googleProvider = new GoogleAuthProvider();
 
-  //   create user
+  // create user
   const createUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
@@ -60,14 +60,14 @@ const AuthProvider = ({ children }) => {
 
   //   property card animation delay time calculation
   const propertyCardDelay = Array.from({ length: 33 }, () => [
-    200, 400, 600,
+    100, 200, 300,
   ]).flat();
 
   // user observer
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, presentUser => {
-      const userEmail = presentUser?.email || user?.email;
-      const loggedInUser = { email: userEmail };
+      //   const userEmail = presentUser?.email || user?.email;
+      //   const loggedInUser = { email: userEmail };
       //set the user in state
       setUser(presentUser);
       console.log("USER OBSERVED ::>>", presentUser);
