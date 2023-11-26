@@ -12,7 +12,7 @@ const NavBar = () => {
   // state
   const [mobileNavCall, setMobileNavCall] = useState(false);
   const [navClass, setNavClass] = useState("");
-  const user = null;
+  const user = true;
   const [deviceInnerWidth, setDeviceInnerWidth] = useState(window.innerWidth);
   const sideBtnRef = useRef(null);
 
@@ -125,41 +125,60 @@ const NavBar = () => {
       <Toaster></Toaster>
       <div className={`shadow-lg z-[999] bg-white duration-700 ${navClass}`}>
         <div className="py-3 max-sm:py-3 container mx-auto flex justify-between items-center">
-          <div className="flex items-center">
-            <div className="">
-              <button
-                onClick={() => setMobileNavCall(!mobileNavCall)}
-                tabIndex={0}
-                className="btn btn-ghost xl:hidden"
-              >
-                {mobileNavCall ? (
-                  <AiOutlineClose
-                    className={`text-3xl bt ${
-                      location.pathname === "/" && window.scrollY >= 420
-                        ? "text-black"
-                        : location.pathname === "/"
-                        ? "text-black"
-                        : "text-black"
-                    }`}
-                  ></AiOutlineClose>
-                ) : (
-                  <AiOutlineMenu
-                    className={`text-3xl bt ${
-                      location.pathname === "/" && window.scrollY >= 420
-                        ? "text-black"
-                        : location.pathname === "/"
-                        ? "text-black"
-                        : "text-black"
-                    }`}
-                  ></AiOutlineMenu>
-                )}
-              </button>
+          <div className="flex items-center justify-center max-xl:justify-between max-xl:w-full">
+            <div className="flex items-center ">
+              <div className="">
+                <button
+                  onClick={() => setMobileNavCall(!mobileNavCall)}
+                  tabIndex={0}
+                  className="btn btn-ghost xl:hidden"
+                >
+                  {mobileNavCall ? (
+                    <AiOutlineClose className={`text-3xl`}></AiOutlineClose>
+                  ) : (
+                    <AiOutlineMenu className={`text-3xl`}></AiOutlineMenu>
+                  )}
+                </button>
+              </div>
+              <img
+                className=" max-sm:h-12 max-md:h-14 h-16"
+                src={logo}
+                alt="logo"
+              />
             </div>
-            <img
-              className=" max-sm:h-12 max-md:h-14 h-16"
-              src={logo}
-              alt="logo"
-            />
+            {/* dropdown for max-xl */}
+            <div className="dropdown xl:hidden dropdown-end">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost btn-circle avatar"
+              >
+                <div className="w-10 rounded-full">
+                  <img
+                    alt="Tailwind CSS Navbar component"
+                    src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+                  />
+                </div>
+              </div>
+              <ul className="mt-3 z-[1] p-6 shadow menu menu-sm dropdown-content bg-base-100 rounded-box max-lg:w-80 lg:w-96 text-center font-medium text-s-color">
+                <li>
+                  <a className="justify-center mt-2 p-2">
+                    Name: Md Siam Islam Sagor
+                  </a>
+                </li>
+                <li>
+                  <a className="justify-center mt-2 p-2">
+                    Email: msiamislam12345@gmail.com
+                  </a>
+                </li>
+                <li>
+                  <a className="justify-center mt-2 p-2">Edit Profile</a>
+                </li>
+                <li>
+                  <a className="justify-center mt-2 p-2">Logout</a>
+                </li>
+              </ul>
+            </div>
           </div>
           <div className="">
             <div
@@ -177,18 +196,38 @@ const NavBar = () => {
                   onClick={handleMobileStateChange}
                   className="uppercase nav-div max-md:w-full md:text-lg font-semibold"
                 >
-                  <button
-                    onClick={handleMobileStateChange}
-                    className={`btn border-[#f86f03] hover:bg-orange-500 outline-none  hover:border-[#f86f03] hover:text-black bg-transparent  ${
-                      location.pathname === "/" && window.scrollY <= 420
-                        ? "text-black"
-                        : location.pathname === "/" &&
-                          window.scrollY >= 420 &&
-                          "text-black"
-                    } hover:border`}
-                  >
-                    log Out
-                  </button>
+                  <div className="dropdown dropdown-end">
+                    <div
+                      tabIndex={0}
+                      role="button"
+                      className="btn btn-ghost btn-circle avatar"
+                    >
+                      <div className="w-10 rounded-full">
+                        <img
+                          alt="Tailwind CSS Navbar component"
+                          src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+                        />
+                      </div>
+                    </div>
+                    <ul className="mt-3 z-[1] p-6 shadow menu menu-sm dropdown-content bg-base-100 rounded-box max-lg:w-80 lg:w-96 text-center">
+                      <li>
+                        <a className="justify-center mt-2 p-2">
+                          Name: Md Siam Islam Sagor
+                        </a>
+                      </li>
+                      <li>
+                        <a className="justify-center mt-2 p-2">
+                          Email: msiamislam12345@gmail.com
+                        </a>
+                      </li>
+                      <li>
+                        <a className="justify-center mt-2 p-2">Edit Profile</a>
+                      </li>
+                      <li>
+                        <a className="justify-center mt-2 p-2">Logout</a>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               )}
             </div>
