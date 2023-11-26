@@ -6,6 +6,7 @@ import Login from "../page/Login";
 import SignUp from "../page/SignUp";
 import AllProperties from "../page/AllProperties";
 import PropertyDetails from "../page/PropertyDetails";
+import PrivetRoute from "../providers/PrivetRoute";
 
 const router = createBrowserRouter([
   {
@@ -19,11 +20,19 @@ const router = createBrowserRouter([
       },
       {
         path: "all-properties",
-        element: <AllProperties></AllProperties>,
+        element: (
+          <PrivetRoute>
+            <AllProperties></AllProperties>
+          </PrivetRoute>
+        ),
       },
       {
         path: "/property-details/:id",
-        element: <PropertyDetails></PropertyDetails>,
+        element: (
+          <PrivetRoute>
+            <PropertyDetails></PropertyDetails>
+          </PrivetRoute>
+        ),
       },
     ],
   },

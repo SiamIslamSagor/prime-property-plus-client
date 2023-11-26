@@ -33,6 +33,9 @@ const SignUp = () => {
     formState: { errors },
     reset,
   } = useForm();
+
+  // handler
+
   const onSubmit = data => {
     setBtnLoading(true);
     const toastId = toast.loading("processing...");
@@ -65,6 +68,19 @@ const SignUp = () => {
       });
 
     ///////////////////
+  };
+
+  const handleGoogleLogin = () => {
+    const toastId = toast.loading("processing...");
+
+    googleLogin()
+      .then(() => {
+        toast.success("Log In successfully.", { id: toastId });
+        navigate("/");
+      })
+      .catch(() => {
+        toast.error("Failed to login.", { id: toastId });
+      });
   };
 
   return (
@@ -185,7 +201,10 @@ const SignUp = () => {
             </form>
             <div className="divider max-w-sm mx-auto">or</div>
             <div className="max-w-sm mx-auto text-center">
-              <button className="btn rounded-full w-full bg-t-color border-t-color text-white hover:border-t-color hover:text-t-color hover:bg-white duration-[350ms] ease-in-out sm:px-8 max-md:px-4 btn-outline uppercase md:text-base">
+              <button
+                onClick={handleGoogleLogin}
+                className="btn rounded-full w-full bg-t-color border-t-color text-white hover:border-t-color hover:text-t-color hover:bg-white duration-[350ms] ease-in-out sm:px-8 max-md:px-4 btn-outline uppercase md:text-base"
+              >
                 Sign up with google <FaGoogle></FaGoogle>
               </button>
             </div>

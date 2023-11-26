@@ -45,18 +45,21 @@ const Login = () => {
         navigate("/");
         setBtnLoading(false);
       })
-      .catch(err => {
-        console.log(err);
+      .catch(() => {
+        toast.error("Failed to login.", { id: toastId });
       });
   };
 
   const handleGoogleLogin = () => {
+    const toastId = toast.loading("processing...");
+
     googleLogin()
       .then(() => {
-        console.log("");
+        toast.success("Log In successfully.", { id: toastId });
+        navigate("/");
       })
-      .catch(err => {
-        console.log(err);
+      .catch(() => {
+        toast.error("Failed to login.", { id: toastId });
       });
   };
 
