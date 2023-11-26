@@ -38,15 +38,15 @@ const HeroBanner = () => {
             <div className="flex gap-6 max-sm:flex-col-reverse max-sm:gap-4">
               <div className=" inline overflow-hidden  ">
                 <Fade direction="down">
-                  <Link to="auth/login">
+                  <Link to="/all-properties">
                     <SecondaryBtn btnText="get started"></SecondaryBtn>
                   </Link>
                 </Fade>
               </div>
               <div className=" inline overflow-hidden  ">
                 <Fade direction="up">
-                  <Link to="auth/signUp">
-                    <PrimaryBtn btnText="get started"></PrimaryBtn>
+                  <Link to="/dashboard">
+                    <PrimaryBtn btnText="dashboard"></PrimaryBtn>
                   </Link>
                 </Fade>
               </div>

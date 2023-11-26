@@ -7,16 +7,17 @@ import { Toaster } from "react-hot-toast";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import PrimaryBtn from "../../utilitiesComponents/PrimaryBtn";
 import SecondaryBtn from "../../utilitiesComponents/SecondaryBtn";
+import useContextData from "../../../hooks/useContextData";
 
 const NavBar = () => {
   // state
   const [mobileNavCall, setMobileNavCall] = useState(false);
   const [navClass, setNavClass] = useState("");
-  const user = true;
   const [deviceInnerWidth, setDeviceInnerWidth] = useState(window.innerWidth);
   const sideBtnRef = useRef(null);
 
   // context data
+  const { user } = useContextData();
 
   const location = useLocation();
 
@@ -93,6 +94,8 @@ const NavBar = () => {
         <NavLink to="/dashboard">Dashboard</NavLink>
       </div>
 
+      {user && <SecondaryBtn btnText="log out"></SecondaryBtn>}
+
       {user === null && (
         <Link state={{ from: location }} to="/auth/login">
           <PrimaryBtn
@@ -147,38 +150,40 @@ const NavBar = () => {
               />
             </div>
             {/* dropdown for max-xl */}
-            <div className="dropdown xl:hidden dropdown-end">
-              <div
-                tabIndex={0}
-                role="button"
-                className="btn btn-ghost btn-circle avatar"
-              >
-                <div className="w-10 rounded-full">
-                  <img
-                    alt="Tailwind CSS Navbar component"
-                    src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-                  />
+            {user && (
+              <div className="dropdown xl:hidden dropdown-end">
+                <div
+                  tabIndex={0}
+                  role="button"
+                  className="btn btn-ghost btn-circle avatar"
+                >
+                  <div className="w-10 rounded-full">
+                    <img
+                      alt="Tailwind CSS Navbar component"
+                      src={user?.photoURL}
+                    />
+                  </div>
                 </div>
+                <ul className="mt-3 z-[1] p-6 shadow menu menu-sm dropdown-content bg-base-100 rounded-box max-lg:w-80 lg:w-96 text-center font-medium text-s-color">
+                  <li>
+                    <a className="justify-center mt-2 p-2">
+                      Name: Md Siam Islam Sagor
+                    </a>
+                  </li>
+                  <li>
+                    <a className="justify-center mt-2 p-2">
+                      Email: msiamislam12345@gmail.com
+                    </a>
+                  </li>
+                  <li>
+                    <a className="justify-center mt-2 p-2">Edit Profile</a>
+                  </li>
+                  <li>
+                    <a className="justify-center mt-2 p-2">Logout</a>
+                  </li>
+                </ul>
               </div>
-              <ul className="mt-3 z-[1] p-6 shadow menu menu-sm dropdown-content bg-base-100 rounded-box max-lg:w-80 lg:w-96 text-center font-medium text-s-color">
-                <li>
-                  <a className="justify-center mt-2 p-2">
-                    Name: Md Siam Islam Sagor
-                  </a>
-                </li>
-                <li>
-                  <a className="justify-center mt-2 p-2">
-                    Email: msiamislam12345@gmail.com
-                  </a>
-                </li>
-                <li>
-                  <a className="justify-center mt-2 p-2">Edit Profile</a>
-                </li>
-                <li>
-                  <a className="justify-center mt-2 p-2">Logout</a>
-                </li>
-              </ul>
-            </div>
+            )}
           </div>
           <div className="">
             <div

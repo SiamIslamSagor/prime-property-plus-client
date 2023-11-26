@@ -10,6 +10,7 @@ import {
 import PropTypes from "prop-types";
 import { createContext, useEffect, useState } from "react";
 import auth from "../config/firebase/firebase.config";
+// import auth from "../config/firebase/firebase.config";
 
 export const AuthContext = createContext(null);
 
@@ -24,21 +25,25 @@ const AuthProvider = ({ children }) => {
 
   // create user
   const createUser = (email, password) => {
+    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
   //   login user
   const logIn = (email, password) => {
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
   /// google user login
   const googleLogin = () => {
+    setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
 
   // sign out user
   const logOut = () => {
+    setLoading(true);
     return signOut(auth);
   };
 
