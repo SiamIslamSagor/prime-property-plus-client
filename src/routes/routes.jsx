@@ -5,6 +5,7 @@ import AuthPage from "../layout/AuthPage";
 import Login from "../page/Login";
 import SignUp from "../page/SignUp";
 import SectionTitle from "../components/utilitiesComponents/SectionTitle/SectionTitle";
+import AllProperties from "../page/AllProperties";
 
 const router = createBrowserRouter([
   {
@@ -18,7 +19,7 @@ const router = createBrowserRouter([
       },
       {
         path: "all-properties",
-        element: <SectionTitle heading={"all properties"}></SectionTitle>,
+        element: <AllProperties></AllProperties>,
       },
     ],
   },

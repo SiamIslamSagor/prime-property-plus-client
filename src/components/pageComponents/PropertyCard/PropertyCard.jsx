@@ -14,6 +14,7 @@ const PropertyCard = ({ property, animDelay }) => {
     propertyPriceRange,
     propertyVerificationStatus,
     agentName,
+    agentImg,
   } = property;
   // hooks
   const location = useLocation();
@@ -42,7 +43,7 @@ const PropertyCard = ({ property, animDelay }) => {
                   alt="Shoes"
                 />
               </figure>
-              <div className="flex flex-1 flex-col p-6 gap-2 leading-4">
+              <div className="flex flex-1 flex-col p-6 gap-2 leading-4 font-semibold">
                 <h2
                   className="flex items-center gap-2
             font-medium text-xl "
@@ -57,21 +58,43 @@ const PropertyCard = ({ property, animDelay }) => {
                   )}
                 </h2>
                 <p>location: {propertyLocation}</p>
+                {/* {isHomePath || <p>Agent Name: {agentName}</p>} */}
+
+                {/* <p>img</p> */}
                 <p>
                   Price Range: ${propertyPriceRange[0]} to $
                   {propertyPriceRange[1]}
                 </p>
-                {isHomePath || <p>Agent Name: {agentName}</p>}
-                {isHomePath || <p>Agent Name: {propertyLocation}</p>}
+                {/* {isHomePath || <p>Property Location: {propertyLocation}</p>} */}
 
                 <div className="flex flex-wrap  justify-start gap-2">
-                  <div className="badge  text-white bg-p-color py-3">
-                    <p className="flex gap-2 items-center ">
-                      {propertyVerificationStatus}
-                      <LuBadgeCheck></LuBadgeCheck>
-                    </p>{" "}
-                  </div>
+                  {isHomePath && (
+                    <div className="badge  text-white bg-p-color py-3">
+                      <p className="flex gap-2 items-center ">
+                        {propertyVerificationStatus}
+                        <LuBadgeCheck></LuBadgeCheck>
+                      </p>{" "}
+                    </div>
+                  )}
                 </div>
+                {isHomePath || (
+                  <div className="flex items-center gap-4">
+                    <img
+                      className="w-12 h-12 rounded-full"
+                      src={agentImg}
+                      alt={agentName}
+                    />
+                    <div>
+                      <p>{agentName}</p>
+                    </div>
+                    <div className="badge  text-white bg-p-color py-3">
+                      <p className="flex gap-2 items-center ">
+                        {propertyVerificationStatus}
+                        <LuBadgeCheck></LuBadgeCheck>
+                      </p>{" "}
+                    </div>
+                  </div>
+                )}
               </div>
               <div
                 className=" mb-8 mr-8

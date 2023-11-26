@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import SectionTitle from "../../utilitiesComponents/SectionTitle/SectionTitle";
 import PropertyCard from "../PropertyCard/PropertyCard";
-import useProperties from "../../../hooks/useProperties";
+import useVerifiedProperty from "../../../hooks/useVerifiedProperty";
 import useContextData from "../../../hooks/useContextData";
 import CardHolder from "../CardHolder/CardHolder";
 
@@ -11,20 +11,21 @@ const BestDeals = () => {
   //   context data
   const { propertyCardDelay } = useContextData();
 
-  const { propertiesData, isLoading } = useProperties();
+  const { verifiedPropertiesData, isLoading } = useVerifiedProperty();
   // state
 
-  const [bestDealsProperties, setBestDealsProperties] =
-    useState(propertiesData);
+  const [bestDealsProperties, setBestDealsProperties] = useState(
+    verifiedPropertiesData
+  );
 
   useEffect(() => {
-    if (propertiesData.length > 0) {
-      const bestDeals = propertiesData.sort(
+    if (verifiedPropertiesData.length > 0) {
+      const bestDeals = verifiedPropertiesData.sort(
         (a, b) => a.propertyPriceRange[0] - b.propertyPriceRange[0]
       );
       setBestDealsProperties(bestDeals?.slice(0, 6));
     }
-  }, [propertiesData]);
+  }, [verifiedPropertiesData]);
 
   return (
     <div className="container mx-auto">
