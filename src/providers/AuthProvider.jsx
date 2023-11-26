@@ -10,6 +10,7 @@ import {
 import PropTypes from "prop-types";
 import { createContext, useEffect, useState } from "react";
 import auth from "../config/firebase/firebase.config";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 // import auth from "../config/firebase/firebase.config";
 
 export const AuthContext = createContext(null);
@@ -22,6 +23,7 @@ const AuthProvider = ({ children }) => {
 
   // google Provider
   const googleProvider = new GoogleAuthProvider();
+  const axiosPublic = useAxiosPublic();
 
   // create user
   const createUser = (email, password) => {
@@ -71,42 +73,39 @@ const AuthProvider = ({ children }) => {
   // user observer
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, presentUser => {
-      //   const userEmail = presentUser?.email || user?.email;
-      //   const loggedInUser = { email: userEmail };
-      //set the user in state
-      setUser(presentUser);
-      console.log("USER OBSERVED ::>>", presentUser);
-      setLoading(false);
-      // if user are exist, then execute the code=>
-      /* if (presentUser) {
-        axios
-          .post("https://food-hub-server-hazel.vercel.app/jwt", loggedInUser, {
-            withCredentials: true,
-          })
-          .then(res => {
-            console.log("token response:==>", res.data);
-          })
-          .catch(err => {
-            console.log(err);
-          });
-      } else {
-        axios
-          .post(
-            "https://food-hub-server-hazel.vercel.app/logout",
-            loggedInUser,
-            {
-              withCredentials: true,
-            }
-          )
-          .then(res => {
-            console.log("Log Out::>>", res.data);
-          });
-      } */
+      //////////////////////////////////
+
+      //////////////////
+      /// jwt block ////
+      //////////////////
+
+      if (presentUser) {
+        setUser(presentUser);
+        console.log("USER OBSERVED ::>>", presentUser);
+
+        // get token form server side and store in local storage
+        const userInfo = { email: presentUser.email };
+        axiosPublic.post("/jwt", userInfo).then(res => {
+          // if token exist, then store in local storage
+          if (res.data) {
+            localStorage.setItem("access-token", res.data.token);
+            console.log("access-token stored");
+            setLoading(false);
+          }
+        });
+      }
+      // if user dose not exist, then remove stored token in local storage
+      else {
+        localStorage.removeItem("access-token");
+        console.log("access-token removed");
+        setLoading(true);
+      }
+      //////////////////////////////////
     });
     return () => {
       return unSubscribe();
     };
-  }, [profileUpdate, user?.email]);
+  }, [profileUpdate, axiosPublic]);
 
   const data = {
     user,
