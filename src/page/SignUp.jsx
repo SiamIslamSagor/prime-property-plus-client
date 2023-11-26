@@ -19,10 +19,6 @@ const SignUp = () => {
   } = useForm();
   const onSubmit = data => {
     setBtnLoading(true);
-    const name = data.name;
-    const email = data.email;
-    const password = data.password;
-    const photoUrl = data.photoUrl;
     console.log(data);
     setBtnLoading(false);
   };
@@ -53,7 +49,9 @@ const SignUp = () => {
                   aria-invalid={errors.name ? "true" : "false"}
                 />
                 {errors.name && (
-                  <p className="text-sm text-red-600">{errors.name?.message}</p>
+                  <p className="text-sm text-red-600 mt-1">
+                    {errors.name?.message}
+                  </p>
                 )}
               </div>
               <div className="w-full max-w-sm">
@@ -70,7 +68,9 @@ const SignUp = () => {
                   aria-invalid={errors.mail ? "true" : "false"}
                 />
                 {errors.mail && (
-                  <p className="text-sm text-red-600">{errors.mail?.message}</p>
+                  <p className="text-sm text-red-600 mt-1">
+                    {errors.mail?.message}
+                  </p>
                 )}
               </div>
               <div className="w-full max-w-sm">
@@ -87,7 +87,7 @@ const SignUp = () => {
                   aria-invalid={errors.photoUrl ? "true" : "false"}
                 />
                 {errors.photoUrl && (
-                  <p className="text-sm text-red-600">
+                  <p className="text-sm text-red-600 mt-1">
                     {errors.photoUrl?.message}
                   </p>
                 )}
@@ -119,7 +119,7 @@ const SignUp = () => {
                   )}
                 </div>
                 {errors.password && (
-                  <p className="text-sm text-red-600">
+                  <p className="text-sm text-red-600 mt-1">
                     {errors.password?.message}
                   </p>
                 )}
@@ -135,8 +135,8 @@ const SignUp = () => {
             </form>
             <div className="divider max-w-sm mx-auto">or</div>
             <div className="max-w-sm mx-auto text-center">
-              <button className="btn btn-accent uppercase font-medium rounded-full w-full px-4 text-white md:text-base ">
-                sign up with google <FaGoogle></FaGoogle>
+              <button className="btn rounded-full w-full bg-t-color border-t-color text-white hover:border-t-color hover:text-t-color hover:bg-white duration-[350ms] ease-in-out sm:px-8 max-md:px-4 btn-outline uppercase md:text-base">
+                Sign up with google <FaGoogle></FaGoogle>
               </button>
             </div>
             <p className="text-center mt-4">
