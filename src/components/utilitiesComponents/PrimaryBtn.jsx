@@ -4,12 +4,14 @@ import { FaArrowRightLong } from "react-icons/fa6";
 const PrimaryBtn = ({
   btnText = "Button",
   handler = () => console.log("click"),
+  btnType = "button",
   isDisable = false,
   isLoadingBtn = false,
 }) => {
   return (
     <div className="inline-block">
       <button
+        type={btnType}
         className="btn rounded-none border-f-color text-t-color hover:bg-f-color hover:border-f-color duration-[350ms] ease-in-out sm:px-8 max-md:px-4 btn-outline uppercase group max-sm:-py-16 max-sm:btn-sm"
         onClick={handler}
         disabled={isDisable}
@@ -28,6 +30,7 @@ const PrimaryBtn = ({
 PrimaryBtn.propTypes = {
   btnText: PropTypes.string,
   handler: PropTypes.func,
+  btnType: PropTypes.string,
   isDisable: PropTypes.bool,
   isLoadingBtn: PropTypes.bool,
 };
