@@ -8,6 +8,7 @@ import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import PrimaryBtn from "../../utilitiesComponents/PrimaryBtn";
 import SecondaryBtn from "../../utilitiesComponents/SecondaryBtn";
 import useContextData from "../../../hooks/useContextData";
+import Swal from "sweetalert2";
 
 const NavBar = () => {
   // state
@@ -24,16 +25,36 @@ const NavBar = () => {
   // handler
 
   const handleLogOut = () => {
-    const toastId = toast.loading("processing...");
-    console.log("clicked");
-    logOut()
-      .then(res => {
-        console.log(res);
-        toast.success("Log out successfully.", { id: toastId });
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be log out this account form this device!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Log out.",
+    }).then(result => {
+      if (result.isConfirmed) {
+        // hit delete api in server side by specific id;
+        // ////////////////
+        const toastId = toast.loading("processing...");
+        console.log("clicked");
+        logOut()
+          .then(() => {
+            toast.success("Log out successfully.", { id: toastId });
+          })
+          .catch(() => {
+            toast.success("Log out Failed.", { id: toastId });
+          });
+        ///////////////////
+
+        /* Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success",
+        }); */
+      }
+    });
   };
 
   const handleResize = useCallback(() => {
