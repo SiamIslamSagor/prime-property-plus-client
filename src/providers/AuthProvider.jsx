@@ -74,15 +74,14 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, presentUser => {
       //////////////////////////////////
+      setUser(presentUser);
+      console.log("USER OBSERVED ::>>", presentUser);
 
       //////////////////
       /// jwt block ////
       //////////////////
 
       if (presentUser) {
-        setUser(presentUser);
-        console.log("USER OBSERVED ::>>", presentUser);
-
         // get token form server side and store in local storage
         const userInfo = { email: presentUser.email };
         axiosPublic.post("/jwt", userInfo).then(res => {

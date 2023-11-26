@@ -76,7 +76,7 @@ const Login = () => {
         <div>
           <SectionTitle heading={"log in"}></SectionTitle>
         </div>
-        <div className=" border8 max-w-lg mx-auto p-10">
+        <div className="max-w-lg mx-auto p-10">
           <div className="overflow-hidden">
             <Fade direction="left">
               <div>
