@@ -58,13 +58,13 @@ const SignUp = () => {
         toast.success("Account created successfully.", {
           id: toastId,
         });
+        setBtnLoading(false);
       })
       .catch(() => {
         toast.error("Failed to create account.", { id: toastId });
       });
 
     ///////////////////
-    setBtnLoading(false);
   };
 
   return (
