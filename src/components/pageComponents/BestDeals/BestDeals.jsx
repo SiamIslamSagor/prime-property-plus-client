@@ -4,6 +4,9 @@ import PropertyCard from "../PropertyCard/PropertyCard";
 import useVerifiedProperty from "../../../hooks/useVerifiedProperty";
 import useContextData from "../../../hooks/useContextData";
 import CardHolder from "../CardHolder/CardHolder";
+import SecondaryBtn from "../../utilitiesComponents/SecondaryBtn";
+import { Link } from "react-router-dom";
+import { Fade } from "react-awesome-reveal";
 
 const BestDeals = () => {
   // hooks
@@ -53,6 +56,13 @@ const BestDeals = () => {
             ))}
         </div>
       )}
+      <div className="my-10 text-center overflow-hidden">
+        <Fade direction="up" delay={300}>
+          <Link to="/all-properties">
+            <SecondaryBtn btnText="show more"></SecondaryBtn>
+          </Link>
+        </Fade>
+      </div>
     </div>
   );
 };

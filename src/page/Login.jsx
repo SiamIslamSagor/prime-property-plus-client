@@ -1,5 +1,4 @@
 import { useState } from "react";
-import SecondaryBtn from "../components/utilitiesComponents/SecondaryBtn";
 import SectionTitle from "../components/utilitiesComponents/SectionTitle/SectionTitle";
 import { useForm } from "react-hook-form";
 import { IoMdEyeOff } from "react-icons/io";
@@ -25,7 +24,7 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen  mt-20 ">
+    <div className="mt-20 ">
       <div className="container mx-auto">
         <div>
           <SectionTitle heading={"log in"}></SectionTitle>

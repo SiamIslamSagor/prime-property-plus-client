@@ -24,7 +24,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="min-h-screen  mt-20 ">
+    <div className="mt-20 ">
       <div className="container mx-auto">
         <div>
           <SectionTitle heading={"Sign Up"}></SectionTitle>
