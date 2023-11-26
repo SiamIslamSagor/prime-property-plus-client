@@ -55,8 +55,9 @@ const SignUp = () => {
             navigate("/");
             reset();
           })
-          .catch(err => {
-            console.log(err);
+          .catch(() => {
+            toast.error("Failed to create account.", { id: toastId });
+            setBtnLoading(false);
           });
         toast.success("Account created successfully.", {
           id: toastId,
@@ -65,6 +66,7 @@ const SignUp = () => {
       })
       .catch(() => {
         toast.error("Failed to create account.", { id: toastId });
+        setBtnLoading(false);
       });
 
     ///////////////////
@@ -168,7 +170,11 @@ const SignUp = () => {
                     type={isPasswordType ? "password" : "text"}
                     className="input input-bordered input-info w-full max-w-sm pr-10"
                     {...register("password", {
-                      required: "Password is required *",
+                      required: true,
+                      minLength: 6,
+                      maxLength: 32,
+                      pattern:
+                        /(?=.*[A-Z])(?=.*[@$!%*?&])(?=.*[0-9])(?=.*[a-z])/,
                     })}
                     aria-invalid={errors.password ? "true" : "false"}
                   />
@@ -184,9 +190,29 @@ const SignUp = () => {
                     ></IoEyeSharp>
                   )}
                 </div>
-                {errors.password && (
+                {errors.password?.type === "required" && (
                   <p className="text-sm text-red-600 mt-1">
-                    {errors.password?.message}
+                    {errors.password && (
+                      <p className="text-sm text-red-600 mt-1">
+                        Password is required *
+                      </p>
+                    )}
+                  </p>
+                )}
+                {errors.password?.type === "minLength" && (
+                  <p className="text-sm text-red-600 mt-1">
+                    Password must be 6 characters *
+                  </p>
+                )}
+                {errors.password?.type === "maxLength" && (
+                  <p className="text-sm text-red-600 mt-1">
+                    Password must be 20 characters *
+                  </p>
+                )}
+                {errors?.password?.type === "pattern" && (
+                  <p className="text-sm text-red-600 mt-1">
+                    password at least 6 char long & at most 32 char long.
+                    spacial char, digit, uppercase, lowercase required *
                   </p>
                 )}
               </div>

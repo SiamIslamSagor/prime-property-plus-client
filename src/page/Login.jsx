@@ -47,6 +47,7 @@ const Login = () => {
       })
       .catch(() => {
         toast.error("Failed to login.", { id: toastId });
+        setBtnLoading(false);
       });
   };
 
