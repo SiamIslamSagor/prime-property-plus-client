@@ -1,4 +1,5 @@
 import CardHolder from "../components/pageComponents/CardHolder/CardHolder";
+import OurLocationMap from "../components/pageComponents/OurLocationMap/OurLocationMap";
 import PropertyCard from "../components/pageComponents/PropertyCard/PropertyCard";
 import SectionTitle from "../components/utilitiesComponents/SectionTitle/SectionTitle";
 import useContextData from "../hooks/useContextData";
@@ -16,7 +17,7 @@ const AllProperties = () => {
   // handler
   return (
     <div className="container mx-auto">
-      <div>
+      <div className="max-lg:my-10 lg:my-20">
         <SectionTitle heading={"all properties"}></SectionTitle>{" "}
       </div>
       {isLoading ? (
@@ -40,6 +41,9 @@ const AllProperties = () => {
             ))}
         </div>
       )}
+      <div>
+        <OurLocationMap></OurLocationMap>
+      </div>
     </div>
   );
 };
