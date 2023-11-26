@@ -1,0 +1,14 @@
+.imgDiv {
+  width: 100% !important;
+  height: 100% !important;
+  /* border: 2px solid rgb(51, 255, 0); */
+}
+.imgDiv img {
+  width: 100% !important;
+  height: 100% !important;
+  /* border: 2px solid blue; */
+}
+
+/* .childParent div {
+  padding: 0 !important;
+} */

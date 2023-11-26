@@ -1,7 +1,7 @@
 import { Map, Marker } from "pigeon-maps";
 import PropTypes from "prop-types";
 
-const LocationMap = ({ latitude = 40.7128, longitude = -74.006 }) => {
+const LocationMap = ({ latitude, longitude }) => {
   return (
     <div>
       <Map height={550} defaultCenter={[latitude, longitude]} defaultZoom={11}>
