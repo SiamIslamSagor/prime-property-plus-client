@@ -3,7 +3,7 @@ import logo from "../../../assets/logo.png";
 
 import "./NavBar.css";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import PrimaryBtn from "../../utilitiesComponents/PrimaryBtn";
 import SecondaryBtn from "../../utilitiesComponents/SecondaryBtn";
@@ -17,11 +17,24 @@ const NavBar = () => {
   const sideBtnRef = useRef(null);
 
   // context data
-  const { user } = useContextData();
+  const { user, logOut } = useContextData();
 
   const location = useLocation();
 
   // handler
+
+  const handleLogOut = () => {
+    const toastId = toast.loading("processing...");
+
+    logOut()
+      .then(res => {
+        console.log(res);
+        toast.success("Log out successfully.", { id: toastId });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
   const handleResize = useCallback(() => {
     setDeviceInnerWidth(window.innerWidth);
@@ -94,7 +107,9 @@ const NavBar = () => {
         <NavLink to="/dashboard">Dashboard</NavLink>
       </div>
 
-      {user && <SecondaryBtn btnText="log out"></SecondaryBtn>}
+      {user && (
+        <SecondaryBtn handler={handleLogOut} btnText="log out"></SecondaryBtn>
+      )}
 
       {user === null && (
         <Link state={{ from: location }} to="/auth/login">

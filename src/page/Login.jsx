@@ -4,27 +4,56 @@ import { useForm } from "react-hook-form";
 import { IoMdEyeOff } from "react-icons/io";
 import { IoEyeSharp } from "react-icons/io5";
 import { FaGoogle } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PrimaryBtn from "../components/utilitiesComponents/PrimaryBtn";
+import useContextData from "../hooks/useContextData";
+import toast, { Toaster } from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   // state
   const [btnLoading, setBtnLoading] = useState(false);
   const [isPasswordType, setIsPasswordType] = useState(true);
 
+  // hooks
+  const navigate = useNavigate();
+  // context data
+  const { logIn } = useContextData();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
   const onSubmit = data => {
     setBtnLoading(true);
+    const toastId = toast.loading("processing...");
+
+    const { email, password } = data;
     console.log(data);
+    console.log(email, password);
+    logIn(email, password)
+      .then(res => {
+        console.log(res);
+        reset();
+        toast.success("Log In successfully.", { id: toastId });
+
+        navigate("/");
+      })
+      .catch(err => {
+        console.log(err);
+      });
     setBtnLoading(false);
   };
 
   return (
     <div className="mt-20 ">
+      <Helmet>
+        <title>P P P | Log In</title>
+      </Helmet>
+
+      <Toaster></Toaster>
       <div className="container mx-auto">
         <div>
           <SectionTitle heading={"log in"}></SectionTitle>
@@ -46,14 +75,14 @@ const Login = () => {
                 <input
                   type="email"
                   className="input input-bordered input-info w-full max-w-sm"
-                  {...register("mail", {
+                  {...register("email", {
                     required: "Email Address is required *",
                   })}
-                  aria-invalid={errors.mail ? "true" : "false"}
+                  aria-invalid={errors.email ? "true" : "false"}
                 />
-                {errors.mail && (
+                {errors.email && (
                   <p className="text-sm text-red-600 mt-1">
-                    {errors.mail?.message}
+                    {errors.email?.message}
                   </p>
                 )}
               </div>
