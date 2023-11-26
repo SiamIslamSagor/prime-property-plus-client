@@ -121,7 +121,7 @@ const NavBar = () => {
   );
 
   return (
-    <div className=" sticky mb-3 top-0 z-[9999] duration-700">
+    <div className=" sticky top-0 z-[9999] duration-700">
       <Toaster></Toaster>
       <div className={`shadow-lg z-[999] bg-white duration-700 ${navClass}`}>
         <div className="py-3 max-sm:py-3 container mx-auto flex justify-between items-center">

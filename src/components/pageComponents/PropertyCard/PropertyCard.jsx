@@ -1,13 +1,14 @@
 import PropTypes from "prop-types";
 import PrimaryBtn from "../../utilitiesComponents/PrimaryBtn";
 import { LuBadgeCheck } from "react-icons/lu";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Fade } from "react-awesome-reveal";
 
 const PropertyCard = ({ property, animDelay }) => {
   // data
   const {
+    _id,
     propertyImg,
     propertyTitle,
     propertyLocation,
@@ -48,7 +49,7 @@ const PropertyCard = ({ property, animDelay }) => {
                   className="flex items-center gap-2
             font-medium text-xl "
                 >
-                  <p className="flex-1">{propertyTitle}</p>
+                  <p className="flex-1 text-2xl">{propertyTitle}</p>
                   {isHomePath && (
                     <div className="">
                       <div className="badge text-white bg-f-color">
@@ -79,11 +80,13 @@ const PropertyCard = ({ property, animDelay }) => {
                 </div>
                 {isHomePath || (
                   <div className="flex items-center gap-4">
-                    <img
-                      className="w-12 h-12 rounded-full"
-                      src={agentImg}
-                      alt={agentName}
-                    />
+                    <div className="w-12 h-12 rounded-full">
+                      <img
+                        className="w-12 h-12 rounded-full"
+                        src={agentImg}
+                        alt={agentName}
+                      />
+                    </div>
                     <div>
                       <p>{agentName}</p>
                     </div>
@@ -100,7 +103,9 @@ const PropertyCard = ({ property, animDelay }) => {
                 className=" mb-8 mr-8
              text-right"
               >
-                <PrimaryBtn btnText="details"></PrimaryBtn>
+                <Link to={`/property-details/${_id}`}>
+                  <PrimaryBtn btnText="details"></PrimaryBtn>
+                </Link>
               </div>
             </div>
           </div>

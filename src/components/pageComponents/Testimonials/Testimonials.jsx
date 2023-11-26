@@ -27,7 +27,7 @@ const Testimonials = () => {
   return (
     <div>
       <div>
-        <SectionTitle heading={"Testimonials"}></SectionTitle>
+        <SectionTitle heading={"our Latest testimonial"}></SectionTitle>
       </div>
       <div>
         <ReviewSlider latestReviews={latestReviews}></ReviewSlider>

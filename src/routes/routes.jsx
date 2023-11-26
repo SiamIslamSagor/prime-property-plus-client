@@ -4,8 +4,8 @@ import Home from "../page/Home";
 import AuthPage from "../layout/AuthPage";
 import Login from "../page/Login";
 import SignUp from "../page/SignUp";
-import SectionTitle from "../components/utilitiesComponents/SectionTitle/SectionTitle";
 import AllProperties from "../page/AllProperties";
+import PropertyDetails from "../page/PropertyDetails";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +20,10 @@ const router = createBrowserRouter([
       {
         path: "all-properties",
         element: <AllProperties></AllProperties>,
+      },
+      {
+        path: "/property-details/:id",
+        element: <PropertyDetails></PropertyDetails>,
       },
     ],
   },
