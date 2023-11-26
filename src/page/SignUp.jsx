@@ -4,10 +4,13 @@ import PrimaryBtn from "../components/utilitiesComponents/PrimaryBtn";
 import { useState } from "react";
 import { FaGoogle } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { IoMdEyeOff } from "react-icons/io";
+import { IoEyeSharp } from "react-icons/io5";
 
 const SignUp = () => {
   // state
   const [btnLoading, setBtnLoading] = useState(false);
+  const [isPasswordType, setIsPasswordType] = useState(true);
 
   const {
     register,
@@ -44,6 +47,7 @@ const SignUp = () => {
                   <span className="label-text">Your Name</span>
                 </label>
                 <input
+                  type="text"
                   className="input input-bordered input-info w-full max-w-sm"
                   {...register("name", { required: "Name is required *" })}
                   aria-invalid={errors.name ? "true" : "false"}
@@ -58,6 +62,7 @@ const SignUp = () => {
                 </label>
 
                 <input
+                  type="email"
                   className="input input-bordered input-info w-full max-w-sm"
                   {...register("mail", {
                     required: "Email Address is required *",
@@ -74,6 +79,7 @@ const SignUp = () => {
                 </label>
 
                 <input
+                  type="url"
                   className="input input-bordered input-info w-full max-w-sm"
                   {...register("photoUrl", {
                     required: "Photo URL is required *",
@@ -91,13 +97,27 @@ const SignUp = () => {
                   <span className="label-text">Your Password</span>
                 </label>
 
-                <input
-                  className="input input-bordered input-info w-full max-w-sm"
-                  {...register("password", {
-                    required: "Password is required *",
-                  })}
-                  aria-invalid={errors.password ? "true" : "false"}
-                />
+                <div className="relative">
+                  <input
+                    type={isPasswordType ? "password" : "text"}
+                    className="input input-bordered input-info w-full max-w-sm pr-10"
+                    {...register("password", {
+                      required: "Password is required *",
+                    })}
+                    aria-invalid={errors.password ? "true" : "false"}
+                  />
+                  {isPasswordType ? (
+                    <IoMdEyeOff
+                      onClick={() => setIsPasswordType(!isPasswordType)}
+                      className="cursor-pointer text-2xl absolute top-[12px] right-2"
+                    ></IoMdEyeOff>
+                  ) : (
+                    <IoEyeSharp
+                      onClick={() => setIsPasswordType(!isPasswordType)}
+                      className="cursor-pointer text-2xl absolute top-[12px] right-2"
+                    ></IoEyeSharp>
+                  )}
+                </div>
                 {errors.password && (
                   <p className="text-sm text-red-600">
                     {errors.password?.message}
@@ -115,7 +135,7 @@ const SignUp = () => {
             </form>
             <div className="divider max-w-sm mx-auto">or</div>
             <div className="max-w-sm mx-auto text-center">
-              <button className="btn btn-accent uppercase font-medium rounded-full w-full px-4 text-white md:text-lg">
+              <button className="btn btn-accent uppercase font-medium rounded-full w-full px-4 text-white md:text-base ">
                 sign up with google <FaGoogle></FaGoogle>
               </button>
             </div>
