@@ -20,7 +20,6 @@ const MakeAnOffer = () => {
   const [propertyInfo, setPropertyInfo] = useState({});
   const [lowerPrice, setLowerPrice] = useState(0);
   const [hightsPrice, setHightsPrice] = useState(0);
-  const [dateErr, setDateErr] = useState("");
   const [currentDate, setCurrentDate] = useState("");
 
   //   react hook from
@@ -33,8 +32,14 @@ const MakeAnOffer = () => {
   //   handler
   const onSubmit = data => {
     const toastId = toast.loading("processing...");
-    const { _id, ...rest } = propertyInfo;
-    const propertyBoughtInfo = { ...data, ...rest };
+    const { _id, propertyVerificationStatus, ...rest } = propertyInfo;
+    const propertyBoughtInfo = {
+      ...data,
+      ...rest,
+      buyerEmail: user?.email,
+      buyerName: user?.displayName,
+      propertyVerificationStatus: "pending",
+    };
     ///////////////////
     //  send info in server side
     axiosSecure
@@ -74,7 +79,6 @@ const MakeAnOffer = () => {
     const [year, day, month] = ck;
     setCurrentDate(`${year}-${month}-${day}`);
   }, []);
-  console.log(currentDate);
 
   return (
     <div>
