@@ -9,6 +9,7 @@ import PrimaryBtn from "../components/utilitiesComponents/PrimaryBtn";
 import useContextData from "../hooks/useContextData";
 import toast, { Toaster } from "react-hot-toast";
 import { Helmet } from "react-helmet-async";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 const Login = () => {
   // state
@@ -17,6 +18,7 @@ const Login = () => {
 
   // hooks
   const navigate = useNavigate();
+  const axiosPublic = useAxiosPublic();
   // context data
   const { logIn, googleLogin } = useContextData();
 
@@ -55,7 +57,22 @@ const Login = () => {
     const toastId = toast.loading("processing...");
 
     googleLogin()
-      .then(() => {
+      .then(res => {
+        const userData = {
+          email: res?.user?.email,
+          name: res?.user?.displayName,
+        };
+
+        axiosPublic
+          .post("/users", userData)
+          .then(res => {
+            console.log(res.data);
+          })
+          .catch(err => {
+            console.log(err);
+            toast.error("Failed to login.", { id: toastId });
+          });
+
         toast.success("Log In successfully.", { id: toastId });
         navigate("/");
       })

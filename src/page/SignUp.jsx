@@ -87,7 +87,22 @@ const SignUp = () => {
     const toastId = toast.loading("processing...");
 
     googleLogin()
-      .then(() => {
+      .then(res => {
+        const userData = {
+          email: res?.user?.email,
+          name: res?.user?.displayName,
+        };
+
+        axiosPublic
+          .post("/users", userData)
+          .then(res => {
+            console.log(res.data);
+          })
+          .catch(err => {
+            console.log(err);
+            toast.error("Failed to login.", { id: toastId });
+          });
+
         toast.success("Log In successfully.", { id: toastId });
         navigate("/");
       })
