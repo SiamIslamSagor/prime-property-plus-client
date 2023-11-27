@@ -9,6 +9,7 @@ import PropertyDetails from "../page/PropertyDetails";
 import PrivetRoute from "../providers/PrivetRoute";
 import Dashboard from "../layout/Dashboard";
 import SectionTitle from "../components/utilitiesComponents/SectionTitle/SectionTitle";
+import UserProfile from "../components/pageComponents/UserProfile/UserProfile";
 
 const router = createBrowserRouter([
   {
@@ -60,11 +61,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: (
-          <div>
-            <SectionTitle heading={"my profile"}></SectionTitle>
-          </div>
-        ),
+        element: <UserProfile></UserProfile>,
       },
       {
         path: "wish-list",
