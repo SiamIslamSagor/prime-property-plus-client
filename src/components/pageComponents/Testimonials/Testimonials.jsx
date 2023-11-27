@@ -18,7 +18,7 @@ const Testimonials = () => {
         (a, b) => new Date(b.reviewTime) - new Date(a.reviewTime)
       );
 
-      setLatestReviews(latestReviewsData);
+      setLatestReviews(latestReviewsData.slice(0, 5));
     }
   }, [reviewsData]);
 
