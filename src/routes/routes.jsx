@@ -57,31 +57,47 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <Dashboard></Dashboard>,
+    element: (
+      <PrivetRoute>
+        <Dashboard></Dashboard>
+      </PrivetRoute>
+    ),
     // errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         index: true,
-        element: <UserProfile></UserProfile>,
+        element: (
+          <PrivetRoute>
+            <UserProfile></UserProfile>
+          </PrivetRoute>
+        ),
       },
       {
         path: "wish-list",
-        element: <MyWishList></MyWishList>,
+        element: (
+          <PrivetRoute>
+            <MyWishList></MyWishList>
+          </PrivetRoute>
+        ),
       },
       {
         path: "property-bought",
         element: (
-          <div>
-            <SectionTitle heading={"property bought"}></SectionTitle>
-          </div>
+          <PrivetRoute>
+            <div>
+              <SectionTitle heading={"property bought"}></SectionTitle>
+            </div>
+          </PrivetRoute>
         ),
       },
       {
         path: "my-reviews",
         element: (
-          <div>
-            <SectionTitle heading={"My reviews"}></SectionTitle>
-          </div>
+          <PrivetRoute>
+            <div>
+              <SectionTitle heading={"My reviews"}></SectionTitle>
+            </div>
+          </PrivetRoute>
         ),
       },
     ],

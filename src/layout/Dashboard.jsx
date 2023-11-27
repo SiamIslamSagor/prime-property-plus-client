@@ -1,11 +1,11 @@
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
-import { useState } from "react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import useContextData from "../hooks/useContextData";
 
 const Dashboard = () => {
   // state
-  const [mobileNavCall, setMobileNavCall] = useState(false);
+  const { mobileNavCall, setMobileNavCall } = useContextData();
 
   //   hooks
   const navigate = useNavigate();
@@ -75,7 +75,7 @@ const Dashboard = () => {
           </div>
 
           {/*  */}
-          <div className="max-lg:flex relative lg:col-span-9 xl:col-span-10">
+          <div className="max-lg:flex relative lg:col-span-9 xl:col-span-10 z-50">
             {mobileNavCall && (
               <div className="lg:hidden bg-green-200 absolute  duration-700">
                 <div
@@ -89,7 +89,7 @@ const Dashboard = () => {
                 </div>
               </div>
             )}
-            <div className="max-lg:col-span-12  min-h-screen bg-base-200 lg:-z-20 max-lg:w-full">
+            <div className="max-lg:col-span-12  min-h-screen  -z-20 max-lg:w-full">
               <Outlet></Outlet>
             </div>
           </div>

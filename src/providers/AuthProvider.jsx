@@ -20,6 +20,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [profileUpdate, setProfileUpdate] = useState(false);
   const [Loading, setLoading] = useState(true);
+  const [mobileNavCall, setMobileNavCall] = useState(false);
 
   // google Provider
   const googleProvider = new GoogleAuthProvider();
@@ -119,6 +120,8 @@ const AuthProvider = ({ children }) => {
     logOut,
     gooTop: scrollTop,
     propertyCardDelay,
+    mobileNavCall,
+    setMobileNavCall,
   };
 
   return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;

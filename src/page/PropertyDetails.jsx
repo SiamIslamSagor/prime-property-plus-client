@@ -28,6 +28,7 @@ const PropertyDetails = () => {
     propertyPriceRange,
     propertyFeatures,
     propertyBeauty,
+    propertyVerificationStatus,
     agentImg,
     agentName,
     agentEmail,
@@ -41,8 +42,21 @@ const PropertyDetails = () => {
     const toastId = toast.loading("processing...");
 
     const info = {
-      propertyId: _id,
       requesterEmail: user && user.email,
+      propertyId: _id,
+      propertyImg,
+      propertyTitle,
+      propertyLocation,
+      propertyPriceRange,
+      propertyFeatures,
+      propertyBeauty,
+      propertyVerificationStatus,
+      agentImg,
+      agentName,
+      agentEmail,
+      locationDetails,
+      locationDescription,
+      propertyDescription,
     };
 
     console.log(info);
