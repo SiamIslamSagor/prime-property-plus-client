@@ -77,9 +77,9 @@ const Dashboard = () => {
           {/*  */}
           <div className="max-lg:flex relative lg:col-span-9 xl:col-span-10 z-50">
             {mobileNavCall && (
-              <div className="lg:hidden bg-green-200 absolute  duration-700">
+              <div className="lg:hidden bg-green-200 absolute  duration-700 h-full">
                 <div
-                  className={`bg-f-color min-h-screen max-w-sm -ml-96 duration-500 z-50 ${
+                  className={`bg-f-color h-full min-h-screen max-w-sm -ml-96 duration-500 z-50 ${
                     mobileNavCall ? "ml-0" : "-ml-96"
                   }`}
                 >

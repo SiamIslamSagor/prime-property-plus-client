@@ -5,7 +5,7 @@ const DeleteBtn = ({
   btnText = "Button",
   handler = () => console.log("click"),
   isDisable = false,
-  isLoadingBtn = true,
+  isLoadingBtn = false,
 }) => {
   return (
     <div>

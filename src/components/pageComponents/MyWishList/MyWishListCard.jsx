@@ -5,11 +5,13 @@ import { Fade } from "react-awesome-reveal";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import useContextData from "../../../hooks/useContextData";
+import DeleteBtn from "../../utilitiesComponents/DeleteBtn";
 
 const MyWishListCard = ({ property, animDelay }) => {
   // data
   const {
     _id,
+    propertyId,
     propertyImg,
     propertyTitle,
     propertyLocation,
@@ -63,14 +65,11 @@ const MyWishListCard = ({ property, animDelay }) => {
                   )}
                 </h2>
                 <p>location: {propertyLocation}</p>
-                {/* {isHomePath || <p>Agent Name: {agentName}</p>} */}
 
-                {/* <p>img</p> */}
                 <p>
                   Price Range: ${propertyPriceRange[0]} to $
                   {propertyPriceRange[1]}
                 </p>
-                {/* {isHomePath || <p>Property Location: {propertyLocation}</p>} */}
 
                 <div className="flex flex-wrap  justify-start gap-2">
                   {isHomePath && (
@@ -104,11 +103,12 @@ const MyWishListCard = ({ property, animDelay }) => {
                 )}
               </div>
               <div
-                className=" mb-8 mr-8
-             text-right"
+                className=" mb-8 
+             text-right flex justify-center"
               >
-                <Link to={`/property-details/${_id}`}>
-                  <PrimaryBtn btnText="details"></PrimaryBtn>
+                <DeleteBtn btnText="remove"></DeleteBtn>
+                <Link to={`/property-details/${propertyId}`}>
+                  <PrimaryBtn btnText="make an offer"></PrimaryBtn>
                 </Link>
               </div>
             </div>

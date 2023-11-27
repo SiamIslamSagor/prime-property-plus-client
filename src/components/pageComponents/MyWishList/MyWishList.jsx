@@ -17,7 +17,7 @@ const MyWishList = () => {
       </div>
       <div>
         {isLoading ? (
-          <div className=" grid gap-8 justify-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          <div className=" grid gap-8 justify-items-center grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
             <CardHolder></CardHolder>
             <CardHolder></CardHolder>
             <CardHolder></CardHolder>
@@ -26,7 +26,7 @@ const MyWishList = () => {
             <CardHolder></CardHolder>
           </div>
         ) : (
-          <div className=" grid gap-8 justify-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          <div className=" grid gap-8 justify-items-center grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
             {wishListData &&
               wishListData?.map((property, idx) => (
                 <MyWishListCard

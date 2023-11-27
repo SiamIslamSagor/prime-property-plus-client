@@ -8,10 +8,11 @@ const UserProfile = () => {
   const { user } = useContextData();
 
   //   state
+  //   TODO: edit profile functionality
   const [isLoadingBtn, setIsLoadingBtn] = useState(false);
 
   return (
-    <div className="flex items-center justify-center min-h-[90vh]">
+    <div className="flex items-center justify-center min-h-[75vh]">
       <div>
         <div className="my-10">
           <SectionTitle heading={"my profile"}></SectionTitle>
