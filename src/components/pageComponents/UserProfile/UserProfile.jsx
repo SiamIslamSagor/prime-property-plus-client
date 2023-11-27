@@ -2,6 +2,7 @@ import { Fade } from "react-awesome-reveal";
 import useContextData from "../../../hooks/useContextData";
 import SecondaryBtn from "../../utilitiesComponents/SecondaryBtn";
 import { useState } from "react";
+import SectionTitle from "../../utilitiesComponents/SectionTitle/SectionTitle";
 
 const UserProfile = () => {
   const { user } = useContextData();
@@ -12,6 +13,9 @@ const UserProfile = () => {
   return (
     <div className="flex items-center justify-center min-h-[90vh]">
       <div>
+        <div className="my-10">
+          <SectionTitle heading={"my profile"}></SectionTitle>
+        </div>
         <div>
           <div className="mb-24 flex flex-col items-center justify-center container mx-auto font-medium">
             <Fade delay={550}>

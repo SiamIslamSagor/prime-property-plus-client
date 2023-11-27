@@ -67,7 +67,7 @@ const Dashboard = () => {
             <div>
               <img
                 onClick={() => navigate("/")}
-                className="cursor-pointer max-sm:h-12 max-md:h-14 h-16"
+                className="ml-4 cursor-pointer max-sm:h-12 max-md:h-14 h-16"
                 src={logo}
                 alt="logo"
               />
@@ -83,13 +83,13 @@ const Dashboard = () => {
                     mobileNavCall ? "ml-0" : "-ml-96"
                   }`}
                 >
-                  <div className="duration-700 space-y-5 py-10">
+                  <div className="duration-700 space-y-5 py-10 text-white">
                     {dashboardLink}
                   </div>
                 </div>
               </div>
             )}
-            <div className="max-lg:col-span-12  min-h-screen bg-base-200 -z-20 max-lg:w-full">
+            <div className="max-lg:col-span-12  min-h-screen bg-base-200 lg:-z-20 max-lg:w-full">
               <Outlet></Outlet>
             </div>
           </div>
