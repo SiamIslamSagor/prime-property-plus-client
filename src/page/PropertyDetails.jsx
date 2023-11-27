@@ -1,22 +1,27 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import useAxiosPublic from "../hooks/useAxiosPublic";
 import SectionTitle from "../components/utilitiesComponents/SectionTitle/SectionTitle";
 import DetailsCover from "../components/pageComponents/DetailsCover/DetailsCover";
 import { Fade } from "react-awesome-reveal";
 import LocationMap from "../components/pageComponents/LocationMap/LocationMap";
 import SecondaryBtn from "../components/utilitiesComponents/SecondaryBtn";
+import useAxiosSecure from "../hooks/useAxiosSecure";
+import toast, { Toaster } from "react-hot-toast";
+import useContextData from "../hooks/useContextData";
 
 const PropertyDetails = () => {
   // hooks
   const clickedProperty = useParams();
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
+
+  // context data
+  const { user } = useContextData();
 
   //   state
   const [property, setProperty] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const {
-    // _id,
+    _id,
     propertyImg,
     propertyTitle,
     propertyLocation,
@@ -31,10 +36,39 @@ const PropertyDetails = () => {
     propertyDescription,
   } = property;
 
+  // handler
+  const handleAddToWishList = () => {
+    const toastId = toast.loading("processing...");
+
+    const info = {
+      propertyId: _id,
+      requesterEmail: user && user.email,
+    };
+
+    console.log(info);
+    // store property id in db
+    axiosSecure
+      .post("/wish-list", info)
+      .then(res => {
+        console.log(res);
+        if (res.data.message) {
+          return toast.success(
+            "This property you have already added in your Wish List.",
+            { id: toastId }
+          );
+        }
+        toast.success("Add to Wish List Successfully.", { id: toastId });
+      })
+      .catch(err => {
+        console.log(err);
+        toast.success("Add to Wish List Failed.", { id: toastId });
+      });
+  };
+
   // useEffect
   useEffect(() => {
     setIsLoading(true);
-    axiosPublic
+    axiosSecure
       .get(`/property/details/${clickedProperty?.id}`)
       .then(res => {
         const data = res.data;
@@ -44,11 +78,12 @@ const PropertyDetails = () => {
       .catch(err => {
         console.log(err);
       });
-  }, [axiosPublic, clickedProperty?.id]);
+  }, [axiosSecure, clickedProperty?.id]);
   //   console.log(property);
 
   return (
     <div className="lg:my-40">
+      <Toaster></Toaster>
       <div className="container lg:px-20 mx-auto">
         <div className="max-lg:hidden">
           <DetailsCover coverImg={propertyImg}></DetailsCover>
@@ -97,7 +132,7 @@ const PropertyDetails = () => {
                 <h2 className="text-4xl text-p-color px-2">{propertyTitle}</h2>
               </Fade>
             </div>
-            <div>
+            <div className="lg:max-w-lg 2xl:max-w-2xl">
               <Fade>
                 <div className="max-md:space-y-2 max-lg:space-y-3 lg:space-y-3 my-3 lg:mt-10 px-2 font-semibold">
                   <p>{}</p>
@@ -122,7 +157,10 @@ const PropertyDetails = () => {
               </Fade>
               <div className="overflow-hidden">
                 <Fade direction="left">
-                  <SecondaryBtn btnText="add to white list"></SecondaryBtn>
+                  <SecondaryBtn
+                    handler={handleAddToWishList}
+                    btnText="add to wish list"
+                  ></SecondaryBtn>
                 </Fade>
               </div>
             </div>
