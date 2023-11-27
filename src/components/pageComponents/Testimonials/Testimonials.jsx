@@ -12,7 +12,6 @@ const Testimonials = () => {
 
   //   side effect
   useEffect(() => {
-    console.log("effect");
     if (reviewsData.length > 0) {
       const latestReviewsData = reviewsData.sort(
         (a, b) => new Date(b.reviewTime) - new Date(a.reviewTime)
@@ -21,8 +20,6 @@ const Testimonials = () => {
       setLatestReviews(latestReviewsData.slice(0, 5));
     }
   }, [reviewsData]);
-
-  //   console.log(latestReviews);
 
   return (
     <div>

@@ -7,6 +7,7 @@ import SignUp from "../page/SignUp";
 import AllProperties from "../page/AllProperties";
 import PropertyDetails from "../page/PropertyDetails";
 import PrivetRoute from "../providers/PrivetRoute";
+import Dashboard from "../layout/Dashboard";
 
 const router = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
         element: <SignUp></SignUp>,
       },
     ],
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard></Dashboard>,
   },
 ]);
 

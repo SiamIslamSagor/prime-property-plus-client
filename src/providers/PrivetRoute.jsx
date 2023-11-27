@@ -5,7 +5,6 @@ import useContextData from "../hooks/useContextData";
 const PrivetRoute = ({ children }) => {
   const { user, Loading } = useContextData();
   const location = useLocation();
-  console.log(Loading);
 
   if (Loading) {
     return (
