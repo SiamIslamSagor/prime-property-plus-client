@@ -8,6 +8,7 @@ import AllProperties from "../page/AllProperties";
 import PropertyDetails from "../page/PropertyDetails";
 import PrivetRoute from "../providers/PrivetRoute";
 import Dashboard from "../layout/Dashboard";
+import SectionTitle from "../components/utilitiesComponents/SectionTitle/SectionTitle";
 
 const router = createBrowserRouter([
   {
@@ -55,6 +56,41 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <Dashboard></Dashboard>,
+    // errorElement: <ErrorPage></ErrorPage>,
+    children: [
+      {
+        index: true,
+        element: (
+          <div>
+            <SectionTitle heading={"my profile"}></SectionTitle>
+          </div>
+        ),
+      },
+      {
+        path: "wish-list",
+        element: (
+          <div>
+            <SectionTitle heading={"WishList"}></SectionTitle>
+          </div>
+        ),
+      },
+      {
+        path: "property-bought",
+        element: (
+          <div>
+            <SectionTitle heading={"property bought"}></SectionTitle>
+          </div>
+        ),
+      },
+      {
+        path: "my-reviews",
+        element: (
+          <div>
+            <SectionTitle heading={"My reviews"}></SectionTitle>
+          </div>
+        ),
+      },
+    ],
   },
 ]);
 

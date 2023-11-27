@@ -1,4 +1,4 @@
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import logo from "../../../assets/logo.png";
 
 import "./NavBar.css";
@@ -21,6 +21,7 @@ const NavBar = () => {
   const { user, logOut } = useContextData();
 
   const location = useLocation();
+  const navigate = useNavigate();
 
   // handler
 
@@ -180,7 +181,8 @@ const NavBar = () => {
                 </button>
               </div>
               <img
-                className=" max-sm:h-12 max-md:h-14 h-16"
+                onClick={() => navigate("/")}
+                className="cursor-pointer max-sm:h-12 max-md:h-14 h-16"
                 src={logo}
                 alt="logo"
               />
@@ -225,13 +227,7 @@ const NavBar = () => {
           </div>
           <div className="">
             <div
-              className={`hidden xl:text-s-color xl:flex items-center gap-4 2xl:gap-10 ${
-                location.pathname === "/" && window.scrollY >= 420
-                  ? "text-black"
-                  : location.pathname === "/"
-                  ? "text-black"
-                  : "text-[#f86f03]"
-              }`}
+              className={`hidden xl:text-s-color xl:flex items-center gap-4 2xl:gap-10 `}
             >
               {links}
               {user && (

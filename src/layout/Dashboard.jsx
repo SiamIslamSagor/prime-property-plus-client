@@ -1,73 +1,102 @@
-import PropTypes from "prop-types";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import logo from "../assets/logo.png";
+import { useState } from "react";
+import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 
-const Dashboard = ({ children }) => {
+const Dashboard = () => {
+  // state
+  const [mobileNavCall, setMobileNavCall] = useState(false);
+
+  //   hooks
+  const navigate = useNavigate();
+
+  const dashboardLink = (
+    <>
+      <div className="uppercase nav-div max-md:w-full md:text-lg font-semibold max-w-xs px-4">
+        <NavLink to="/dashboard" end>
+          My Profile
+        </NavLink>
+      </div>
+
+      <div className="uppercase nav-div max-md:w-full md:text-lg font-semibold max-w-xs px-4">
+        <NavLink to="/dashboard/wish-list">WishList</NavLink>
+      </div>
+
+      <div className="uppercase nav-div max-md:w-full md:text-lg font-semibold max-w-xs px-4">
+        <NavLink to="/dashboard/Property-bought">Property bought</NavLink>
+      </div>
+
+      <div className="uppercase nav-div max-md:w-full md:text-lg font-semibold max-w-xs px-4">
+        <NavLink to="/dashboard/my-reviews">My Reviews</NavLink>
+      </div>
+    </>
+  );
+
   return (
-    <div>
-      <div className="drawer">
-        <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col">
-          {/* Navbar */}
-          <div className="w-full navbar bg-base-300">
-            <div className="flex-none lg:hidden">
-              <label
-                htmlFor="my-drawer-3"
-                aria-label="open sidebar"
-                className="btn btn-square btn-ghost"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  className="inline-block w-6 h-6 stroke-current"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  ></path>
-                </svg>
-              </label>
-            </div>
-            <div className="flex-1 px-2 mx-2">Navbar Title</div>
-            <div className="flex-none hidden lg:block">
-              <ul className="menu menu-horizontal">
-                {/* Navbar menu content here */}
-                <li>
-                  <a>Navbar Item 1</a>
-                </li>
-                <li>
-                  <a>Navbar Item 2</a>
-                </li>
-              </ul>
+    <div className="max-w-[1920px] mx-auto">
+      <div className="">
+        <div className="lg:grid lg:grid-cols-12 lg:min-h-screen relative">
+          <div className="max-lg:hidden col-span-3 xl:col-span-2 bg-t-color text-white font-medium">
+            <div className="max-w-xs px-1 ">
+              <div className="">
+                <img
+                  onClick={() => navigate("/")}
+                  className="cursor-pointer max-xl:w-52 p-5"
+                  src={logo}
+                  alt="logo"
+                />
+              </div>
+              <div className="space-y-4 py-10 text-center">{dashboardLink}</div>
             </div>
           </div>
-          {/* Page content here */}
-          Content
-        </div>
-        <div className="drawer-side">
-          <label
-            htmlFor="my-drawer-3"
-            aria-label="close sidebar"
-            className="drawer-overlay"
-          ></label>
-          <ul className="menu p-4 w-80 min-h-full bg-base-200">
-            {/* Sidebar content here */}
-            <li>
-              <a>Sidebar Item 1</a>
-            </li>
-            <li>
-              <a>Sidebar Item 2</a>
-            </li>
-          </ul>
+          {/*  */}
+          <div className="flex items-center lg:hidden ">
+            <div className="">
+              <button
+                onClick={() => setMobileNavCall(!mobileNavCall)}
+                tabIndex={0}
+                className="btn btn-ghost xl:hidden"
+              >
+                {mobileNavCall ? (
+                  <AiOutlineClose className={`text-3xl`}></AiOutlineClose>
+                ) : (
+                  <AiOutlineMenu className={`text-3xl`}></AiOutlineMenu>
+                )}
+              </button>
+            </div>
+            <div>
+              <img
+                onClick={() => navigate("/")}
+                className="cursor-pointer max-sm:h-12 max-md:h-14 h-16"
+                src={logo}
+                alt="logo"
+              />
+            </div>
+          </div>
+
+          {/*  */}
+          <div className="max-lg:flex relative lg:col-span-9 xl:col-span-10 ">
+            {mobileNavCall && (
+              <div className="lg:hidden bg-green-200 absolute  duration-700">
+                <div
+                  className={`bg-f-color min-h-screen max-w-sm -ml-96 duration-500 z-50 ${
+                    mobileNavCall ? "ml-0" : "-ml-96"
+                  }`}
+                >
+                  <div className="duration-700 space-y-5 py-10">
+                    {dashboardLink}
+                  </div>
+                </div>
+              </div>
+            )}
+            <div className="max-lg:col-span-12  min-h-screen bg-base-200 max-lg:w-full">
+              <Outlet></Outlet>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   );
-};
-
-Dashboard.propTypes = {
-  children: PropTypes.node.isRequired,
 };
 
 export default Dashboard;
