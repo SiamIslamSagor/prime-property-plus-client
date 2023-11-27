@@ -1,3 +1,4 @@
+import { Toaster } from "react-hot-toast";
 import useContextData from "../../../hooks/useContextData";
 import useWishList from "../../../hooks/useWishList";
 import SectionTitle from "../../utilitiesComponents/SectionTitle/SectionTitle";
@@ -12,6 +13,7 @@ const MyWishList = () => {
 
   return (
     <div>
+      <Toaster></Toaster>
       <div className="p-10">
         <SectionTitle heading={"my wish list"}></SectionTitle>
       </div>
