@@ -11,6 +11,7 @@ import Dashboard from "../layout/Dashboard";
 import SectionTitle from "../components/utilitiesComponents/SectionTitle/SectionTitle";
 import UserProfile from "../components/pageComponents/UserProfile/UserProfile";
 import MyWishList from "../components/pageComponents/MyWishList/MyWishList";
+import MakeAnOffer from "../page/MakeAnOffer";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,14 @@ const router = createBrowserRouter([
         element: (
           <PrivetRoute>
             <PropertyDetails></PropertyDetails>
+          </PrivetRoute>
+        ),
+      },
+      {
+        path: "/make-an-offer/:id",
+        element: (
+          <PrivetRoute>
+            <MakeAnOffer></MakeAnOffer>
           </PrivetRoute>
         ),
       },

@@ -107,7 +107,7 @@ const MyWishListCard = ({ property, animDelay }) => {
              text-right flex justify-center"
               >
                 <DeleteBtn btnText="remove"></DeleteBtn>
-                <Link to={`/property-details/${propertyId}`}>
+                <Link to={`/make-an-offer/${_id}`}>
                   <PrimaryBtn btnText="make an offer"></PrimaryBtn>
                 </Link>
               </div>
