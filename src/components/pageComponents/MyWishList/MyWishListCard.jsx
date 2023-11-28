@@ -9,6 +9,7 @@ import DeleteBtn from "../../utilitiesComponents/DeleteBtn";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { setOfferedAmountInLs } from "../../../utils/localStorage";
 
 const MyWishListCard = ({ property, animDelay }) => {
   // data
@@ -184,7 +185,10 @@ const MyWishListCard = ({ property, animDelay }) => {
              text-right flex justify-center"
                   >
                     <Link to="/dashboard/payment">
-                      <PrimaryBtn btnText="pay now"></PrimaryBtn>
+                      <PrimaryBtn
+                        handler={() => setOfferedAmountInLs(offeredAmount)}
+                        btnText="pay now"
+                      ></PrimaryBtn>
                     </Link>
                   </div>
                 )}
