@@ -184,7 +184,7 @@ const MyWishListCard = ({ property, animDelay }) => {
              text-right flex justify-center"
                   >
                     <Link to="/dashboard/payment">
-                      <PrimaryBtn btnText="pay"></PrimaryBtn>
+                      <PrimaryBtn btnText="pay now"></PrimaryBtn>
                     </Link>
                   </div>
                 )}
