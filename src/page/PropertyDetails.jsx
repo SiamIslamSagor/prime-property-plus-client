@@ -38,13 +38,13 @@ const PropertyDetails = () => {
     locationDescription,
     propertyDescription,
   } = property;
-  console.log(propertyTitle);
+  console.log(property);
 
   //////////////////////////////////
   const { data: singlePropertyReviewsData = [] } = useQuery({
     queryKey: ["singlePropertyReviews", propertyTitle],
     queryFn: () =>
-      axiosSecure.get(`/single-property-reviews/${propertyTitle}`).then(res => {
+      axiosSecure.get(`/single-property-reviews/${_id}`).then(res => {
         return res.data;
       }),
     staleTime: 1000 * 10,
@@ -223,10 +223,19 @@ const PropertyDetails = () => {
           </div>
         </div>
         {singlePropertyReviewsData && (
-          <ReviewSlider
-            reviewLength={singlePropertyReviewsData.length}
-            latestReviews={singlePropertyReviewsData}
-          ></ReviewSlider>
+          <div>
+            {singlePropertyReviewsData.length !== 0 && (
+              <div className="my-16 lg:my-20">
+                <SectionTitle
+                  heading={"review for this property"}
+                ></SectionTitle>
+              </div>
+            )}
+            <ReviewSlider
+              reviewLength={singlePropertyReviewsData.length}
+              latestReviews={singlePropertyReviewsData}
+            ></ReviewSlider>
+          </div>
         )}
         {isLoading ||
           (locationDetails?.latitude && locationDetails?.longitude && (
