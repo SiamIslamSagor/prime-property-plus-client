@@ -63,7 +63,7 @@ const MakeAnOffer = () => {
         .then(res => {
           console.log(res.data);
           toast.success("Offered successfully.", { id: toastId });
-          navigate("/dashboard/wish-list");
+          navigate("/dashboard/property-bought");
         })
         .catch(err => {
           console.log(err);

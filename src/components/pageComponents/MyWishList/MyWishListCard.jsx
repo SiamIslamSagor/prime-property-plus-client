@@ -6,6 +6,9 @@ import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import useContextData from "../../../hooks/useContextData";
 import DeleteBtn from "../../utilitiesComponents/DeleteBtn";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import toast from "react-hot-toast";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const MyWishListCard = ({ property, animDelay }) => {
   // data
@@ -17,19 +20,59 @@ const MyWishListCard = ({ property, animDelay }) => {
     propertyLocation,
     propertyPriceRange,
     offeredAmount,
-    propertyVerificationStatus,
+    // TODO: comment out
+    // propertyVerificationStatus,
     agentName,
     agentImg,
   } = property;
+
+  ///////////
+  const propertyVerificationStatus = "accepted";
+  ///////////
+
   // hooks
   const location = useLocation();
-  console.log(location);
-  const { mobileNavCall } = useContextData();
+  const { user, mobileNavCall } = useContextData();
+  const axiosSecure = useAxiosSecure();
+  const queryClient = useQueryClient();
 
   //   context data
 
   // state
   const [isHomePath, setIsHomePath] = useState(true);
+
+  //
+
+  // mutations
+  const { mutate } = useMutation({
+    mutationFn: async wishListItemId => {
+      const toastId = toast.loading("processing...");
+
+      return axiosSecure
+        .delete(`/wish-list-item/delete/${wishListItemId}`)
+        .then(res => {
+          console.log(res.data);
+          toast.success("wish list item deleted successfully.", {
+            id: toastId,
+          });
+        })
+        .catch(err => {
+          console.log(err);
+          toast.error("Failed to delete.", { id: toastId });
+        });
+    },
+    onSuccess: () => {
+      console.log("wish deleted by mutate");
+      queryClient.invalidateQueries(["wishList", user && user?.email]);
+    },
+  });
+
+  // handler
+  const handleDeleteWish = () => {
+    console.log(_id);
+    // mutation handler
+    mutate(_id);
+  };
 
   useEffect(() => {
     if (location.pathname === "/") {
@@ -123,7 +166,10 @@ const MyWishListCard = ({ property, animDelay }) => {
                   className=" mb-8 
              text-right flex justify-center"
                 >
-                  <DeleteBtn btnText="remove"></DeleteBtn>
+                  <DeleteBtn
+                    handler={handleDeleteWish}
+                    btnText="remove"
+                  ></DeleteBtn>
                   <Link to={`/make-an-offer/${_id}`}>
                     <PrimaryBtn btnText="make an offer"></PrimaryBtn>
                   </Link>
