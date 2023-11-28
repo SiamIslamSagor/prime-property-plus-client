@@ -8,12 +8,12 @@ import AllProperties from "../page/AllProperties";
 import PropertyDetails from "../page/PropertyDetails";
 import PrivetRoute from "../providers/PrivetRoute";
 import Dashboard from "../layout/Dashboard";
-import SectionTitle from "../components/utilitiesComponents/SectionTitle/SectionTitle";
 import UserProfile from "../components/pageComponents/UserProfile/UserProfile";
 import MyWishList from "../components/pageComponents/MyWishList/MyWishList";
 import MakeAnOffer from "../page/MakeAnOffer";
 import PropertyBought from "../components/pageComponents/PropertyBought/PropertyBought";
 import UserReview from "../components/pageComponents/UserReview/UserReview";
+import Payment from "../components/pageComponents/Payment/Payment";
 
 const router = createBrowserRouter([
   {
@@ -104,6 +104,14 @@ const router = createBrowserRouter([
         element: (
           <PrivetRoute>
             <UserReview></UserReview>
+          </PrivetRoute>
+        ),
+      },
+      {
+        path: "payment",
+        element: (
+          <PrivetRoute>
+            <Payment></Payment>
           </PrivetRoute>
         ),
       },
