@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import SectionTitle from "../components/utilitiesComponents/SectionTitle/SectionTitle";
 import DetailsCover from "../components/pageComponents/DetailsCover/DetailsCover";
@@ -10,6 +10,8 @@ import toast, { Toaster } from "react-hot-toast";
 import useContextData from "../hooks/useContextData";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import ReviewSlider from "../components/pageComponents/ReviewSlider/ReviewSlider";
+import UpdateBtn from "../components/utilitiesComponents/UpdateBtn";
+import { getCurrentTimeAndDate } from "../utils/getCurrentTimeAndDate";
 
 const PropertyDetails = () => {
   // hooks
@@ -22,6 +24,8 @@ const PropertyDetails = () => {
   //   state
   const [property, setProperty] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [requestLoading, setRequestLoading] = useState(false);
+  const reviewRef = useRef("");
   const {
     _id,
     propertyImg,
@@ -38,7 +42,6 @@ const PropertyDetails = () => {
     locationDescription,
     propertyDescription,
   } = property;
-  console.log(property);
 
   //////////////////////////////////
   const { data: singlePropertyReviewsData = [] } = useQuery({
@@ -50,7 +53,6 @@ const PropertyDetails = () => {
     staleTime: 1000 * 10,
   });
   //////////////////////////////////
-  console.log(singlePropertyReviewsData);
 
   // mutations
   const { mutate } = useMutation({
@@ -119,6 +121,45 @@ const PropertyDetails = () => {
         console.log(err);
         toast.success("Add to Wish List Failed.", { id: toastId });
       }); */
+  };
+
+  // review handler'
+  const handleReview = e => {
+    e.preventDefault();
+    const toastId = toast.loading("processing...");
+
+    setRequestLoading(true);
+    //////////////////////
+
+    const reviewTime = getCurrentTimeAndDate();
+
+    const reviewerDescription = reviewRef?.current?.value;
+    const reviewInfo = {
+      reviewerName: user?.displayName,
+      reviewerImg: user?.photoURL,
+      reviewerEmail: user?.email,
+      reviewedPropertyTitle: propertyTitle,
+      reviewedPropertyId: _id,
+      reviewerDescription,
+      reviewTime,
+    };
+
+    console.log(reviewInfo);
+
+    // send in server side db
+    axiosSecure
+      .post("/reviews/add", reviewInfo)
+      .then(res => {
+        console.log(res.data);
+        toast.success("give review successfully.", { id: toastId });
+      })
+      .catch(err => {
+        console.log(err);
+        toast.error("Failed to review.", { id: toastId });
+      });
+
+    //////////////////////
+    setRequestLoading(false);
   };
 
   // useEffect
@@ -211,14 +252,65 @@ const PropertyDetails = () => {
                   )}
                 </div>
               </Fade>
-              <div className="overflow-hidden">
-                <Fade direction="left">
-                  <SecondaryBtn
-                    handler={handleAddToWishList}
-                    btnText="add to wish list"
-                  ></SecondaryBtn>
-                </Fade>
+              <div className="flex gap-4 max-sm:flex-col">
+                <div className="overflow-hidden">
+                  <Fade direction="left">
+                    <SecondaryBtn
+                      handler={handleAddToWishList}
+                      btnText="add to wish list"
+                    ></SecondaryBtn>
+                  </Fade>
+                </div>
+                <div className="overflow-hidden">
+                  <Fade direction="left">
+                    <UpdateBtn
+                      handler={() =>
+                        document.getElementById("my_modal_3").showModal()
+                      }
+                      btnText="give review"
+                    ></UpdateBtn>
+                  </Fade>
+                </div>
               </div>
+              {/*  */}
+              <dialog id="my_modal_3" className="modal">
+                <div className="modal-box">
+                  <form method="dialog">
+                    {/* if there is a button in form, it will close the modal */}
+                    <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                      ✕
+                    </button>
+                  </form>
+
+                  {/* data */}
+                  <form className="w-full max-w-lg">
+                    <div className="flex flex-wrap -mx-3 mb-6">
+                      <div className="w-full px-3">
+                        <label
+                          className="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2"
+                          //   for="grid-password"
+                        >
+                          Review
+                        </label>
+                        <textarea
+                          className="textarea textarea-info w-full"
+                          placeholder="type your personal review for this property"
+                          ref={reviewRef}
+                        ></textarea>
+                      </div>
+                    </div>
+                    <div className="text-center">
+                      <SecondaryBtn
+                        btnType="submit"
+                        handler={handleReview}
+                        isLoadingBtn={requestLoading}
+                        btnText="review"
+                      ></SecondaryBtn>
+                    </div>
+                  </form>
+                </div>
+              </dialog>
+              {/*  */}
             </div>
           </div>
         </div>
