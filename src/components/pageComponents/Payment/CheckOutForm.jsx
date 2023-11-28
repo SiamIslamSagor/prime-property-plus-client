@@ -129,6 +129,7 @@ const CheckOutForm = () => {
           .patch(`/property/bought/${boughtPropertyInfo?._id}`, paymentInfo)
           .then(res => {
             console.log(res.data);
+            localStorage.removeItem("bought-property-id");
             navigate("/dashboard/property-bought");
           })
           .catch(err => {
