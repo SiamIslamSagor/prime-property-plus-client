@@ -21,14 +21,13 @@ const MyWishListCard = ({ property, animDelay }) => {
     propertyLocation,
     propertyPriceRange,
     offeredAmount,
-    // TODO: comment out
-    // propertyVerificationStatus,
+    propertyVerificationStatus,
+    transactionId,
     agentName,
     agentImg,
   } = property;
 
   ///////////
-  const propertyVerificationStatus = "accepted";
   ///////////
 
   // hooks
@@ -178,12 +177,17 @@ const MyWishListCard = ({ property, animDelay }) => {
               )}
               {/*  */}
               {location.pathname === "/dashboard/property-bought" &&
+                propertyVerificationStatus === "bought" &&
+                transactionId && (
+                  <div className=" mb-8 text-right flex justify-center">
+                    <p>Transaction Id: {transactionId && transactionId}</p>
+                  </div>
+                )}
+              {/*  */}
+              {location.pathname === "/dashboard/property-bought" &&
                 propertyVerificationStatus === "accepted" && (
                   // TODO: payment method
-                  <div
-                    className=" mb-8 
-             text-right flex justify-center"
-                  >
+                  <div className=" mb-8 text-right flex justify-center">
                     <Link to="/dashboard/payment">
                       <PrimaryBtn
                         handler={() => {
