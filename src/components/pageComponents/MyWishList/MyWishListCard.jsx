@@ -101,11 +101,19 @@ const MyWishListCard = ({ property, animDelay }) => {
                     <div>
                       <p>{agentName}</p>
                     </div>
-                    <div className="badge  text-white bg-p-color py-3">
-                      <p className="flex gap-2 items-center ">
-                        {propertyVerificationStatus}
-                        <LuBadgeCheck></LuBadgeCheck>
-                      </p>{" "}
+                    <div
+                      className={`${
+                        location.pathname === "/dashboard/property-bought" &&
+                        "tooltip tooltip-top"
+                      }`}
+                      data-tip="wait for accept your offer"
+                    >
+                      <div className="badge  text-white bg-p-color py-3">
+                        <p className="flex gap-2 items-center ">
+                          {propertyVerificationStatus}
+                          <LuBadgeCheck></LuBadgeCheck>
+                        </p>{" "}
+                      </div>
                     </div>
                   </div>
                 )}

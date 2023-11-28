@@ -8,7 +8,7 @@ import SecondaryBtn from "../components/utilitiesComponents/SecondaryBtn";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import toast, { Toaster } from "react-hot-toast";
 import useContextData from "../hooks/useContextData";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import ReviewSlider from "../components/pageComponents/ReviewSlider/ReviewSlider";
 import UpdateBtn from "../components/utilitiesComponents/UpdateBtn";
 import { getCurrentTimeAndDate } from "../utils/getCurrentTimeAndDate";
@@ -17,6 +17,7 @@ const PropertyDetails = () => {
   // hooks
   const clickedProperty = useParams();
   const axiosSecure = useAxiosSecure();
+  const queryClient = useQueryClient();
 
   // context data
   const { user } = useContextData();
@@ -45,9 +46,11 @@ const PropertyDetails = () => {
 
   //////////////////////////////////
   const { data: singlePropertyReviewsData = [] } = useQuery({
-    queryKey: ["singlePropertyReviews", propertyTitle],
+    queryKey: ["singlePropertyReviews", _id],
     queryFn: () =>
       axiosSecure.get(`/single-property-reviews/${_id}`).then(res => {
+        console.log(["singlePropertyReviews", _id]);
+        console.log("successfully get review info");
         return res.data;
       }),
     staleTime: 1000 * 10,
@@ -75,6 +78,28 @@ const PropertyDetails = () => {
           console.log(err);
           toast.success("Add to Wish List Failed.", { id: toastId });
         });
+    },
+  });
+
+  // mutations
+  const { mutate: reviewMutate } = useMutation({
+    mutationFn: async newReview => {
+      const toastId = toast.loading("processing...");
+
+      return axiosSecure
+        .post("/reviews/add", newReview)
+        .then(res => {
+          console.log(res.data);
+          toast.success("give review successfully.", { id: toastId });
+        })
+        .catch(err => {
+          console.log(err);
+          toast.error("Failed to review.", { id: toastId });
+        });
+    },
+    onSuccess: () => {
+      console.log("review added by mutate");
+      queryClient.invalidateQueries(["singlePropertyReviews", _id]);
     },
   });
 
@@ -126,7 +151,6 @@ const PropertyDetails = () => {
   // review handler'
   const handleReview = e => {
     e.preventDefault();
-    const toastId = toast.loading("processing...");
 
     setRequestLoading(true);
     //////////////////////
@@ -147,7 +171,9 @@ const PropertyDetails = () => {
     console.log(reviewInfo);
 
     // send in server side db
-    axiosSecure
+
+    reviewMutate(reviewInfo);
+    /* axiosSecure
       .post("/reviews/add", reviewInfo)
       .then(res => {
         console.log(res.data);
@@ -156,7 +182,7 @@ const PropertyDetails = () => {
       .catch(err => {
         console.log(err);
         toast.error("Failed to review.", { id: toastId });
-      });
+      }); */
 
     //////////////////////
     setRequestLoading(false);
@@ -296,6 +322,7 @@ const PropertyDetails = () => {
                           className="textarea textarea-info w-full"
                           placeholder="type your personal review for this property"
                           ref={reviewRef}
+                          autoFocus={true}
                         ></textarea>
                       </div>
                     </div>

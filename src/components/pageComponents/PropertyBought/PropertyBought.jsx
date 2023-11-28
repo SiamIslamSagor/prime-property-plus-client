@@ -13,7 +13,7 @@ const PropertyBought = () => {
 
   return (
     <div>
-      <div>
+      <div className="my-10 lg:my-20">
         <SectionTitle heading={"PROPERTY BOUGHT"}></SectionTitle>
       </div>
       <div>

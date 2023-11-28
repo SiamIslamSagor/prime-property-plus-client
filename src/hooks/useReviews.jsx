@@ -4,7 +4,7 @@ import useAxiosPublic from "./useAxiosPublic";
 const useReviews = () => {
   const axiosPublic = useAxiosPublic();
 
-  const { data: reviewsData = [] } = useQuery({
+  const { data: reviewsData = [], refetch } = useQuery({
     queryKey: ["reviews"],
     queryFn: () =>
       axiosPublic.get("/reviews").then(res => {
@@ -12,7 +12,7 @@ const useReviews = () => {
       }),
     staleTime: 1000 * 10,
   });
-  return { reviewsData };
+  return { reviewsData, refetch };
 };
 
 export default useReviews;
