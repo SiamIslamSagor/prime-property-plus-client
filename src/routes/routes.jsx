@@ -15,12 +15,13 @@ import PropertyBought from "../components/pageComponents/PropertyBought/Property
 import UserReview from "../components/pageComponents/UserReview/UserReview";
 import Payment from "../components/pageComponents/Payment/Payment";
 import SectionTitle from "../components/utilitiesComponents/SectionTitle/SectionTitle";
+import ErrorPage from "../page/ErrPage/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
-    // errorElement: <ErrorPage></ErrorPage>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         index: true,
@@ -55,7 +56,7 @@ const router = createBrowserRouter([
   {
     path: "/auth",
     element: <AuthPage></AuthPage>,
-    // errorElement: <ErrorPage></ErrorPage>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "login",
@@ -74,7 +75,7 @@ const router = createBrowserRouter([
         <Dashboard></Dashboard>
       </PrivetRoute>
     ),
-    // errorElement: <ErrorPage></ErrorPage>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         index: true,
