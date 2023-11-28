@@ -6,6 +6,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { getBoughtPropertyIdInLs } from "../../../utils/localStorage";
 import useContextData from "../../../hooks/useContextData";
 import { useNavigate } from "react-router-dom";
+import { getCurrentTimeAndDate } from "../../../utils/getCurrentTimeAndDate";
 
 const CheckOutForm = () => {
   // stripe hooks
@@ -59,6 +60,7 @@ const CheckOutForm = () => {
     }
   }, [axiosSecure, boughtPropertyIdInLs, navigate]);
 
+  //   handler
   const handleSubmit = async e => {
     e.preventDefault();
     const toastId = toast.loading("processing...");
@@ -90,7 +92,6 @@ const CheckOutForm = () => {
     // if payment successfully, then console
     else {
       console.log("payment method", paymentMethod);
-      //   toast.success("payment successfully.", { id: toastId });
     }
 
     // confirm payment
@@ -117,14 +118,28 @@ const CheckOutForm = () => {
         setTransactionId(paymentIntent.id);
 
         ////////////////////////////
+        const paymentInfo = {
+          transactionId: paymentIntent.id,
+          paymentDate: getCurrentTimeAndDate(),
+          propertyVerificationStatus: "bought",
+        };
+        console.log(paymentInfo);
+        // then =>
+        axiosSecure
+          .patch(`/property/bought/${boughtPropertyInfo?._id}`, paymentInfo)
+          .then(res => {
+            console.log(res.data);
+            navigate("/dashboard/property-bought");
+          })
+          .catch(err => {
+            console.log(err);
+          });
         ////////////////////////////
         toast.success(
           `payment successfully. transactionId: ${paymentIntent.id}`,
           { id: toastId }
         );
         ////////////////////////////
-        // TODO: navigate user
-        navigate("/dashboard/property-bought");
       }
     }
 
