@@ -8,7 +8,8 @@ import SecondaryBtn from "../components/utilitiesComponents/SecondaryBtn";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import toast, { Toaster } from "react-hot-toast";
 import useContextData from "../hooks/useContextData";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import ReviewSlider from "../components/pageComponents/ReviewSlider/ReviewSlider";
 
 const PropertyDetails = () => {
   // hooks
@@ -37,6 +38,19 @@ const PropertyDetails = () => {
     locationDescription,
     propertyDescription,
   } = property;
+  console.log(propertyTitle);
+
+  //////////////////////////////////
+  const { data: singlePropertyReviewsData = [] } = useQuery({
+    queryKey: ["singlePropertyReviews", propertyTitle],
+    queryFn: () =>
+      axiosSecure.get(`/single-property-reviews/${propertyTitle}`).then(res => {
+        return res.data;
+      }),
+    staleTime: 1000 * 10,
+  });
+  //////////////////////////////////
+  console.log(singlePropertyReviewsData);
 
   // mutations
   const { mutate } = useMutation({
@@ -208,6 +222,12 @@ const PropertyDetails = () => {
             </div>
           </div>
         </div>
+        {singlePropertyReviewsData && (
+          <ReviewSlider
+            reviewLength={singlePropertyReviewsData.length}
+            latestReviews={singlePropertyReviewsData}
+          ></ReviewSlider>
+        )}
         {isLoading ||
           (locationDetails?.latitude && locationDetails?.longitude && (
             <div>

@@ -12,6 +12,7 @@ import SectionTitle from "../components/utilitiesComponents/SectionTitle/Section
 import UserProfile from "../components/pageComponents/UserProfile/UserProfile";
 import MyWishList from "../components/pageComponents/MyWishList/MyWishList";
 import MakeAnOffer from "../page/MakeAnOffer";
+import PropertyBought from "../components/pageComponents/PropertyBought/PropertyBought";
 
 const router = createBrowserRouter([
   {
@@ -93,9 +94,7 @@ const router = createBrowserRouter([
         path: "property-bought",
         element: (
           <PrivetRoute>
-            <div>
-              <SectionTitle heading={"property bought"}></SectionTitle>
-            </div>
+            <PropertyBought></PropertyBought>
           </PrivetRoute>
         ),
       },

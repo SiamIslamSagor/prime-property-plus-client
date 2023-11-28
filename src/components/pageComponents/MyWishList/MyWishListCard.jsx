@@ -11,17 +11,19 @@ const MyWishListCard = ({ property, animDelay }) => {
   // data
   const {
     _id,
-    propertyId,
+    // propertyId,
     propertyImg,
     propertyTitle,
     propertyLocation,
     propertyPriceRange,
+    offeredAmount,
     propertyVerificationStatus,
     agentName,
     agentImg,
   } = property;
   // hooks
   const location = useLocation();
+  console.log(location);
   const { mobileNavCall } = useContextData();
 
   //   context data
@@ -66,10 +68,16 @@ const MyWishListCard = ({ property, animDelay }) => {
                 </h2>
                 <p>location: {propertyLocation}</p>
 
-                <p>
-                  Price Range: ${propertyPriceRange[0]} to $
-                  {propertyPriceRange[1]}
-                </p>
+                {location.pathname !== "/dashboard/property-bought" && (
+                  <p>
+                    Price Range: ${propertyPriceRange[0]} to $
+                    {propertyPriceRange[1]}
+                  </p>
+                )}
+
+                {location.pathname === "/dashboard/property-bought" && (
+                  <p>Offered Amount: ${offeredAmount}</p>
+                )}
 
                 <div className="flex flex-wrap  justify-start gap-2">
                   {isHomePath && (
@@ -102,15 +110,28 @@ const MyWishListCard = ({ property, animDelay }) => {
                   </div>
                 )}
               </div>
-              <div
-                className=" mb-8 
+              {location.pathname !== "/dashboard/property-bought" && (
+                <div
+                  className=" mb-8 
              text-right flex justify-center"
-              >
-                <DeleteBtn btnText="remove"></DeleteBtn>
-                <Link to={`/make-an-offer/${_id}`}>
-                  <PrimaryBtn btnText="make an offer"></PrimaryBtn>
-                </Link>
-              </div>
+                >
+                  <DeleteBtn btnText="remove"></DeleteBtn>
+                  <Link to={`/make-an-offer/${_id}`}>
+                    <PrimaryBtn btnText="make an offer"></PrimaryBtn>
+                  </Link>
+                </div>
+              )}
+              {/*  */}
+              {location.pathname === "/dashboard/property-bought" &&
+                propertyVerificationStatus === "accepted" && (
+                  // TODO: payment method
+                  <div
+                    className=" mb-8 
+             text-right flex justify-center"
+                  >
+                    <PrimaryBtn btnText="pay"></PrimaryBtn>
+                  </div>
+                )}
             </div>
           </div>
         </div>

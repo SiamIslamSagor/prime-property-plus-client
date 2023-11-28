@@ -23,7 +23,7 @@ const Dashboard = () => {
       </div>
 
       <div className="uppercase nav-div max-md:w-full md:text-lg font-semibold max-w-xs px-4">
-        <NavLink to="/dashboard/Property-bought">Property bought</NavLink>
+        <NavLink to="/dashboard/property-bought">Property bought</NavLink>
       </div>
 
       <div className="uppercase nav-div max-md:w-full md:text-lg font-semibold max-w-xs px-4">
