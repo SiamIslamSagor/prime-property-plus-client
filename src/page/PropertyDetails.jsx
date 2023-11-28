@@ -8,6 +8,7 @@ import SecondaryBtn from "../components/utilitiesComponents/SecondaryBtn";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import toast, { Toaster } from "react-hot-toast";
 import useContextData from "../hooks/useContextData";
+import { useMutation } from "@tanstack/react-query";
 
 const PropertyDetails = () => {
   // hooks
@@ -37,10 +38,32 @@ const PropertyDetails = () => {
     propertyDescription,
   } = property;
 
+  // mutations
+  const { mutate } = useMutation({
+    mutationFn: async newWishListItem => {
+      const toastId = toast.loading("processing...");
+
+      return axiosSecure
+        .post("/wish-list", newWishListItem)
+        .then(res => {
+          console.log(res);
+          if (res.data.message) {
+            return toast.success(
+              "This property you have already added in your Wish List.",
+              { id: toastId }
+            );
+          }
+          toast.success("Add to Wish List Successfully.", { id: toastId });
+        })
+        .catch(err => {
+          console.log(err);
+          toast.success("Add to Wish List Failed.", { id: toastId });
+        });
+    },
+  });
+
   // handler
   const handleAddToWishList = () => {
-    const toastId = toast.loading("processing...");
-
     const info = {
       requesterEmail: user && user.email,
       propertyId: _id,
@@ -60,6 +83,11 @@ const PropertyDetails = () => {
     };
 
     console.log(info);
+
+    mutate(info);
+
+    /* const toastId = toast.loading("processing...");
+
     // store property id in db
     axiosSecure
       .post("/wish-list", info)
@@ -76,7 +104,7 @@ const PropertyDetails = () => {
       .catch(err => {
         console.log(err);
         toast.success("Add to Wish List Failed.", { id: toastId });
-      });
+      }); */
   };
 
   // useEffect

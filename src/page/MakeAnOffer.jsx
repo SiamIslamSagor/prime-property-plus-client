@@ -7,6 +7,7 @@ import useContextData from "../hooks/useContextData";
 import { useForm } from "react-hook-form";
 import { getCurrentTimeAndDate } from "../utils/getCurrentTimeAndDate";
 import toast, { Toaster } from "react-hot-toast";
+import { useMutation } from "@tanstack/react-query";
 
 const MakeAnOffer = () => {
   // hooks
@@ -28,34 +29,6 @@ const MakeAnOffer = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-
-  //   handler
-  const onSubmit = data => {
-    const toastId = toast.loading("processing...");
-    const { _id, propertyVerificationStatus, ...rest } = propertyInfo;
-    const propertyBoughtInfo = {
-      ...data,
-      ...rest,
-      buyerEmail: user?.email,
-      buyerName: user?.displayName,
-      propertyVerificationStatus: "pending",
-    };
-    ///////////////////
-    //  send info in server side
-    axiosSecure
-      .post("/property-bought", propertyBoughtInfo)
-      .then(res => {
-        console.log(res.data);
-        toast.success("Offered successfully.", { id: toastId });
-        navigate("/dashboard/wish-list");
-      })
-      .catch(err => {
-        console.log(err);
-        toast.error("Failed to Offered.", { id: toastId });
-      });
-
-    ///////////////////
-  };
 
   // effect
 
@@ -79,6 +52,56 @@ const MakeAnOffer = () => {
     const [year, day, month] = ck;
     setCurrentDate(`${year}-${month}-${day}`);
   }, []);
+
+  // mutations
+  const { mutate } = useMutation({
+    mutationFn: async newOffer => {
+      const toastId = toast.loading("processing...");
+
+      return axiosSecure
+        .post("/property-bought", newOffer)
+        .then(res => {
+          console.log(res.data);
+          toast.success("Offered successfully.", { id: toastId });
+          navigate("/dashboard/wish-list");
+        })
+        .catch(err => {
+          console.log(err);
+          toast.error("Failed to Offered.", { id: toastId });
+        });
+    },
+  });
+
+  //   handler
+  const onSubmit = data => {
+    // const toastId = toast.loading("processing...");
+    const { _id, propertyVerificationStatus, ...rest } = propertyInfo;
+    const propertyBoughtInfo = {
+      ...data,
+      ...rest,
+      buyerEmail: user?.email,
+      buyerName: user?.displayName,
+      propertyVerificationStatus: "pending",
+    };
+    ///////////////////
+    //  send info in server side
+
+    mutate(propertyBoughtInfo);
+
+    /* axiosSecure
+      .post("/property-bought", propertyBoughtInfo)
+      .then(res => {
+        console.log(res.data);
+        toast.success("Offered successfully.", { id: toastId });
+        navigate("/dashboard/wish-list");
+      })
+      .catch(err => {
+        console.log(err);
+        toast.error("Failed to Offered.", { id: toastId });
+      }); */
+
+    ///////////////////
+  };
 
   return (
     <div>
