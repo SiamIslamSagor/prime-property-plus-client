@@ -13,6 +13,7 @@ import UserProfile from "../components/pageComponents/UserProfile/UserProfile";
 import MyWishList from "../components/pageComponents/MyWishList/MyWishList";
 import MakeAnOffer from "../page/MakeAnOffer";
 import PropertyBought from "../components/pageComponents/PropertyBought/PropertyBought";
+import UserReview from "../components/pageComponents/UserReview/UserReview";
 
 const router = createBrowserRouter([
   {
@@ -102,9 +103,7 @@ const router = createBrowserRouter([
         path: "my-reviews",
         element: (
           <PrivetRoute>
-            <div>
-              <SectionTitle heading={"My reviews"}></SectionTitle>
-            </div>
+            <UserReview></UserReview>
           </PrivetRoute>
         ),
       },

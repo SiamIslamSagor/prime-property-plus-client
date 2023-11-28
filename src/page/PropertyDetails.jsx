@@ -164,6 +164,7 @@ const PropertyDetails = () => {
       reviewerEmail: user?.email,
       reviewedPropertyTitle: propertyTitle,
       reviewedPropertyId: _id,
+      agentName,
       reviewerDescription,
       reviewTime,
     };
