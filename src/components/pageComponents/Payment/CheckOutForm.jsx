@@ -3,8 +3,9 @@ import PrimaryBtn from "../../utilitiesComponents/PrimaryBtn";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import { getOfferedAmountInLs } from "../../../utils/localStorage";
+import { getBoughtPropertyIdInLs } from "../../../utils/localStorage";
 import useContextData from "../../../hooks/useContextData";
+import { useNavigate } from "react-router-dom";
 
 const CheckOutForm = () => {
   // stripe hooks
@@ -12,23 +13,26 @@ const CheckOutForm = () => {
   const elements = useElements();
 
   // get offered amount in ls
-  const offeredAmount = getOfferedAmountInLs();
-  console.log(offeredAmount);
+  const boughtPropertyIdInLs = getBoughtPropertyIdInLs();
 
   //   hooks
   const axiosSecure = useAxiosSecure();
   const { user } = useContextData();
+  const navigate = useNavigate();
 
   //   state
+  const [boughtPropertyInfo, setBoughtPropertyInfo] = useState({});
   const [isLoadingBtn, setIsLoadingBtn] = useState(false);
   const [clientSecret, setClientSecret] = useState("");
   const [transactionId, setTransactionId] = useState("");
 
   //   effect
   useEffect(() => {
-    if (offeredAmount > 0) {
+    if (boughtPropertyInfo?.offeredAmount > 0) {
       axiosSecure
-        .post("/create-payment-intent", { price: offeredAmount })
+        .post("/create-payment-intent", {
+          price: boughtPropertyInfo?.offeredAmount,
+        })
         .then(res => {
           console.log(res.data);
           setClientSecret(res?.data?.clientSecret);
@@ -37,9 +41,23 @@ const CheckOutForm = () => {
           console.log(err);
         });
     }
-  }, [axiosSecure, offeredAmount]);
+  }, [axiosSecure, boughtPropertyInfo?.offeredAmount]);
 
-  // handler
+  useEffect(() => {
+    if (boughtPropertyIdInLs) {
+      axiosSecure
+        .get(`/bought-property/${boughtPropertyIdInLs}`)
+        .then(res => {
+          console.log(res.data);
+          setBoughtPropertyInfo(res.data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    } else {
+      navigate("/dashboard/property-bought");
+    }
+  }, [axiosSecure, boughtPropertyIdInLs, navigate]);
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -97,10 +115,16 @@ const CheckOutForm = () => {
       if (paymentIntent.status === "succeeded") {
         console.log("transaction Id", paymentIntent.id);
         setTransactionId(paymentIntent.id);
+
+        ////////////////////////////
+        ////////////////////////////
         toast.success(
           `payment successfully. transactionId: ${paymentIntent.id}`,
           { id: toastId }
         );
+        ////////////////////////////
+        // TODO: navigate user
+        navigate("/dashboard/property-bought");
       }
     }
 

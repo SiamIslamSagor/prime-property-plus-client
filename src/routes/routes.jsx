@@ -14,6 +14,7 @@ import MakeAnOffer from "../page/MakeAnOffer";
 import PropertyBought from "../components/pageComponents/PropertyBought/PropertyBought";
 import UserReview from "../components/pageComponents/UserReview/UserReview";
 import Payment from "../components/pageComponents/Payment/Payment";
+import SectionTitle from "../components/utilitiesComponents/SectionTitle/SectionTitle";
 
 const router = createBrowserRouter([
   {
@@ -112,6 +113,7 @@ const router = createBrowserRouter([
         element: (
           <PrivetRoute>
             <Payment></Payment>
+            {/* <SectionTitle heading={"payment"}></SectionTitle> */}
           </PrivetRoute>
         ),
       },

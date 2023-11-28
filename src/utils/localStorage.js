@@ -1,12 +1,12 @@
 //////////////////////
-const setOfferedAmountInLs = amount => {
-  localStorage.setItem("offered-amount", amount);
+const setBoughtPropertyIdInLs = id => {
+  localStorage.setItem("bought-property-id", id);
 };
 
-const getOfferedAmountInLs = () => {
-  const result = localStorage.getItem("offered-amount");
-  return JSON.parse(result);
+const getBoughtPropertyIdInLs = () => {
+  const result = localStorage.getItem("bought-property-id");
+  return result;
 };
 //////////////////////
 
-export { setOfferedAmountInLs, getOfferedAmountInLs };
+export { setBoughtPropertyIdInLs, getBoughtPropertyIdInLs };

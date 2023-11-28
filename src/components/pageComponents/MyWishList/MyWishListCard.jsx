@@ -9,7 +9,7 @@ import DeleteBtn from "../../utilitiesComponents/DeleteBtn";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import { setOfferedAmountInLs } from "../../../utils/localStorage";
+import { setBoughtPropertyIdInLs } from "../../../utils/localStorage";
 
 const MyWishListCard = ({ property, animDelay }) => {
   // data
@@ -186,7 +186,10 @@ const MyWishListCard = ({ property, animDelay }) => {
                   >
                     <Link to="/dashboard/payment">
                       <PrimaryBtn
-                        handler={() => setOfferedAmountInLs(offeredAmount)}
+                        handler={() => {
+                          console.log(_id);
+                          setBoughtPropertyIdInLs(_id);
+                        }}
                         btnText="pay now"
                       ></PrimaryBtn>
                     </Link>

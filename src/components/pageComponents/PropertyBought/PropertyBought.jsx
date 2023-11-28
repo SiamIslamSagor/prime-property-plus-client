@@ -1,3 +1,4 @@
+import { Toaster } from "react-hot-toast";
 import useContextData from "../../../hooks/useContextData";
 import usePropertyBought from "../../../hooks/usePropertyBought";
 import SectionTitle from "../../utilitiesComponents/SectionTitle/SectionTitle";
@@ -13,6 +14,7 @@ const PropertyBought = () => {
 
   return (
     <div>
+      <Toaster></Toaster>
       <div className="my-10 lg:my-20">
         <SectionTitle heading={"PROPERTY BOUGHT"}></SectionTitle>
       </div>
