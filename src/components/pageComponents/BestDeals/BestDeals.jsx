@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import SectionTitle from "../../utilitiesComponents/SectionTitle/SectionTitle";
 import PropertyCard from "../PropertyCard/PropertyCard";
-import useVerifiedProperty from "../../../hooks/useVerifiedProperty";
 import useContextData from "../../../hooks/useContextData";
 import CardHolder from "../CardHolder/CardHolder";
 import SecondaryBtn from "../../utilitiesComponents/SecondaryBtn";
 import { Link } from "react-router-dom";
 import { Fade } from "react-awesome-reveal";
+import useAdvertiseProperty from "../../../hooks/useAdvertiseProperty";
 
 const BestDeals = () => {
   // hooks
@@ -14,21 +14,21 @@ const BestDeals = () => {
   //   context data
   const { propertyCardDelay } = useContextData();
 
-  const { verifiedPropertiesData, isLoading } = useVerifiedProperty();
+  const { advertisePropertiesData, isLoading } = useAdvertiseProperty();
   // state
 
   const [bestDealsProperties, setBestDealsProperties] = useState(
-    verifiedPropertiesData
+    advertisePropertiesData
   );
 
   useEffect(() => {
-    if (verifiedPropertiesData.length > 0) {
-      const bestDeals = verifiedPropertiesData.sort(
+    if (advertisePropertiesData.length > 0) {
+      const bestDeals = advertisePropertiesData.sort(
         (a, b) => a.propertyPriceRange[0] - b.propertyPriceRange[0]
       );
       setBestDealsProperties(bestDeals?.slice(0, 6));
     }
-  }, [verifiedPropertiesData]);
+  }, [advertisePropertiesData]);
 
   return (
     <div className="container mx-auto">
