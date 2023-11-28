@@ -4,6 +4,7 @@ import useContextData from "../../../hooks/useContextData";
 import SectionTitle from "../../utilitiesComponents/SectionTitle/SectionTitle";
 import DeleteBtn from "../../utilitiesComponents/DeleteBtn";
 import toast, { Toaster } from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 const UserReview = () => {
   ////////////////////
@@ -60,6 +61,24 @@ const UserReview = () => {
       <div className="my-10 lg:my-20">
         <SectionTitle heading={"my reviews"}></SectionTitle>
       </div>
+
+      {userReviewsData.length === 0 && (
+        <div className="mt-40 text-center">
+          <p className="text-2xl">
+            You do not provide reviews for any properties
+          </p>{" "}
+          <br />
+          <p className="text-xl">
+            go to{" "}
+            <Link
+              className="text-blue-700  font-medium hover:link"
+              to="/all-properties"
+            >
+              review
+            </Link>{" "}
+          </p>
+        </div>
+      )}
 
       <div className="text-white grid justify-items-center grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 container mx-auto">
         {userReviewsData.length !== 0 &&
