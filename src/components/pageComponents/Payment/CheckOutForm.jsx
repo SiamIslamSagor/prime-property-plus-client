@@ -1,6 +1,7 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import PrimaryBtn from "../../utilitiesComponents/PrimaryBtn";
 import { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
 const CheckOutForm = () => {
   // stripe hooks
@@ -14,6 +15,8 @@ const CheckOutForm = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
+    const toastId = toast.loading("processing...");
+
     setIsLoadingBtn(true);
 
     // if stripe or elements not found, then return
@@ -35,11 +38,13 @@ const CheckOutForm = () => {
 
     // check if error, then return a toast
     if (error) {
-      console.log("payment error");
+      console.log("payment error", error);
+      toast.error(`Failed to payment. ${error?.message}`, { id: toastId });
     }
     // if payment successfully, then console
     else {
       console.log("payment method", paymentMethod);
+      toast.success("payment successfully.", { id: toastId });
     }
 
     // /////////
@@ -48,6 +53,7 @@ const CheckOutForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
+      <Toaster></Toaster>
       <CardElement
         options={{
           style: {
