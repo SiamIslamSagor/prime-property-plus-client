@@ -19,6 +19,7 @@ import ErrorPage from "../page/ErrPage/ErrorPage";
 import ManageProperties from "../page/ManageProperties";
 import ManageUsers from "../page/ManageUsers";
 import ManageReviews from "../page/ManageReviews";
+import AdminRoute from "./AdminRoute";
 
 const router = createBrowserRouter([
   {
@@ -125,25 +126,31 @@ const router = createBrowserRouter([
       {
         path: "manage-properties",
         element: (
-          <PrivetRoute>
-            <ManageProperties></ManageProperties>
-          </PrivetRoute>
+          <AdminRoute>
+            <PrivetRoute>
+              <ManageProperties></ManageProperties>
+            </PrivetRoute>
+          </AdminRoute>
         ),
       },
       {
         path: "manage-users",
         element: (
-          <PrivetRoute>
-            <ManageUsers></ManageUsers>
-          </PrivetRoute>
+          <AdminRoute>
+            <PrivetRoute>
+              <ManageUsers></ManageUsers>
+            </PrivetRoute>
+          </AdminRoute>
         ),
       },
       {
         path: "manage-reviews",
         element: (
-          <PrivetRoute>
-            <ManageReviews></ManageReviews>
-          </PrivetRoute>
+          <AdminRoute>
+            <PrivetRoute>
+              <ManageReviews></ManageReviews>
+            </PrivetRoute>
+          </AdminRoute>
         ),
       },
     ],

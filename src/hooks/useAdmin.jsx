@@ -7,12 +7,12 @@ const useAdmin = () => {
   const axiosSecure = useAxiosSecure();
   const { user, Loading } = useContextData();
   const { data: isAdmin, isLoading: isAdminLoading } = useQuery({
-    queryKey: [user && user?.email, "isAdmin"],
+    queryKey: [user?.email, "isAdmin"],
     // run this code block when loading are false
     enabled: !Loading,
     queryFn: async () => {
-      const res = await axiosSecure.get(`/users/admin/${user && user?.email}`);
-      return res.data.admin;
+      const res = await axiosSecure.get(`/users/admin/${user?.email}`);
+      return res.data?.admin;
     },
   });
 
