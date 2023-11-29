@@ -20,6 +20,8 @@ import ManageProperties from "../page/ManageProperties";
 import ManageUsers from "../page/ManageUsers";
 import ManageReviews from "../page/ManageReviews";
 import AdminRoute from "./AdminRoute";
+import AgentRoute from "./AgentRoute";
+import AgentAddedProperties from "../page/AgentAddedProperties";
 
 const router = createBrowserRouter([
   {
@@ -151,6 +153,18 @@ const router = createBrowserRouter([
               <ManageReviews></ManageReviews>
             </PrivetRoute>
           </AdminRoute>
+        ),
+      },
+
+      // agent route
+      {
+        path: "my-added-properties",
+        element: (
+          <AgentRoute>
+            <PrivetRoute>
+              <AgentAddedProperties></AgentAddedProperties>
+            </PrivetRoute>
+          </AgentRoute>
         ),
       },
     ],

@@ -63,25 +63,31 @@ const Dashboard = () => {
       {isAgent && (
         <div className="uppercase nav-div max-md:w-full md:text-lg font-semibold max-w-xs px-4 lg:flex lg:items-center gap-2">
           <VscDiffAdded className="max-lg:hidden"></VscDiffAdded>
-          <NavLink to="/dashboard/manage-reviews"> Add Property</NavLink>
+          <NavLink to="/dashboard/add-property"> Add Property</NavLink>
         </div>
       )}
       {isAgent && (
         <div className="uppercase nav-div max-md:w-full md:text-lg font-semibold max-w-xs px-4 lg:flex lg:items-center gap-2">
           <MdAddToPhotos className="max-lg:hidden"></MdAddToPhotos>
-          <NavLink to="/dashboard/manage-reviews"> My added properties</NavLink>
+          <NavLink to="/dashboard/my-added-properties">
+            {" "}
+            My added properties
+          </NavLink>
         </div>
       )}
       {isAgent && (
         <div className="uppercase nav-div max-md:w-full md:text-lg font-semibold max-w-xs px-4 lg:flex lg:items-center gap-2">
           <MdLibraryAddCheck className="max-lg:hidden"></MdLibraryAddCheck>
-          <NavLink to="/dashboard/manage-reviews"> My sold properties</NavLink>
+          <NavLink to="/dashboard/my-sold-properties">
+            {" "}
+            My sold properties
+          </NavLink>
         </div>
       )}
       {isAgent && (
         <div className="uppercase nav-div max-md:w-full md:text-lg font-semibold max-w-xs px-4 lg:flex lg:items-center gap-2">
           <MdOutlineAlarmAdd className="max-lg:hidden"></MdOutlineAlarmAdd>
-          <NavLink to="/dashboard/manage-reviews">
+          <NavLink to="/dashboard/requested-properties">
             Requested properties{" "}
           </NavLink>
         </div>
