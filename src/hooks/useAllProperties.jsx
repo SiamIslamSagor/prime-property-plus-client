@@ -8,6 +8,7 @@ const useAllProperties = () => {
     data: allPropertyInfo = [],
     isLoading,
     isError,
+    refetch,
   } = useQuery({
     queryKey: ["allProperty"],
     queryFn: () =>
@@ -16,7 +17,7 @@ const useAllProperties = () => {
       }),
     staleTime: 1000 * 10,
   });
-  return { allPropertyInfo, isLoading, isError };
+  return { allPropertyInfo, isLoading, isError, refetch };
 };
 
 export default useAllProperties;
