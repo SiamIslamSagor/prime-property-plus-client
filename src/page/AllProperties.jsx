@@ -46,7 +46,7 @@ const AllProperties = () => {
           {verifiedPropertiesData &&
             verifiedPropertiesData?.map((property, idx) => (
               <PropertyCard
-                key={property?.agentEmail}
+                key={property?._id}
                 property={property}
                 animDelay={propertyCardDelay[idx]}
               ></PropertyCard>
