@@ -118,7 +118,7 @@ const AuthProvider = ({ children }) => {
     googleLogin,
     updateUserData,
     logOut,
-    gooTop: scrollTop,
+    scrollTop,
     propertyCardDelay,
     mobileNavCall,
     setMobileNavCall,

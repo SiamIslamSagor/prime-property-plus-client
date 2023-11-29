@@ -6,17 +6,22 @@ import SectionTitle from "../components/utilitiesComponents/SectionTitle/Section
 import useContextData from "../hooks/useContextData";
 import useVerifiedProperty from "../hooks/useVerifiedProperty";
 import { Toaster } from "react-hot-toast";
+import { useEffect } from "react";
 
 const AllProperties = () => {
   // state
 
   // context data
-  const { propertyCardDelay } = useContextData();
+  const { propertyCardDelay, scrollTop } = useContextData();
 
   // hooks
   const { verifiedPropertiesData, isLoading } = useVerifiedProperty();
 
-  // handler
+  // effect
+  useEffect(() => {
+    scrollTop();
+  }, [scrollTop]);
+
   return (
     <div className="container mx-auto">
       <Helmet>

@@ -1,7 +1,7 @@
 import { Fade } from "react-awesome-reveal";
 import useContextData from "../../../hooks/useContextData";
 import SecondaryBtn from "../../utilitiesComponents/SecondaryBtn";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SectionTitle from "../../utilitiesComponents/SectionTitle/SectionTitle";
 import { Helmet } from "react-helmet-async";
 import useAdmin from "../../../hooks/useAdmin";
@@ -9,7 +9,7 @@ import useAgent from "../../../hooks/useAgent";
 
 const UserProfile = () => {
   // hooks
-  const { user } = useContextData();
+  const { user, scrollTop } = useContextData();
   const [isAdmin] = useAdmin();
   const [isAgent] = useAgent();
   console.log("isAdmin: ", isAdmin);
@@ -18,6 +18,13 @@ const UserProfile = () => {
   //   state
   //   TODO: edit profile functionality
   const [isLoadingBtn, setIsLoadingBtn] = useState(false);
+
+  // effect
+  useEffect(() => {
+    setTimeout(() => {
+      scrollTop();
+    }, 1500);
+  }, [scrollTop]);
 
   return (
     <div className="flex items-center justify-center min-h-[75vh]">

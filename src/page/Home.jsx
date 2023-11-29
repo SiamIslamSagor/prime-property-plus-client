@@ -6,8 +6,16 @@ import PropertySolution from "../components/pageComponents/PropertySolution/Prop
 import OurLocationMap from "../components/pageComponents/OurLocationMap/OurLocationMap";
 import { Helmet } from "react-helmet-async";
 import { Toaster } from "react-hot-toast";
-
+import { useEffect } from "react";
+import useContextData from "../hooks/useContextData";
 const Home = () => {
+  // hooks
+  const { scrollTop } = useContextData();
+  // effect
+  useEffect(() => {
+    scrollTop();
+  }, [scrollTop]);
+
   return (
     <div className="">
       <Helmet>
