@@ -5,6 +5,7 @@ import SectionTitle from "../../utilitiesComponents/SectionTitle/SectionTitle";
 import DeleteBtn from "../../utilitiesComponents/DeleteBtn";
 import toast, { Toaster } from "react-hot-toast";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const UserReview = () => {
   ////////////////////
@@ -57,6 +58,9 @@ const UserReview = () => {
   //////////////////
   return (
     <div className="container mx-auto">
+      <Helmet>
+        <title>P P P | Dashboard | My Review</title>
+      </Helmet>
       <Toaster></Toaster>
       <div className="my-10 lg:my-20">
         <SectionTitle heading={"my reviews"}></SectionTitle>

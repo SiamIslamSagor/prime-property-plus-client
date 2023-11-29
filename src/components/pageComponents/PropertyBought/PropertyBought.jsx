@@ -4,6 +4,7 @@ import usePropertyBought from "../../../hooks/usePropertyBought";
 import SectionTitle from "../../utilitiesComponents/SectionTitle/SectionTitle";
 import CardHolder from "../CardHolder/CardHolder";
 import MyWishListCard from "../MyWishList/MyWishListCard";
+import { Helmet } from "react-helmet-async";
 
 const PropertyBought = () => {
   // hooks
@@ -14,6 +15,9 @@ const PropertyBought = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>P P P | Dashboard | Property Bought</title>
+      </Helmet>
       <Toaster></Toaster>
       <div className="my-10 lg:my-20">
         <SectionTitle heading={"PROPERTY BOUGHT"}></SectionTitle>

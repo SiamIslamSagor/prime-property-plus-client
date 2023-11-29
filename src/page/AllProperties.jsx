@@ -1,9 +1,11 @@
+import { Helmet } from "react-helmet-async";
 import CardHolder from "../components/pageComponents/CardHolder/CardHolder";
 import OurLocationMap from "../components/pageComponents/OurLocationMap/OurLocationMap";
 import PropertyCard from "../components/pageComponents/PropertyCard/PropertyCard";
 import SectionTitle from "../components/utilitiesComponents/SectionTitle/SectionTitle";
 import useContextData from "../hooks/useContextData";
 import useVerifiedProperty from "../hooks/useVerifiedProperty";
+import { Toaster } from "react-hot-toast";
 
 const AllProperties = () => {
   // state
@@ -17,6 +19,11 @@ const AllProperties = () => {
   // handler
   return (
     <div className="container mx-auto">
+      <Helmet>
+        <title>P P P | All Properties</title>
+      </Helmet>
+
+      <Toaster></Toaster>
       <div className="max-lg:my-10 lg:my-20">
         <SectionTitle heading={"all properties"}></SectionTitle>{" "}
       </div>

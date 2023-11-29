@@ -3,6 +3,7 @@ import useContextData from "../../../hooks/useContextData";
 import SecondaryBtn from "../../utilitiesComponents/SecondaryBtn";
 import { useState } from "react";
 import SectionTitle from "../../utilitiesComponents/SectionTitle/SectionTitle";
+import { Helmet } from "react-helmet-async";
 
 const UserProfile = () => {
   const { user } = useContextData();
@@ -13,6 +14,9 @@ const UserProfile = () => {
 
   return (
     <div className="flex items-center justify-center min-h-[75vh]">
+      <Helmet>
+        <title>P P P | Dashboard | My Profile</title>
+      </Helmet>
       <div>
         <div className="my-10">
           <SectionTitle heading={"my profile"}></SectionTitle>

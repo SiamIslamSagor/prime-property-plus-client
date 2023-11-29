@@ -2,6 +2,7 @@ import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import useContextData from "../hooks/useContextData";
+import { Helmet } from "react-helmet-async";
 
 const Dashboard = () => {
   // state
@@ -34,6 +35,9 @@ const Dashboard = () => {
 
   return (
     <div className="max-w-[1920px] mx-auto">
+      <Helmet>
+        <title>P P P | Dashboard</title>
+      </Helmet>
       <div className="">
         <div className="lg:grid lg:grid-cols-12 lg:min-h-screen relative">
           <div className="max-lg:hidden col-span-3 xl:col-span-2 bg-t-color text-white font-medium">

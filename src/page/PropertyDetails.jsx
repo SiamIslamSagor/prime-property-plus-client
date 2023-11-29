@@ -12,6 +12,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import ReviewSlider from "../components/pageComponents/ReviewSlider/ReviewSlider";
 import UpdateBtn from "../components/utilitiesComponents/UpdateBtn";
 import { getCurrentTimeAndDate } from "../utils/getCurrentTimeAndDate";
+import { Helmet } from "react-helmet-async";
 
 const PropertyDetails = () => {
   // hooks
@@ -207,6 +208,10 @@ const PropertyDetails = () => {
 
   return (
     <div className="lg:my-40">
+      <Helmet>
+        <title>P P P | Property Details</title>
+      </Helmet>
+
       <Toaster></Toaster>
       <div className="container lg:px-20 mx-auto">
         <div className="max-lg:hidden">

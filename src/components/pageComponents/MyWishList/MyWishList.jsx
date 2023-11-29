@@ -4,6 +4,7 @@ import useWishList from "../../../hooks/useWishList";
 import SectionTitle from "../../utilitiesComponents/SectionTitle/SectionTitle";
 import CardHolder from "../CardHolder/CardHolder";
 import MyWishListCard from "./MyWishListCard";
+import { Helmet } from "react-helmet-async";
 
 const MyWishList = () => {
   // hooks
@@ -13,6 +14,9 @@ const MyWishList = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>P P P | Dashboard | My WishList</title>
+      </Helmet>
       <Toaster></Toaster>
       <div className="p-10">
         <SectionTitle heading={"my wish list"}></SectionTitle>

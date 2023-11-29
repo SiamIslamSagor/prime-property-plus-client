@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { getCurrentTimeAndDate } from "../utils/getCurrentTimeAndDate";
 import toast, { Toaster } from "react-hot-toast";
 import { useMutation } from "@tanstack/react-query";
+import { Helmet } from "react-helmet-async";
 
 const MakeAnOffer = () => {
   // hooks
@@ -105,6 +106,9 @@ const MakeAnOffer = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>P P P | Make an Offer</title>
+      </Helmet>
       <Toaster></Toaster>
       <div className="mt-10 lg:mt-20">
         <SectionTitle heading={"make an offer"}></SectionTitle>
