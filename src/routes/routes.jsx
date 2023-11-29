@@ -22,6 +22,7 @@ import ManageReviews from "../page/ManageReviews";
 import AdminRoute from "./AdminRoute";
 import AgentRoute from "./AgentRoute";
 import AgentAddedProperties from "../page/AgentAddedProperties";
+import UpdateProperty from "../page/UpdateProperty";
 
 const router = createBrowserRouter([
   {
@@ -163,6 +164,16 @@ const router = createBrowserRouter([
           <AgentRoute>
             <PrivetRoute>
               <AgentAddedProperties></AgentAddedProperties>
+            </PrivetRoute>
+          </AgentRoute>
+        ),
+      },
+      {
+        path: "update-my-properties/:id",
+        element: (
+          <AgentRoute>
+            <PrivetRoute>
+              <UpdateProperty></UpdateProperty>
             </PrivetRoute>
           </AgentRoute>
         ),
