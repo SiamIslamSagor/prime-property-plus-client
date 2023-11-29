@@ -16,6 +16,9 @@ import UserReview from "../components/pageComponents/UserReview/UserReview";
 import Payment from "../components/pageComponents/Payment/Payment";
 import SectionTitle from "../components/utilitiesComponents/SectionTitle/SectionTitle";
 import ErrorPage from "../page/ErrPage/ErrorPage";
+import ManageProperties from "../page/ManageProperties";
+import ManageUsers from "../page/ManageUsers";
+import ManageReviews from "../page/ManageReviews";
 
 const router = createBrowserRouter([
   {
@@ -114,7 +117,32 @@ const router = createBrowserRouter([
         element: (
           <PrivetRoute>
             <Payment></Payment>
-            {/* <SectionTitle heading={"payment"}></SectionTitle> */}
+          </PrivetRoute>
+        ),
+      },
+
+      // admin route
+      {
+        path: "manage-properties",
+        element: (
+          <PrivetRoute>
+            <ManageProperties></ManageProperties>
+          </PrivetRoute>
+        ),
+      },
+      {
+        path: "manage-users",
+        element: (
+          <PrivetRoute>
+            <ManageUsers></ManageUsers>
+          </PrivetRoute>
+        ),
+      },
+      {
+        path: "manage-reviews",
+        element: (
+          <PrivetRoute>
+            <ManageReviews></ManageReviews>
           </PrivetRoute>
         ),
       },

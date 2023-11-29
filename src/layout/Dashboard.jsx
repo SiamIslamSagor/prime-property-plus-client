@@ -19,6 +19,22 @@ const Dashboard = () => {
         </NavLink>
       </div>
 
+      {/* admin route */}
+
+      <div className="uppercase nav-div max-md:w-full md:text-lg font-semibold max-w-xs px-4">
+        <NavLink to="/dashboard/manage-properties">Manage Properties</NavLink>
+      </div>
+
+      <div className="uppercase nav-div max-md:w-full md:text-lg font-semibold max-w-xs px-4">
+        <NavLink to="/dashboard/manage-users">Manage Users</NavLink>
+      </div>
+
+      <div className="uppercase nav-div max-md:w-full md:text-lg font-semibold max-w-xs px-4">
+        <NavLink to="/dashboard/manage-reviews">Manage Reviews</NavLink>
+      </div>
+
+      {/* user route */}
+
       <div className="uppercase nav-div max-md:w-full md:text-lg font-semibold max-w-xs px-4">
         <NavLink to="/dashboard/wish-list">WishList</NavLink>
       </div>
