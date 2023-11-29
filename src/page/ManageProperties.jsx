@@ -1,17 +1,57 @@
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import SectionTitle from "../components/utilitiesComponents/SectionTitle/SectionTitle";
 import useAllProperties from "../hooks/useAllProperties";
 import {
   MdCancelPresentation,
-  MdDomainVerification,
   MdOutlineDomainVerification,
 } from "react-icons/md";
+import toast, { Toaster } from "react-hot-toast";
+import useAxiosSecure from "../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 const ManageProperties = () => {
   // hooks
+  const axiosSecure = useAxiosSecure();
+  const queryClient = useQueryClient();
   const { allPropertyInfo } = useAllProperties();
   console.log(allPropertyInfo);
+
+  //
+
+  // mutations
+  const { mutate: mutateVerify } = useMutation({
+    mutationFn: async propertyId => {
+      const toastId = toast.loading("processing...");
+
+      return axiosSecure
+        .patch(`/properties/${propertyId}`)
+        .then(res => {
+          console.log(res.data);
+          toast.success("Verified successfully.", { id: toastId });
+        })
+        .catch(err => {
+          console.log(err);
+          toast.error("Failed to Verify.", { id: toastId });
+        });
+    },
+    onSuccess: () => {
+      console.log("Verified by mutate");
+      queryClient.invalidateQueries([["allProperty"]]);
+    },
+  });
+
+  // handler
+  const handleVerify = id => {
+    console.log(id);
+    // mutation
+    mutateVerify(id);
+  };
   return (
     <div>
+      <Helmet>
+        <title>P P P | Dashboard | Manage Properties</title>
+      </Helmet>
+      <Toaster></Toaster>
       <div className="my-10 lg:my-20">
         <SectionTitle heading={"manage properties"}></SectionTitle>
       </div>
@@ -62,6 +102,7 @@ const ManageProperties = () => {
                     </td>
                     <td className="text-center">
                       <button
+                        onClick={() => handleVerify(property?._id)}
                         disabled={
                           property?.propertyVerificationStatus &&
                           property.propertyVerificationStatus === "verified"
