@@ -25,8 +25,6 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const [isAdmin] = useAdmin();
   const [isAgent] = useAgent();
-  console.log("isAdmin: ", isAdmin);
-  console.log("isAgent: ", isAgent);
 
   const dashboardLink = (
     <>

@@ -7,14 +7,12 @@ import { RiDeleteBin6Fill } from "react-icons/ri";
 const ManageUsers = () => {
   // hooks
   const { allUsersInfo } = useUsers();
-  console.log(allUsersInfo);
 
   return (
     <div>
       <div className="my-10 lg:my-20">
         <SectionTitle heading={"manage users"}></SectionTitle>
       </div>
-      {/*  */}
       <div className="px-2 sm:px-10">
         <div className="overflow-x-auto">
           <table className="table">
@@ -49,7 +47,6 @@ const ManageUsers = () => {
                         </div>
                       </div>
                     </td>
-                    {allUsersInfo.length === 0 && <td>Loading....</td>}
                     <td className="text-center">
                       <button className="btn rounded-full  bg-p-color border-p-color text-white hover:border-p-color hover:text-p-color hover:bg-white duration-[350ms] ease-in-out  btn-outline uppercase group max-sm:btn-sm sm:py-3 w-12 h-12 lg:w-14 lg:h-14 xl:w-16 xl:h-16  ">
                         <span className="text-[20px]  max-sm:text-sm">
