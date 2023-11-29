@@ -1,7 +1,10 @@
-import { RiDeleteBin6Fill } from "react-icons/ri";
 import SectionTitle from "../components/utilitiesComponents/SectionTitle/SectionTitle";
 import useAllProperties from "../hooks/useAllProperties";
-import { FaUserAltSlash } from "react-icons/fa";
+import {
+  MdCancelPresentation,
+  MdDomainVerification,
+  MdOutlineDomainVerification,
+} from "react-icons/md";
 
 const ManageProperties = () => {
   // hooks
@@ -68,7 +71,7 @@ const ManageProperties = () => {
                         className="btn rounded-full  bg-f-color border-f-color text-white hover:border-f-color hover:text-f-color hover:bg-white duration-[350ms] ease-in-out  btn-outline uppercase group max-sm:btn-sm sm:py-3 w-12 h-12 lg:w-14 lg:h-14 xl:w-16 xl:h-16  "
                       >
                         <span className="text-[20px]  max-sm:text-sm">
-                          <FaUserAltSlash></FaUserAltSlash>
+                          <MdOutlineDomainVerification className="text-lg md:text-2xl"></MdOutlineDomainVerification>
                         </span>{" "}
                       </button>
                     </td>
@@ -83,7 +86,7 @@ const ManageProperties = () => {
                         className="btn rounded-full  border-red-600 text-red-600 hover:bg-red-600 hover:border-red-600 duration-[350ms] ease-in-out  btn-outline uppercase group max-sm:btn-sm sm:py-3 w-12 h-12 lg:w-14 lg:h-14 xl:w-16 xl:h-16 "
                       >
                         <span className="text-[20px]  max-sm:text-sm">
-                          <RiDeleteBin6Fill></RiDeleteBin6Fill>
+                          <MdCancelPresentation></MdCancelPresentation>
                         </span>{" "}
                       </button>
                     </td>

@@ -16,6 +16,7 @@ import { FaUsers, FaListUl, FaBookmark } from "react-icons/fa";
 import { MdOutlineReviews } from "react-icons/md";
 import { VscDiffAdded } from "react-icons/vsc";
 import useAgent from "../hooks/useAgent";
+import ScrollTopBtn from "../components/utilitiesComponents/ScrollTopBtn";
 
 const Dashboard = () => {
   // state
@@ -174,6 +175,7 @@ const Dashboard = () => {
             <div className="max-lg:col-span-12  min-h-screen  -z-20 max-lg:w-full">
               <Outlet></Outlet>
             </div>
+            <ScrollTopBtn></ScrollTopBtn>
           </div>
         </div>
       </div>
