@@ -3,6 +3,19 @@ import logo from "../assets/logo.png";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import useContextData from "../hooks/useContextData";
 import { Helmet } from "react-helmet-async";
+import useAdmin from "../hooks/useAdmin";
+import {
+  MdAddToPhotos,
+  MdLibraryAddCheck,
+  MdOutlineAlarmAdd,
+  MdOutlineManageSearch,
+  MdRateReview,
+} from "react-icons/md";
+import { CgProfile } from "react-icons/cg";
+import { FaUsers, FaListUl, FaBookmark } from "react-icons/fa";
+import { MdOutlineReviews } from "react-icons/md";
+import { VscDiffAdded } from "react-icons/vsc";
+import useAgent from "../hooks/useAgent";
 
 const Dashboard = () => {
   // state
@@ -10,42 +23,93 @@ const Dashboard = () => {
 
   //   hooks
   const navigate = useNavigate();
+  const [isAdmin] = useAdmin();
+  const [isAgent] = useAgent();
+  console.log("isAdmin: ", isAdmin);
+  console.log("isAgent: ", isAgent);
 
   const dashboardLink = (
     <>
-      <div className="uppercase nav-div max-md:w-full md:text-lg font-semibold max-w-xs px-4">
+      <div className="uppercase nav-div max-md:w-full md:text-lg font-semibold max-w-xs px-4 lg:flex lg:items-center gap-2">
+        <CgProfile className="max-lg:hidden"></CgProfile>
         <NavLink to="/dashboard" end>
           My Profile
-        </NavLink>
+        </NavLink>{" "}
       </div>
 
       {/* admin route */}
 
-      <div className="uppercase nav-div max-md:w-full md:text-lg font-semibold max-w-xs px-4">
-        <NavLink to="/dashboard/manage-properties">Manage Properties</NavLink>
-      </div>
+      {isAdmin && (
+        <div className="uppercase nav-div max-md:w-full md:text-lg font-semibold max-w-xs px-4 lg:flex lg:items-center gap-2">
+          <MdOutlineManageSearch className="max-lg:hidden"></MdOutlineManageSearch>
+          <NavLink to="/dashboard/manage-properties">Manage Properties</NavLink>
+        </div>
+      )}
 
-      <div className="uppercase nav-div max-md:w-full md:text-lg font-semibold max-w-xs px-4">
-        <NavLink to="/dashboard/manage-users">Manage Users</NavLink>
-      </div>
+      {isAdmin && (
+        <div className="uppercase nav-div max-md:w-full md:text-lg font-semibold max-w-xs px-4 lg:flex lg:items-center gap-2">
+          <FaUsers className="max-lg:hidden"></FaUsers>
+          <NavLink to="/dashboard/manage-users">Manage Users</NavLink>
+        </div>
+      )}
 
-      <div className="uppercase nav-div max-md:w-full md:text-lg font-semibold max-w-xs px-4">
-        <NavLink to="/dashboard/manage-reviews">Manage Reviews</NavLink>
-      </div>
+      {isAdmin && (
+        <div className="uppercase nav-div max-md:w-full md:text-lg font-semibold max-w-xs px-4 lg:flex lg:items-center gap-2">
+          <MdOutlineReviews className="max-lg:hidden"></MdOutlineReviews>
+          <NavLink to="/dashboard/manage-reviews">Manage Reviews</NavLink>
+        </div>
+      )}
+
+      {/* Agent route */}
+      {isAgent && (
+        <div className="uppercase nav-div max-md:w-full md:text-lg font-semibold max-w-xs px-4 lg:flex lg:items-center gap-2">
+          <VscDiffAdded className="max-lg:hidden"></VscDiffAdded>
+          <NavLink to="/dashboard/manage-reviews"> Add Property</NavLink>
+        </div>
+      )}
+      {isAgent && (
+        <div className="uppercase nav-div max-md:w-full md:text-lg font-semibold max-w-xs px-4 lg:flex lg:items-center gap-2">
+          <MdAddToPhotos className="max-lg:hidden"></MdAddToPhotos>
+          <NavLink to="/dashboard/manage-reviews"> My added properties</NavLink>
+        </div>
+      )}
+      {isAgent && (
+        <div className="uppercase nav-div max-md:w-full md:text-lg font-semibold max-w-xs px-4 lg:flex lg:items-center gap-2">
+          <MdLibraryAddCheck className="max-lg:hidden"></MdLibraryAddCheck>
+          <NavLink to="/dashboard/manage-reviews"> My sold properties</NavLink>
+        </div>
+      )}
+      {isAgent && (
+        <div className="uppercase nav-div max-md:w-full md:text-lg font-semibold max-w-xs px-4 lg:flex lg:items-center gap-2">
+          <MdOutlineAlarmAdd className="max-lg:hidden"></MdOutlineAlarmAdd>
+          <NavLink to="/dashboard/manage-reviews">
+            Requested properties{" "}
+          </NavLink>
+        </div>
+      )}
 
       {/* user route */}
 
-      <div className="uppercase nav-div max-md:w-full md:text-lg font-semibold max-w-xs px-4">
-        <NavLink to="/dashboard/wish-list">WishList</NavLink>
-      </div>
+      {isAdmin || isAgent || (
+        <div className="uppercase nav-div max-md:w-full md:text-lg font-semibold max-w-xs px-4 lg:flex lg:items-center gap-2">
+          <FaListUl className="max-lg:hidden"></FaListUl>
+          <NavLink to="/dashboard/wish-list">WishList</NavLink>
+        </div>
+      )}
 
-      <div className="uppercase nav-div max-md:w-full md:text-lg font-semibold max-w-xs px-4">
-        <NavLink to="/dashboard/property-bought">Property bought</NavLink>
-      </div>
+      {isAdmin || isAgent || (
+        <div className="uppercase nav-div max-md:w-full md:text-lg font-semibold max-w-xs px-4 lg:flex lg:items-center gap-2">
+          <FaBookmark className="max-lg:hidden"></FaBookmark>
+          <NavLink to="/dashboard/property-bought">Property bought</NavLink>
+        </div>
+      )}
 
-      <div className="uppercase nav-div max-md:w-full md:text-lg font-semibold max-w-xs px-4">
-        <NavLink to="/dashboard/my-reviews">My Reviews</NavLink>
-      </div>
+      {isAdmin || isAgent || (
+        <div className="uppercase nav-div max-md:w-full md:text-lg font-semibold max-w-xs px-4 lg:flex lg:items-center gap-2">
+          <MdRateReview className="max-lg:hidden"></MdRateReview>
+          <NavLink to="/dashboard/my-reviews">My Reviews</NavLink>
+        </div>
+      )}
     </>
   );
 
