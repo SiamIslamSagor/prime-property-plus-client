@@ -6,22 +6,53 @@ import { RiDeleteBin6Fill } from "react-icons/ri";
 import Swal from "sweetalert2";
 import toast, { Toaster } from "react-hot-toast";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const ManageUsers = () => {
   // hooks
   const { allUsersInfo, refetch } = useUsers();
   const axiosSecure = useAxiosSecure();
+  const queryClient = useQueryClient();
+
+  // mutations
+  const { mutate } = useMutation({
+    mutationFn: async data => {
+      const toastId = toast.loading("processing...");
+      return axiosSecure
+        .patch(`/users/admin/role/${data.id}`, { data })
+        .then(() => {
+          toast.success("Role updated successfully.", { id: toastId });
+        })
+        .catch(err => {
+          console.log(err);
+          toast.error("Failed to update role.", { id: toastId });
+        });
+    },
+    onSuccess: () => {
+      console.log("role update by mutate");
+      queryClient.invalidateQueries(["users"]);
+    },
+  });
 
   // handler
-  /* const handleAdmin = (id) => {
-    console.log(id)
-  }
-  const handleAgent = (id) => {
-    console.log(id)
-  }
-  const handleFraud = (id) => {
-    console.log(id)
-  } */
+  const handleAdmin = id => {
+    console.log("do admin", id);
+    ////////////////
+    const givenRole = { role: "admin" };
+    mutate({ id, givenRole });
+  };
+  const handleAgent = id => {
+    console.log("do agent", id);
+    ////////////////
+    const givenRole = { role: "agent" };
+    mutate({ id, givenRole });
+  };
+  const handleFraud = id => {
+    console.log("do fraud", id);
+    ////////////////
+    const givenRole = { role: "fraud" };
+    mutate({ id, givenRole });
+  };
 
   const handleDeleteUser = id => {
     Swal.fire({
@@ -102,7 +133,10 @@ const ManageUsers = () => {
                           </div>
                         </div>
                       ) : (
-                        <button className="btn rounded-full  bg-p-color border-p-color text-white hover:border-p-color hover:text-p-color hover:bg-white duration-[350ms] ease-in-out  btn-outline uppercase group max-sm:btn-sm sm:py-3 w-12 h-12 lg:w-14 lg:h-14 xl:w-16 xl:h-16  ">
+                        <button
+                          onClick={() => handleAdmin(user?._id)}
+                          className="btn rounded-full  bg-p-color border-p-color text-white hover:border-p-color hover:text-p-color hover:bg-white duration-[350ms] ease-in-out  btn-outline uppercase group max-sm:btn-sm sm:py-3 w-12 h-12 lg:w-14 lg:h-14 xl:w-16 xl:h-16  "
+                        >
                           <span className="text-[20px]  max-sm:text-sm">
                             <FaUserShield></FaUserShield>
                           </span>{" "}
@@ -117,7 +151,10 @@ const ManageUsers = () => {
                           </div>
                         </div>
                       ) : (
-                        <button className="btn rounded-full  border-t-color text-t-color hover:bg-t-color hover:border-t-color duration-[350ms] ease-in-out  btn-outline uppercase group max-sm:btn-sm sm:py-3 w-12 h-12 lg:w-14 lg:h-14 xl:w-16 xl:h-16">
+                        <button
+                          onClick={() => handleAgent(user?._id)}
+                          className="btn rounded-full  border-t-color text-t-color hover:bg-t-color hover:border-t-color duration-[350ms] ease-in-out  btn-outline uppercase group max-sm:btn-sm sm:py-3 w-12 h-12 lg:w-14 lg:h-14 xl:w-16 xl:h-16"
+                        >
                           <span className="text-[20px]  max-sm:text-sm">
                             <FaUserTie></FaUserTie>
                           </span>{" "}
@@ -132,7 +169,11 @@ const ManageUsers = () => {
                           </div>
                         </div>
                       ) : (
-                        <button className="btn rounded-full  bg-f-color border-f-color text-white hover:border-f-color hover:text-f-color hover:bg-white duration-[350ms] ease-in-out  btn-outline uppercase group max-sm:btn-sm sm:py-3 w-12 h-12 lg:w-14 lg:h-14 xl:w-16 xl:h-16  ">
+                        <button
+                          onClick={() => handleFraud(user?._id)}
+                          disabled={user?.role !== "agent" ? true : false}
+                          className="btn rounded-full  bg-f-color border-f-color text-white hover:border-f-color hover:text-f-color hover:bg-white duration-[350ms] ease-in-out  btn-outline uppercase group max-sm:btn-sm sm:py-3 w-12 h-12 lg:w-14 lg:h-14 xl:w-16 xl:h-16  "
+                        >
                           <span className="text-[20px]  max-sm:text-sm">
                             <FaUserAltSlash></FaUserAltSlash>
                           </span>{" "}
