@@ -2,8 +2,12 @@ import { Toaster } from "react-hot-toast";
 import SecondaryBtn from "../components/utilitiesComponents/SecondaryBtn";
 import SectionTitle from "../components/utilitiesComponents/SectionTitle/SectionTitle";
 import { Helmet } from "react-helmet-async";
+import useContextData from "../hooks/useContextData";
 
 const AddProperty = () => {
+  // hooks
+  const { user } = useContextData();
+
   //   handler
   const handleAddNewProperty = e => {
     e.preventDefault();
@@ -16,12 +20,20 @@ const AddProperty = () => {
         form.propertyPriceRangeMin.value * 1,
         form.propertyPriceRangeMax.value * 1,
       ],
+      propertyFeatures: [form.propertyFeatures.value],
+      propertyBeauty: [form.propertyBeauty.value],
+
+      agentImg: user.photoURL,
+      agentName: user.displayName,
+      agentEmail: user.email,
+
       locationDetails: {
         latitude: form.locationDetailsLatitude.value * 1,
         longitude: form.locationDetailsLongitude.value * 1,
       },
-      propertyFeatures: [form.propertyFeatures.value],
-      propertyBeauty: [form.propertyBeauty.value],
+
+      locationDescription: form.locationDescription,
+      propertyDescription: form.propertyDescription,
     };
     console.log(newProperty);
   };
@@ -49,7 +61,7 @@ const AddProperty = () => {
                   <input
                     className="appearance-none block w-full bg-gray-100  border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                     type="url"
-                    //   placeholder="Property Title"
+                    placeholder="Property Image URL"
                     name="propertyImg"
                   />
                 </div>
@@ -60,7 +72,7 @@ const AddProperty = () => {
                   <input
                     className="appearance-none block w-full bg-gray-100  border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                     type="text"
-                    //   placeholder="Property Title"
+                    placeholder="Property Title"
                     name="propertyTitle"
                   />
                 </div>
@@ -71,7 +83,7 @@ const AddProperty = () => {
                   <input
                     className="appearance-none block w-full bg-gray-100  border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                     type="text"
-                    //   placeholder="Property Title"
+                    placeholder="Property Location"
                     name="propertyLocation"
                   />
                 </div>
@@ -104,7 +116,7 @@ const AddProperty = () => {
                   <input
                     className="appearance-none block w-full bg-gray-100  border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                     type="text"
-                    //   placeholder="Property Title"
+                    placeholder="Property Features"
                     name="propertyFeatures"
                   />
                 </div>
@@ -115,8 +127,30 @@ const AddProperty = () => {
                   <input
                     className="appearance-none block w-full bg-gray-100  border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                     type="text"
-                    //   placeholder="Property Title"
+                    placeholder="Property Beauty"
                     name="propertyBeauty"
+                  />
+                </div>
+                <div className="w-1/2 px-3">
+                  <label className="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2">
+                    Location Description (optional)
+                  </label>
+                  <input
+                    className="appearance-none block w-full bg-gray-100  border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                    type="text"
+                    placeholder="Property Location Description"
+                    name="locationDescription"
+                  />
+                </div>
+                <div className="w-1/2 px-3">
+                  <label className="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2">
+                    Property Description (optional)
+                  </label>
+                  <input
+                    className="appearance-none block w-full bg-gray-100  border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                    type="text"
+                    placeholder="Property Description"
+                    name="propertyDescription"
                   />
                 </div>
                 <div className="w-1/2 px-3">
