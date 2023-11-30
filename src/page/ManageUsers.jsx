@@ -3,16 +3,63 @@ import SectionTitle from "../components/utilitiesComponents/SectionTitle/Section
 import useUsers from "../hooks/useUsers";
 import { FaUserAltSlash } from "react-icons/fa";
 import { RiDeleteBin6Fill } from "react-icons/ri";
+import Swal from "sweetalert2";
+import toast, { Toaster } from "react-hot-toast";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const ManageUsers = () => {
   // hooks
-  const { allUsersInfo } = useUsers();
+  const { allUsersInfo, refetch } = useUsers();
+  const axiosSecure = useAxiosSecure();
+
+  // handler
+  /* const handleAdmin = (id) => {
+    console.log(id)
+  }
+  const handleAgent = (id) => {
+    console.log(id)
+  }
+  const handleFraud = (id) => {
+    console.log(id)
+  } */
+
+  const handleDeleteUser = id => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be Delete this user account !",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Delete it.",
+    }).then(result => {
+      if (result.isConfirmed) {
+        const toastId = toast.loading("processing...");
+
+        console.log(id);
+
+        // hit server side user delete api
+        axiosSecure
+          .delete(`/users/admin/delete/${id}`)
+          .then(res => {
+            console.log(res.data);
+            refetch();
+            toast.success("User delete successfully.", { id: toastId });
+          })
+          .catch(err => {
+            console.log(err);
+            toast.error("Failed to delete user.", { id: toastId });
+          });
+      }
+    });
+  };
 
   return (
     <div>
       <div className="my-10 lg:my-20">
         <SectionTitle heading={"manage users"}></SectionTitle>
       </div>
+      <Toaster></Toaster>
       <div className="px-2 sm:px-10">
         <div className="overflow-x-auto">
           <table className="table">
@@ -93,7 +140,10 @@ const ManageUsers = () => {
                       )}
                     </td>
                     <td className="text-center">
-                      <button className="btn rounded-full  border-red-600 text-red-600 hover:bg-red-600 hover:border-red-600 duration-[350ms] ease-in-out  btn-outline uppercase group max-sm:btn-sm sm:py-3 w-12 h-12 lg:w-14 lg:h-14 xl:w-16 xl:h-16 ">
+                      <button
+                        onClick={() => handleDeleteUser(user?._id)}
+                        className="btn rounded-full  border-red-600 text-red-600 hover:bg-red-600 hover:border-red-600 duration-[350ms] ease-in-out  btn-outline uppercase group max-sm:btn-sm sm:py-3 w-12 h-12 lg:w-14 lg:h-14 xl:w-16 xl:h-16 "
+                      >
                         <span className="text-[20px]  max-sm:text-sm">
                           <RiDeleteBin6Fill></RiDeleteBin6Fill>
                         </span>{" "}

@@ -46,7 +46,7 @@ const NavBar = () => {
             toast.success("Log out successfully.", { id: toastId });
           })
           .catch(() => {
-            toast.success("Log out Failed.", { id: toastId });
+            toast.error("Log out Failed.", { id: toastId });
           });
         ///////////////////
 

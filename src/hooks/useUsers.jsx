@@ -8,6 +8,7 @@ const useUsers = () => {
     data: allUsersInfo = [],
     isLoading,
     isError,
+    refetch,
   } = useQuery({
     queryKey: ["users"],
     queryFn: () =>
@@ -16,7 +17,7 @@ const useUsers = () => {
       }),
     staleTime: 1000 * 10,
   });
-  return { allUsersInfo, isLoading, isError };
+  return { allUsersInfo, isLoading, isError, refetch };
 };
 
 export default useUsers;
