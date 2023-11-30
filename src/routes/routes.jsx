@@ -25,6 +25,7 @@ import AgentAddedProperties from "../page/AgentAddedProperties";
 import UpdateProperty from "../page/UpdateProperty";
 import AddProperty from "../page/AddProperty";
 import RequestedProperties from "../page/RequestedProperties";
+import AgentSoldProperties from "../page/AgentSoldProperties";
 
 const router = createBrowserRouter([
   {
@@ -196,6 +197,16 @@ const router = createBrowserRouter([
           <AgentRoute>
             <PrivetRoute>
               <RequestedProperties></RequestedProperties>
+            </PrivetRoute>
+          </AgentRoute>
+        ),
+      },
+      {
+        path: "my-sold-properties",
+        element: (
+          <AgentRoute>
+            <PrivetRoute>
+              <AgentSoldProperties></AgentSoldProperties>
             </PrivetRoute>
           </AgentRoute>
         ),

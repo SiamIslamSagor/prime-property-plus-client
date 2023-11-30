@@ -24,14 +24,19 @@ const RequestedProperties = () => {
       const toastId = toast.loading("processing...");
       console.log(propertyId);
       return axiosSecure
-        .patch(`/property-bought/agent/${propertyId}`)
+        .patch(`/property-bought/agent/${propertyId.id}`, propertyId)
         .then(res => {
           console.log(res.data);
-          toast.success("accepted successfully.", { id: toastId });
+          toast.success(`${propertyId.actionInfo.status} successfully.`, {
+            id: toastId,
+          });
         })
         .catch(err => {
           console.log(err);
-          toast.error("Failed to accept.", { id: toastId });
+          console.log(propertyId.actionInfo.status);
+          toast.error(`Failed to ${propertyId.actionInfo.status} .`, {
+            id: toastId,
+          });
         });
     },
     onSuccess: () => {
@@ -43,9 +48,21 @@ const RequestedProperties = () => {
   //   handler
   const handleAccept = id => {
     console.log(id);
-
+    const actionInfo = {
+      status: "accepted",
+    };
     //
-    mutate(id);
+    mutate({ id, actionInfo });
+  };
+
+  //   handler
+  const handleReject = id => {
+    console.log(id);
+    const actionInfo = {
+      status: "rejected",
+    };
+    //
+    mutate({ id, actionInfo });
   };
   return (
     <div>
@@ -111,7 +128,9 @@ const RequestedProperties = () => {
                                 "verified") ||
                             property.propertyVerificationStatus ===
                               "rejected" ||
-                            property.propertyVerificationStatus === "accepted"
+                            property.propertyVerificationStatus ===
+                              "accepted" ||
+                            property.propertyVerificationStatus === "bought"
                               ? true
                               : false
                           }
@@ -124,13 +143,16 @@ const RequestedProperties = () => {
                       </td>
                       <td className="text-center">
                         <button
+                          onClick={() => handleReject(property?._id)}
                           disabled={
                             (property?.propertyVerificationStatus &&
                               property.propertyVerificationStatus ===
                                 "verified") ||
                             property.propertyVerificationStatus ===
                               "rejected" ||
-                            property.propertyVerificationStatus === "accepted"
+                            property.propertyVerificationStatus ===
+                              "accepted" ||
+                            property.propertyVerificationStatus === "bought"
                               ? true
                               : false
                           }
