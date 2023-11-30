@@ -92,7 +92,7 @@ const MyWishListCard = ({ property, animDelay }) => {
                 <img
                   className="group-hover:scale-110 duration-1000  rounded-tr-3xl rounded-bl-3xl h-64 w-96"
                   src={propertyImg}
-                  alt="Shoes"
+                  alt="House"
                 />
               </figure>
               <div className="flex flex-1 flex-col p-6 gap-2 leading-4 font-semibold">
@@ -111,12 +111,14 @@ const MyWishListCard = ({ property, animDelay }) => {
                 </h2>
                 <p>location: {propertyLocation}</p>
 
-                {location.pathname !== "/dashboard/property-bought" && (
-                  <p>
-                    Price Range: ${propertyPriceRange[0]} to $
-                    {propertyPriceRange[1]}
-                  </p>
-                )}
+                {location.pathname !== "/dashboard/property-bought" &&
+                  propertyPriceRange && (
+                    <p>
+                      Price Range: $
+                      {propertyPriceRange && propertyPriceRange[0]} to $
+                      {propertyPriceRange && propertyPriceRange[1]}
+                    </p>
+                  )}
 
                 {location.pathname === "/dashboard/property-bought" && (
                   <p>Offered Amount: ${offeredAmount}</p>
