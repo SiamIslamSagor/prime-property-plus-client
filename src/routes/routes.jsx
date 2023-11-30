@@ -23,6 +23,7 @@ import AdminRoute from "./AdminRoute";
 import AgentRoute from "./AgentRoute";
 import AgentAddedProperties from "../page/AgentAddedProperties";
 import UpdateProperty from "../page/UpdateProperty";
+import AddProperty from "../page/AddProperty";
 
 const router = createBrowserRouter([
   {
@@ -158,6 +159,16 @@ const router = createBrowserRouter([
       },
 
       // agent route
+      {
+        path: "add-property",
+        element: (
+          <AgentRoute>
+            <PrivetRoute>
+              <AddProperty></AddProperty>
+            </PrivetRoute>
+          </AgentRoute>
+        ),
+      },
       {
         path: "my-added-properties",
         element: (
