@@ -2,10 +2,15 @@ import { useEffect, useState } from "react";
 import DeleteBtn from "../components/utilitiesComponents/DeleteBtn";
 import SectionTitle from "../components/utilitiesComponents/SectionTitle/SectionTitle";
 import useReviews from "../hooks/useReviews";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import useAxiosSecure from "../hooks/useAxiosSecure";
+import toast, { Toaster } from "react-hot-toast";
 
 const ManageReviews = () => {
   // hooks
   const { reviewsData } = useReviews();
+  const axiosSecure = useAxiosSecure();
+  const queryClient = useQueryClient();
 
   // state
   const [latestReviews, setLatestReviews] = useState([]);
@@ -21,11 +26,41 @@ const ManageReviews = () => {
     }
   }, [reviewsData]);
 
+  // mutations
+  const { mutate } = useMutation({
+    mutationFn: async reviewId => {
+      const toastId = toast.loading("processing...");
+
+      return axiosSecure
+        .delete(`/reviews/delete/${reviewId}`)
+        .then(res => {
+          console.log(res.data);
+          toast.success("Review deleted successfully.", { id: toastId });
+        })
+        .catch(err => {
+          console.log(err);
+          toast.error("Failed to delete review.", { id: toastId });
+        });
+    },
+    onSuccess: () => {
+      console.log("review deleted by mutate");
+      queryClient.invalidateQueries(["reviews"]);
+    },
+  });
+
+  // handler
+  const handleReviewDelete = id => {
+    console.log(id);
+    // mutation handler
+    mutate(id);
+  };
+
   return (
     <div>
       <div className="my-10 lg:my-20">
         <SectionTitle heading={"manage reviews"}></SectionTitle>
       </div>
+      <Toaster></Toaster>
       <div>
         {reviewsData.length === 0 && (
           <div className="mt-40 text-center">
@@ -62,7 +97,10 @@ const ManageReviews = () => {
                       <p className="mt-4 leading-5 mb-4 text-lg">
                         Review Description: {singleReview?.reviewerDescription}
                       </p>
-                      <DeleteBtn btnText="Delete"></DeleteBtn>
+                      <DeleteBtn
+                        handler={() => handleReviewDelete(singleReview._id)}
+                        btnText="Delete"
+                      ></DeleteBtn>
                     </div>
                   </div>
                 </div>
