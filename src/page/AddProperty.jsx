@@ -1,12 +1,42 @@
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import SecondaryBtn from "../components/utilitiesComponents/SecondaryBtn";
 import SectionTitle from "../components/utilitiesComponents/SectionTitle/SectionTitle";
 import { Helmet } from "react-helmet-async";
 import useContextData from "../hooks/useContextData";
+import useAxiosSecure from "../hooks/useAxiosSecure";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 
 const AddProperty = () => {
   // hooks
   const { user } = useContextData();
+  const axiosSecure = useAxiosSecure();
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
+
+  // mutations
+  const { mutate } = useMutation({
+    mutationFn: async newProperty => {
+      const toastId = toast.loading("processing...");
+      console.log(newProperty);
+
+      return axiosSecure
+        .post("/properties/agent/add", newProperty)
+        .then(res => {
+          console.log(res.data);
+          toast.success("property added successfully.", { id: toastId });
+          navigate("/dashboard/my-added-properties");
+        })
+        .catch(err => {
+          console.log(err);
+          toast.error("Failed to add property.", { id: toastId });
+        });
+    },
+    onSuccess: () => {
+      console.log("property added by mutate");
+      queryClient.invalidateQueries(["allProperty"]);
+    },
+  });
 
   //   handler
   const handleAddNewProperty = e => {
@@ -32,15 +62,19 @@ const AddProperty = () => {
         longitude: form.locationDetailsLongitude.value * 1,
       },
 
-      locationDescription: form.locationDescription,
-      propertyDescription: form.propertyDescription,
+      locationDescription: form.locationDescription.value,
+      propertyDescription: form.propertyDescription.value,
     };
     console.log(newProperty);
+    console.log(JSON.stringify(newProperty));
+
+    // send new property data in server side by using mutation, and store in db
+    mutate(newProperty);
   };
   return (
     <div>
       <Helmet>
-        <title>P P P | Dashboard | Update Property</title>
+        <title>P P P | Dashboard | Add Property</title>
       </Helmet>
       <Toaster></Toaster>
       <div className="my-10 lg:my-20">
@@ -89,7 +123,7 @@ const AddProperty = () => {
                 </div>
                 <div className="w-1/2 px-3">
                   <label className="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2">
-                    Latitude (optional Example: 45.4215)
+                    Latitude (optional Example: 42)
                   </label>
                   <input
                     className="appearance-none block w-full bg-gray-100  border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -100,7 +134,7 @@ const AddProperty = () => {
                 </div>
                 <div className="w-1/2 px-3">
                   <label className="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2">
-                    Longitude (optional Example: -122.6731)
+                    Longitude (optional Example: -71)
                   </label>
                   <input
                     className="appearance-none block w-full bg-gray-100  border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -144,11 +178,12 @@ const AddProperty = () => {
                 </div>
                 <div className="w-1/2 px-3">
                   <label className="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2">
-                    Property Description (optional)
+                    Property Description
                   </label>
                   <input
                     className="appearance-none block w-full bg-gray-100  border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                     type="text"
+                    required
                     placeholder="Property Description"
                     name="propertyDescription"
                   />
@@ -160,6 +195,7 @@ const AddProperty = () => {
                   <input
                     className="appearance-none block w-full bg-gray-100  border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                     type="number"
+                    required
                     //   placeholder="Property Title"
                     name="propertyPriceRangeMin"
                   />
@@ -171,6 +207,7 @@ const AddProperty = () => {
                   <input
                     className="appearance-none block w-full bg-gray-100  border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                     type="number"
+                    required
                     //   placeholder="Property Title"
                     name="propertyPriceRangeMax"
                   />

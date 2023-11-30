@@ -363,19 +363,22 @@ const PropertyDetails = () => {
           </div>
         )}
         {isLoading ||
-          (locationDetails?.latitude && locationDetails?.longitude && (
-            <div>
-              <div className="max-sm:my-16 sm:my-20 md:my-24 xl:my-28">
-                <SectionTitle
-                  heading={"location details in map"}
-                ></SectionTitle>
+          (locationDetails?.latitude &&
+            locationDetails?.latitude !== 0 &&
+            locationDetails?.longitude &&
+            locationDetails?.longitude !== 0 && (
+              <div>
+                <div className="max-sm:my-16 sm:my-20 md:my-24 xl:my-28">
+                  <SectionTitle
+                    heading={"location details in map"}
+                  ></SectionTitle>
+                </div>
+                <LocationMap
+                  latitude={locationDetails?.latitude}
+                  longitude={locationDetails?.longitude}
+                ></LocationMap>
               </div>
-              <LocationMap
-                latitude={locationDetails?.latitude}
-                longitude={locationDetails?.longitude}
-              ></LocationMap>
-            </div>
-          ))}
+            ))}
       </div>
     </div>
   );
