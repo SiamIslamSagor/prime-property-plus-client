@@ -27,6 +27,23 @@ const RequestedProperties = () => {
         .patch(`/property-bought/agent/${propertyId.id}`, propertyId)
         .then(res => {
           console.log(res.data);
+
+          /////////////////////////
+          axiosSecure
+            .patch("/property/agent/accepted/rest-reject", propertyId.info)
+            .then(res => {
+              console.log("in axios");
+              console.log(res.data);
+              toast.success(`${propertyId.actionInfo.status} successfully.`, {
+                id: toastId,
+              });
+            })
+            .catch(err => {
+              console.log("in axios err");
+              console.log(err);
+            });
+          /////////////////////////
+
           toast.success(`${propertyId.actionInfo.status} successfully.`, {
             id: toastId,
           });
@@ -46,13 +63,40 @@ const RequestedProperties = () => {
   });
 
   //   handler
-  const handleAccept = id => {
+  const handleAccept = (id, propertyId) => {
     console.log(id);
     const actionInfo = {
       status: "accepted",
     };
+
+    const info = {
+      propertyId: propertyId,
+      agentEmail: user.email,
+      propertyVerificationStatus: "pending",
+    };
+    console.log(info);
+    ///////////////////////////
+    // { propertyId: "65684dc7bdbc649f3ae58652", agentEmail: "developerw406@gmail.com", propertyVerificationStatus: 'pending'}
+    //  { propertyId: '65685b9a77f277acd7a8f4a5', agentEmail: 'developerw406@gmail.com',  propertyVerificationStatus: 'pending' }
+
+    ///////////////////////////
     //
-    mutate({ id, actionInfo });
+    // console.log("out axios");
+
+    /* axiosSecure
+      .patch("/property/agent/accepted/rest-reject", info)
+      .then(res => {
+        console.log("in axios");
+        console.log(res.data);
+      })
+      .catch(err => {
+        console.log("in axios err");
+        console.log(err);
+      }); */
+    // console.log("out axios 2");
+
+    // TODO: comment out
+    mutate({ id, actionInfo, info });
   };
 
   //   handler
@@ -121,7 +165,9 @@ const RequestedProperties = () => {
                       </td>
                       <td className="text-center">
                         <button
-                          onClick={() => handleAccept(property?._id)}
+                          onClick={() =>
+                            handleAccept(property?._id, property?.propertyId)
+                          }
                           disabled={
                             (property?.propertyVerificationStatus &&
                               property.propertyVerificationStatus ===
