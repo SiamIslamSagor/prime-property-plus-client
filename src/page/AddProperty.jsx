@@ -51,7 +51,6 @@ const AddProperty = () => {
                     type="url"
                     //   placeholder="Property Title"
                     name="propertyImg"
-                    defaultValue={propertyImg}
                   />
                 </div>
                 <div className="w-full px-3">
@@ -63,7 +62,6 @@ const AddProperty = () => {
                     type="text"
                     //   placeholder="Property Title"
                     name="propertyTitle"
-                    defaultValue={propertyTitle}
                   />
                 </div>
                 <div className="w-full px-3">
@@ -75,7 +73,6 @@ const AddProperty = () => {
                     type="text"
                     //   placeholder="Property Title"
                     name="propertyLocation"
-                    defaultValue={propertyLocation}
                   />
                 </div>
                 <div className="w-1/2 px-3">
@@ -87,7 +84,6 @@ const AddProperty = () => {
                     type="number"
                     //   placeholder="Property Title"
                     name="locationDetailsLatitude"
-                    defaultValue={locationDetails?.latitude}
                   />
                 </div>
                 <div className="w-1/2 px-3">
@@ -99,7 +95,6 @@ const AddProperty = () => {
                     type="number"
                     //   placeholder="Property Title"
                     name="locationDetailsLongitude"
-                    defaultValue={locationDetails?.longitude}
                   />
                 </div>
                 <div className="w-1/2 px-3">
@@ -111,7 +106,6 @@ const AddProperty = () => {
                     type="text"
                     //   placeholder="Property Title"
                     name="propertyFeatures"
-                    defaultValue={propertyFeatures}
                   />
                 </div>
                 <div className="w-1/2 px-3">
@@ -123,7 +117,6 @@ const AddProperty = () => {
                     type="text"
                     //   placeholder="Property Title"
                     name="propertyBeauty"
-                    defaultValue={propertyBeauty}
                   />
                 </div>
                 <div className="w-1/2 px-3">
@@ -135,7 +128,6 @@ const AddProperty = () => {
                     type="number"
                     //   placeholder="Property Title"
                     name="propertyPriceRangeMin"
-                    defaultValue={propertyPriceRange && propertyPriceRange[0]}
                   />
                 </div>
                 <div className="w-1/2 px-3">
@@ -147,37 +139,12 @@ const AddProperty = () => {
                     type="number"
                     //   placeholder="Property Title"
                     name="propertyPriceRangeMax"
-                    defaultValue={propertyPriceRange && propertyPriceRange[1]}
                   />
                 </div>
               </div>
 
-              <div className="flex flex-wrap -mx-3 mb-6">
-                <div className="w-full px-3">
-                  <label className="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2">
-                    Agent Name
-                  </label>
-                  <input
-                    className="appearance-none block w-full bg-gray-200 text-gray-400 border border-gray-200 rounded py-3 px-4 leading-tight mb-2 focus:outline-none focus:bg-white focus:border-gray-500"
-                    type="text"
-                    placeholder="Agent Name"
-                    readOnly
-                  />
-                </div>
-                <div className="w-full px-3">
-                  <label className="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2">
-                    Agent Email
-                  </label>
-                  <input
-                    className="appearance-none block w-full bg-gray-200 text-gray-400 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                    type="text"
-                    placeholder="Agent Email"
-                    readOnly
-                  />
-                </div>
-              </div>
               <div className="text-center">
-                <SecondaryBtn btnType="submit" btnText="update"></SecondaryBtn>
+                <SecondaryBtn btnType="submit" btnText="add"></SecondaryBtn>
               </div>
             </form>
           </div>

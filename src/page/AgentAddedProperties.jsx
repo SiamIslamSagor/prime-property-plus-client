@@ -184,6 +184,21 @@ const AgentAddedProperties = () => {
             ))}
           </div>
         )}
+        {agentPropertyInfo.length === 0 && (
+          <div className="mt-40 text-center">
+            <p className="text-2xl">You do not have added any property</p>{" "}
+            <br />
+            <p className="text-xl">
+              go to{" "}
+              <Link
+                className="text-blue-700  font-medium hover:link"
+                to="/dashboard/add-property"
+              >
+                <small>Add property</small>
+              </Link>{" "}
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );
