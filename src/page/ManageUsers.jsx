@@ -21,6 +21,20 @@ const ManageUsers = () => {
       return axiosSecure
         .patch(`/users/admin/role/${data.id}`, { data })
         .then(() => {
+          //////////////////////////
+          // remove all added properties in this fraud
+          if (data.email) {
+            axiosSecure
+              .delete(`/properties/admin/fraud/delete/${data.email}`)
+              .then(res => {
+                console.log(res.data);
+              })
+              .catch(err => {
+                console.log(err);
+              });
+          }
+          //////////////////////////
+
           toast.success("Role updated successfully.", { id: toastId });
         })
         .catch(err => {
@@ -47,11 +61,11 @@ const ManageUsers = () => {
     const givenRole = { role: "agent" };
     mutate({ id, givenRole });
   };
-  const handleFraud = id => {
+  const handleFraud = (id, email) => {
     console.log("do fraud", id);
     ////////////////
     const givenRole = { role: "fraud" };
-    mutate({ id, givenRole });
+    mutate({ id, givenRole, email });
   };
 
   const handleDeleteUser = id => {
@@ -170,7 +184,7 @@ const ManageUsers = () => {
                         </div>
                       ) : (
                         <button
-                          onClick={() => handleFraud(user?._id)}
+                          onClick={() => handleFraud(user?._id, user?.email)}
                           disabled={user?.role !== "agent" ? true : false}
                           className="btn rounded-full  bg-f-color border-f-color text-white hover:border-f-color hover:text-f-color hover:bg-white duration-[350ms] ease-in-out  btn-outline uppercase group max-sm:btn-sm sm:py-3 w-12 h-12 lg:w-14 lg:h-14 xl:w-16 xl:h-16  "
                         >

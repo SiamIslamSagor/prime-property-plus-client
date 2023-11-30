@@ -64,64 +64,7 @@
     "propertyDescription": "Indulge in serenity at Tranquil Lakeside with this Contemporary Lake House. Offering panoramic lake views, dock access, and modern design, this property harmonizes with the natural beauty of the surroundings, creating a perfect retreat.",
     "isAdvertiseProperty": true
   },
-  {
-    "propertyImg": "https://i.ibb.co/dkVGSrH/home1.jpg",
-    "propertyTitle": "Modern City Apartment",
-    "propertyLocation": "Downtown, Metropolis",
-    "propertyPriceRange": [3000, 4800],
-    "propertyVerificationStatus": "verified",
-    "propertyFeatures": ["Balcony", "Smart Home System", "Fitness Center"],
-    "propertyBeauty": "Stunning city skyline views",
-    "agentImg": "https://i.ibb.co/Yb95dr4/1.png",
-    "agentName": "John Smith",
-    "agentEmail": "john.smith@gmail.com.com",
-    "locationDetails": {
-      "latitude": 40.7128,
-      "longitude": -74.006
-    },
-    "locationDescription": "Immerse yourself in the vibrant atmosphere of Downtown, Metropolis. This property is strategically located, offering easy access to cultural events, entertainment, and a thriving culinary scene. Enjoy the convenience of urban living with the charm of city life right at your doorstep.",
-    "propertyDescription": "Discover the epitome of modern urban living in this Modern City Apartment. Boasting stunning city skyline views, this property is a perfect blend of sophistication and comfort. The interior features a balcony, a smart home system, and access to a fitness center. Live in style amidst the bustling streets of Downtown, Metropolis, with top-notch amenities and breathtaking cityscape views."
-  },
-  {
-    "propertyImg": "https://i.ibb.co/L1g875c/home7.jpg",
-    "propertyTitle": "Historic Townhouse",
-    "propertyLocation": "Old Town Charm",
-    "propertyPriceRange": [6000, 9000],
-    "propertyVerificationStatus": "verified",
-    "propertyFeatures": [
-      "Original Architecture",
-      "Courtyard Garden",
-      "Antique Details"
-    ],
-    "propertyBeauty": "Preserved historical charm and elegant design",
-    "agentImg": "https://i.ibb.co/XWMFnfH/7.png",
-    "agentName": "Ryan Miller",
-    "agentEmail": "ryan.miller@gmail.com.com",
-    "locationDetails": {
-      "latitude": 40.7128,
-      "longitude": -74.006
-    },
-    "locationDescription": "Step into the past with this Historic Townhouse in Old Town Charm. Preserving original architecture, a courtyard garden, and antique details, this property embodies the elegance of a bygone era.",
-    "propertyDescription": "Preserve history with this Historic Townhouse in Old Town Charm. Featuring original architecture, a courtyard garden, and antique details, this property exudes elegance and timeless charm, offering a unique glimpse into the past."
-  },
-  {
-    "propertyImg": "https://i.ibb.co/nn1br5k/home11.jpg",
-    "propertyTitle": "Country Farmhouse",
-    "propertyLocation": "Rural Retreat",
-    "propertyPriceRange": [4500, 7000],
-    "propertyVerificationStatus": "verified",
-    "propertyFeatures": ["Wrap-around Porch", "Barn", "Expansive Fields"],
-    "propertyBeauty": "Quaint farmhouse charm and vast open spaces",
-    "agentImg": "https://i.ibb.co/JtZ2jXH/11.png",
-    "agentName": "Christopher Davis",
-    "agentEmail": "christopher.davis@gmail.com.com",
-    "locationDetails": {
-      "latitude": 39.0997,
-      "longitude": -94.5786
-    },
-    "locationDescription": "Experience the charm of Rural Retreat in this Country Farmhouse. With a wrap-around porch, barn, and expansive fields, this property captures the essence of quaint farmhouse living amidst vast open spaces.",
-    "propertyDescription": "Escape to the charm of Rural Retreat with this Country Farmhouse. Featuring a wrap-around porch, barn, and expansive fields, this property embodies quaint farmhouse living amidst vast open spaces, offering a perfect blend of comfort and nature."
-  },
+
   {
     "propertyImg": "https://i.ibb.co/TYT1m3d/home12.jpg",
     "propertyTitle": "Elegant Townhouse",
@@ -146,24 +89,6 @@
     "isAdvertiseProperty": true
   },
   {
-    "propertyImg": "https://i.ibb.co/tzbPD5N/home5.jpg",
-    "propertyTitle": "Urban Loft with a View",
-    "propertyLocation": "Artsy District",
-    "propertyPriceRange": [4000, 6000],
-    "propertyVerificationStatus": "verified",
-    "propertyFeatures": ["Exposed Brick Walls", "Large Windows", "Roof Deck"],
-    "propertyBeauty": "Artistic vibes and panoramic cityscape",
-    "agentImg": "https://i.ibb.co/QfxN5Kz/5.png",
-    "agentName": "Daniel Lee",
-    "agentEmail": "daniel.lee@gmail.com.com",
-    "locationDetails": {
-      "latitude": 34.0522,
-      "longitude": -118.2437
-    },
-    "locationDescription": "Immerse yourself in the artistic energy of the Artsy District. This urban loft features exposed brick walls, large windows, and a roof deck with panoramic cityscape, creating a unique and vibrant living space.",
-    "propertyDescription": "Experience artistic vibes in the Urban Loft with a View. Located in the Artsy District, this urban loft boasts exposed brick walls, large windows, and a roof deck with panoramic cityscape views, creating a unique and vibrant living space."
-  },
-  {
     "propertyImg": "https://i.ibb.co/CsBZXdr/home2.jpg",
     "propertyTitle": "Cozy Suburban Cottage",
     "propertyLocation": "Tranquil Suburbia",
@@ -181,28 +106,6 @@
     "locationDescription": "Escape to the tranquility of suburban living in this cozy cottage. Surrounded by a spacious garden, this property offers a peaceful retreat with a warm fireplace and high ceilings, creating the perfect home for relaxation and comfort.",
     "propertyDescription": "Experience the charm of suburban living in this Cozy Suburban Cottage. Nestled in tranquil suburbia, this property features a charming garden, a warm fireplace, and high ceilings. Enjoy the serenity of nature in a home designed for comfort and relaxation.",
     "isAdvertiseProperty": true
-  },
-  {
-    "propertyImg": "https://i.ibb.co/X8YbmGR/home3.jpg",
-    "propertyTitle": "Luxury Beachfront Villa",
-    "propertyLocation": "Sunset Bay",
-    "propertyPriceRange": [8000, 12000],
-    "propertyVerificationStatus": "verified",
-    "propertyFeatures": [
-      "Private Beach Access",
-      "Infinity Pool",
-      "Outdoor Kitchen"
-    ],
-    "propertyBeauty": "Breathtaking ocean views and private beachfront",
-    "agentImg": "https://i.ibb.co/MPF9N0G/15.png",
-    "agentName": "Michael Rodriguez",
-    "agentEmail": "michael.rodriguez@gmail.com.com",
-    "locationDetails": {
-      "latitude": 34.0522,
-      "longitude": -118.2437
-    },
-    "locationDescription": "Indulge in luxury living at Sunset Bay with this beachfront villa. Enjoy breathtaking ocean views, private beach access, and premium amenities, creating a perfect blend of opulence and natural beauty.",
-    "propertyDescription": "Escape to luxury with this Luxury Beachfront Villa at Sunset Bay. Bask in breathtaking ocean views, revel in private beach access, and enjoy premium amenities that define opulence. Experience the perfect harmony of sophistication and natural beauty."
   },
   {
     "propertyImg": "https://i.ibb.co/1swQtcv/home8.jpg",
@@ -226,23 +129,5 @@
     "locationDescription": "Experience luxury at its peak in this Penthouse Paradise at Skyline Heights. Enjoy exclusive penthouse living with a private terrace, skyline views, and high-end finishes that define opulence.",
     "propertyDescription": "Live in the lap of luxury with this Penthouse Paradise at Skyline Heights. Offering exclusive penthouse living, this property boasts a private terrace, skyline views, and high-end finishes that define opulence and sophistication.",
     "isAdvertiseProperty": true
-  },
-  {
-    "propertyImg": "https://i.ibb.co/sVnSwzR/home10.jpg",
-    "propertyTitle": "Sleek Urban Studio",
-    "propertyLocation": "City Center",
-    "propertyPriceRange": [2000, 3500],
-    "propertyVerificationStatus": "verified",
-    "propertyFeatures": ["Efficient Layout", "Modern Appliances", "City Views"],
-    "propertyBeauty": "Smart and stylish city living",
-    "agentImg": "https://i.ibb.co/VWwv8jh/10.png",
-    "agentName": "Emma Wilson",
-    "agentEmail": "emma.wilson@gmail.com.com",
-    "locationDetails": {
-      "latitude": 40.7128,
-      "longitude": -74.006
-    },
-    "locationDescription": "Embrace the energy of City Center with this sleek urban studio. Offering an efficient layout, modern appliances, and city views, this property is the epitome of smart and stylish city living.",
-    "propertyDescription": "Immerse yourself in the energy of City Center with this Sleek Urban Studio. Featuring an efficient layout, modern appliances, and city views, this property embodies smart and stylish city living at its best."
   }
 ]
