@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import useContextData from "./useContextData";
 
 const axiosSecure = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://prime-property-plus-server.vercel.app",
 });
 
 const useAxiosSecure = () => {

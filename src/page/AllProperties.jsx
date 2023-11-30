@@ -30,6 +30,12 @@ const AllProperties = () => {
     scrollTop();
   }, [scrollTop]);
 
+  useEffect(() => {
+    if (loadedData.length > 0) {
+      setVerifiedPropertiesData(loadedData);
+    }
+  }, [loadedData]);
+
   // handler
 
   // search function
