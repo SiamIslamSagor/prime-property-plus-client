@@ -16,7 +16,6 @@ const BestDeals = () => {
 
   const { advertisePropertiesData, isLoading } = useAdvertiseProperty();
   // state
-
   const [bestDealsProperties, setBestDealsProperties] = useState(
     advertisePropertiesData
   );
