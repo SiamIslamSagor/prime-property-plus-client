@@ -15,6 +15,7 @@ const useAgent = () => {
       return res.data?.agent;
     },
   });
+  console.log("useAgent pass >");
 
   return [isAgent, isAgentLoading];
 };

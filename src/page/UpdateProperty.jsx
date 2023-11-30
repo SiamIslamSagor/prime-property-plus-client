@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import SectionTitle from "../components/utilitiesComponents/SectionTitle/SectionTitle";
 import { Helmet } from "react-helmet-async";
@@ -12,7 +12,7 @@ const UpdateProperty = () => {
   const { id: clickedProperty } = useParams();
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
-  //   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   // state
   const [property, setProperty] = useState({});
@@ -53,12 +53,12 @@ const UpdateProperty = () => {
         .put(`/property/agent/update/${data._id}`, data.updatedProperty)
         .then(res => {
           console.log(res.data);
-          toast.success("Offered successfully.", { id: toastId });
-          //   navigate("/dashboard/my-added-properties");
+          toast.success("Update successfully.", { id: toastId });
+          navigate("/dashboard/my-added-properties");
         })
         .catch(err => {
           console.log(err);
-          toast.error("Failed to Offered.", { id: toastId });
+          toast.error("Failed to Update.", { id: toastId });
         });
     },
     onSuccess: () => {

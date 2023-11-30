@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import SectionTitle from "../components/utilitiesComponents/SectionTitle/SectionTitle";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import useAgentProperties from "../hooks/useAgentProperties";
 import CardHolder from "../components/pageComponents/CardHolder/CardHolder";
 import { Link } from "react-router-dom";
@@ -9,12 +9,47 @@ import { LuBadgeCheck } from "react-icons/lu";
 import { Fade } from "react-awesome-reveal";
 import useContextData from "../hooks/useContextData";
 import DeleteBtn from "../components/utilitiesComponents/DeleteBtn";
+import useAxiosSecure from "../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const AgentAddedProperties = () => {
   // hooks
-  const { agentPropertyInfo, isLoading } = useAgentProperties();
+  const { agentPropertyInfo, isLoading, refetch } = useAgentProperties();
   const { propertyCardDelay } = useContextData();
+  const axiosSecure = useAxiosSecure();
   console.log(agentPropertyInfo);
+
+  // handler
+
+  const handleDelete = id => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be delete this property!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Delete it.",
+    }).then(result => {
+      if (result.isConfirmed) {
+        // hit delete api in server side by specific id;
+        // ////////////////
+        const toastId = toast.loading("processing...");
+
+        console.log(id);
+        axiosSecure
+          .delete(`/property/agent/delete/${id}`)
+          .then(res => {
+            console.log(res.data);
+            toast.success("deleted successfully.", { id: toastId });
+          })
+          .catch(() => {
+            toast.error("Failed to deleted.", { id: toastId });
+          });
+        refetch();
+      }
+    });
+  };
   return (
     <div>
       <Helmet>
@@ -121,7 +156,10 @@ const AgentAddedProperties = () => {
                           </div>
                         </div>
                         <div className=" mb-8   text-right flex justify-center">
-                          <DeleteBtn btnText="delete"></DeleteBtn>
+                          <DeleteBtn
+                            handler={() => handleDelete(singleProperty?._id)}
+                            btnText="delete"
+                          ></DeleteBtn>
                           {singleProperty?.propertyVerificationStatus !==
                             "rejected" && (
                             <Link
