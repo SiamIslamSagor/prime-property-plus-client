@@ -63,14 +63,14 @@ const RequestedProperties = () => {
   });
 
   //   handler
-  const handleAccept = (id, propertyId) => {
+  const handleAccept = (id, propertyTitle) => {
     console.log(id);
     const actionInfo = {
       status: "accepted",
     };
 
     const info = {
-      propertyId: propertyId,
+      propertyTitle: propertyTitle,
       agentEmail: user.email,
       propertyVerificationStatus: "pending",
     };
@@ -167,7 +167,10 @@ const RequestedProperties = () => {
                         <td className="text-center">
                           <button
                             onClick={() =>
-                              handleAccept(property?._id, property?.propertyId)
+                              handleAccept(
+                                property?._id,
+                                property?.propertyTitle
+                              )
                             }
                             disabled={
                               (property?.propertyVerificationStatus &&
