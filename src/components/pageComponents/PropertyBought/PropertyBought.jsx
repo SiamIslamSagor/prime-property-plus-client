@@ -5,6 +5,7 @@ import SectionTitle from "../../utilitiesComponents/SectionTitle/SectionTitle";
 import CardHolder from "../CardHolder/CardHolder";
 import MyWishListCard from "../MyWishList/MyWishListCard";
 import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
 
 const PropertyBought = () => {
   // hooks
@@ -43,6 +44,21 @@ const PropertyBought = () => {
                   animDelay={propertyCardDelay[idx]}
                 ></MyWishListCard>
               ))}
+          </div>
+        )}
+        {boughtPropertyData.length === 0 && (
+          <div className="mt-40 text-center">
+            <p className="text-2xl">You do not give offer for any property</p>{" "}
+            <br />
+            <p className="text-xl">
+              go to{" "}
+              <Link
+                className="text-blue-700  font-medium hover:link"
+                to="/dashboard/wish-list"
+              >
+                <small>Wish List</small>
+              </Link>{" "}
+            </p>
           </div>
         )}
       </div>

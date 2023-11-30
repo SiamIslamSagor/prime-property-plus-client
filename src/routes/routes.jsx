@@ -24,6 +24,7 @@ import AgentRoute from "./AgentRoute";
 import AgentAddedProperties from "../page/AgentAddedProperties";
 import UpdateProperty from "../page/UpdateProperty";
 import AddProperty from "../page/AddProperty";
+import RequestedProperties from "../page/RequestedProperties";
 
 const router = createBrowserRouter([
   {
@@ -185,6 +186,16 @@ const router = createBrowserRouter([
           <AgentRoute>
             <PrivetRoute>
               <UpdateProperty></UpdateProperty>
+            </PrivetRoute>
+          </AgentRoute>
+        ),
+      },
+      {
+        path: "requested-properties",
+        element: (
+          <AgentRoute>
+            <PrivetRoute>
+              <RequestedProperties></RequestedProperties>
             </PrivetRoute>
           </AgentRoute>
         ),

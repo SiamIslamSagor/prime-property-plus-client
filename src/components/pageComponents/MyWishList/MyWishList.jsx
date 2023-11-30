@@ -5,6 +5,7 @@ import SectionTitle from "../../utilitiesComponents/SectionTitle/SectionTitle";
 import CardHolder from "../CardHolder/CardHolder";
 import MyWishListCard from "./MyWishListCard";
 import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
 
 const MyWishList = () => {
   // hooks
@@ -41,6 +42,23 @@ const MyWishList = () => {
                   animDelay={propertyCardDelay[idx]}
                 ></MyWishListCard>
               ))}
+          </div>
+        )}
+        {wishListData.length === 0 && (
+          <div className="mt-40 text-center">
+            <p className="text-2xl">
+              You do not have added any property in your wis list
+            </p>{" "}
+            <br />
+            <p className="text-xl">
+              go to{" "}
+              <Link
+                className="text-blue-700  font-medium hover:link"
+                to="/all-properties"
+              >
+                <small>All properties</small>
+              </Link>{" "}
+            </p>
           </div>
         )}
       </div>
